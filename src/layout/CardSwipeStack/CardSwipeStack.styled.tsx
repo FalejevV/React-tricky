@@ -12,7 +12,7 @@ export const NoContainer = styled.div<{
 }>`
     width:330px;
     height:430px;
-    border:5px solid #790000;
+    border:5px solid #79000086;
     border-radius: 10px;
 
     opacity: 0.4;
@@ -25,7 +25,7 @@ export const NoContainer = styled.div<{
     display: flex;
     align-items: center;
     justify-content: center;
-
+    background-color:#ffffff17;
 
     &:hover{
         opacity: ${({ hoverable }) => hoverable ? 1 : 0.4};
@@ -33,7 +33,7 @@ export const NoContainer = styled.div<{
 `
 
 export const YesContainer = styled(NoContainer)`
-    border:5px solid #007900;
+    border:5px solid #0079008e;
     left:unset;
     right:20px;
 `
@@ -41,6 +41,8 @@ export const YesContainer = styled(NoContainer)`
 export const SVGItem = styled.svg`
     width:65px;
     height:65px;
-    fill:red;
+    path{
+        fill:#ffffff3d;
+    }
 `
 

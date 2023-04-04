@@ -1,5 +1,18 @@
-import styled, { css } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 
+
+const scaleIn = keyframes`
+    from{
+        scale:0;
+        opacity:0;
+        translate:-50% -50%;
+    }to{
+        scale:1;
+        opacity:1;
+        translate:0 0;
+    }
+
+`
 
 export const CardSwipeContainer = styled.div<{
     isToggled: boolean,
@@ -20,7 +33,7 @@ export const CardSwipeContainer = styled.div<{
     gap:15px;
     padding:15px;
     box-shadow: 0px 0px 5px 5px #04040454;
-    transition: rotate 0.3s;
+    transition: transform 0.3s;
     z-index:10000;
     ${({ rotation, left, top }) => rotation && left && top && css`
         left: ${`calc(${left || "0px"} + 50%)`};
@@ -33,6 +46,8 @@ export const CardSwipeContainer = styled.div<{
         cursor: grab;
         transform: translate(-50%,-50%) rotate(0deg);
     `}
+
+    animation: ${scaleIn} 0.4s forwards;
 `
 
 export const CardSwipeImage = styled.div<{

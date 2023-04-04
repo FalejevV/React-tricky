@@ -14,7 +14,6 @@ function CardSwipe(props:{
     },
     id:string,
 }){
-
     let components = useMemo(() => {
         return (
             <CardSwipeContainer className="CSC" id={props.id} rotation={props.position.rotation} left={props.position.left} top={props.position.top} isToggled={props.isToggled}>
