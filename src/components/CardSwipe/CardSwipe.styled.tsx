@@ -48,6 +48,11 @@ export const CardSwipeContainer = styled.div<{
     `}
 
     animation: ${scaleIn} 0.4s forwards;
+
+    @media(max-width:1144px){
+        max-width: 200px;
+        height:300px;
+    }
 `
 
 export const CardSwipeImage = styled.div<{

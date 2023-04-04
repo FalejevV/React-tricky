@@ -30,6 +30,11 @@ export const NoContainer = styled.div<{
     &:hover{
         opacity: ${({ hoverable }) => hoverable ? 1 : 0.4};
     }
+
+    @media(max-width:1144px){
+        width:220px;
+        height:320px;
+    }
 `
 
 export const YesContainer = styled(NoContainer)`
