@@ -21,7 +21,7 @@ export const CardSwipeContainer = styled.div<{
     padding:15px;
     box-shadow: 0px 0px 5px 5px #04040454;
     transition: rotate 0.3s;
-
+    z-index:10000;
     ${({ rotation, left, top }) => rotation && left && top && css`
         left: ${`calc(${left || "0px"} + 50%)`};
         top: ${`calc(${top || "0px"} + 50%)`};

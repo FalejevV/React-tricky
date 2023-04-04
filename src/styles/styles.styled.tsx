@@ -16,8 +16,8 @@ export const PageMain = styled.main`
 
 export const RandomContainer = styled.div`
     width:100%;
-    max-width:950px;
-    height:650px;
+    max-width:1350px;
+    height:750px;
     border-radius:10px;
     border: 3px solid #d0b8a848;
 `
