@@ -20,6 +20,7 @@ export const CardSwipeContainer = styled.div<{
     left:string,
     top:string,
 }>` 
+    touch-action:none;  
     user-select:none;
     position: absolute;
     width:100%;

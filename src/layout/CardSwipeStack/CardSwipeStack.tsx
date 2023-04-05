@@ -25,9 +25,11 @@ function CardSwipeStack(){
             if(e){
                 cursorPosX = e.clientX;
                 cursorPosY = e.clientY;
+                e.preventDefault();
             }else if(t){
                 cursorPosX = t.touches[0].clientX;
                 cursorPosY = t.touches[0].clientY;
+                t.preventDefault();
             }
 
 
@@ -82,8 +84,10 @@ function CardSwipeStack(){
         let element;
         if(e){
             element = e.target as HTMLDivElement;
+            e.preventDefault();
         }else if(t){
             element = t.target as HTMLDivElement;
+            t.preventDefault();
         }
         if(element === undefined){
             return;
@@ -106,7 +110,12 @@ function CardSwipeStack(){
     }
 
     function mouseUp(e: React.MouseEvent<HTMLDivElement, MouseEvent> |null, t:React.TouchEvent<HTMLDivElement> | null){
-
+        if(e){
+            e.preventDefault();
+        }
+        if(t){
+            t.preventDefault();
+        }
         // if released card is near red/green container - do some animations and switch to next card.
         if(isMouseDown && dragAction){  
             let pickedRef;
