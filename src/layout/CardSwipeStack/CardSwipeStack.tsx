@@ -15,16 +15,31 @@ function CardSwipeStack(){
 
     const [dragAction, setDragAction] = useState<null | string>(null);
 
-    function mouseMove(e: React.MouseEvent<HTMLDivElement, MouseEvent>){
+    function mouseMove(e: React.MouseEvent<HTMLDivElement, MouseEvent> | null, t:React.TouchEvent<HTMLDivElement> | null){
         if(isMouseDown){
+
+
+            // Register mouse or touch cursor position, depends on data passed in
+            let cursorPosX;
+            let cursorPosY;
+            if(e){
+                cursorPosX = e.clientX;
+                cursorPosY = e.clientY;
+            }else if(t){
+                cursorPosX = t.touches[0].clientX;
+                cursorPosY = t.touches[0].clientY;
+            }
+
+
+
             let card = document.getElementById("card-"+currentIndex);
             if(card && containerRef.current){
                 let container = containerRef.current as HTMLDivElement;
                 let relativeContainer = container.getBoundingClientRect();
                 
                 // These coordinates represent the mouse position relative to the container.
-                let x = e.clientX - relativeContainer.left;
-                let y = e.clientY - relativeContainer.top;
+                let x = (cursorPosX || 0) - relativeContainer.left;
+                let y = (cursorPosY || 0) - relativeContainer.top;
 
 
                 // If card drag goes outside the container => stop dragging and return to default position
@@ -63,8 +78,16 @@ function CardSwipeStack(){
         }
     }
 
-    function mouseDown(e: React.MouseEvent<HTMLDivElement, MouseEvent>){
-        let element = e.target as HTMLElement;
+    function mouseDown(e: React.MouseEvent<HTMLDivElement, MouseEvent> | null, t:React.TouchEvent<HTMLDivElement> | null){
+        let element;
+        if(e){
+            element = e.target as HTMLDivElement;
+        }else if(t){
+            element = t.target as HTMLDivElement;
+        }
+        if(element === undefined){
+            return;
+        }
 
         // if statements check if target element is main CardDivContainer, otherwise sets target parent.
         if(element.tagName !== "DIV"){
@@ -82,7 +105,7 @@ function CardSwipeStack(){
         }
     }
 
-    function mouseUp(e: React.MouseEvent<HTMLDivElement, MouseEvent>){
+    function mouseUp(e: React.MouseEvent<HTMLDivElement, MouseEvent> |null, t:React.TouchEvent<HTMLDivElement> | null){
 
         // if released card is near red/green container - do some animations and switch to next card.
         if(isMouseDown && dragAction){  
@@ -160,7 +183,16 @@ function CardSwipeStack(){
     },[currentIndex]);
 
     return(
-        <CardSwipeStackContainer ref={containerRef} onMouseMove={(e) => mouseMove(e)} onMouseDown={(e) => mouseDown(e)} onMouseUp={(e) => mouseUp(e)} onMouseLeave={mouseLeave}>
+        <CardSwipeStackContainer ref={containerRef} 
+            onTouchCancelCapture={() => mouseLeave()} 
+            onTouchEndCapture={(t) => mouseUp(null,t)}
+            onTouchMove={(t) => mouseMove(null,t)} 
+            onTouchStart={(t) => mouseDown(null,t)} 
+            onMouseMove={(e) => mouseMove(e,null)} 
+            onMouseDown={(e) => mouseDown(e,null)} 
+            onMouseUp={(e) => mouseUp(e,null)} 
+            onMouseLeave={mouseLeave}
+        >
             <NoContainer ref={noRef} hoverable={isMouseDown} onMouseOver={() => setDragAction("no")} onMouseLeave={() => setDragAction(null)}>
                 <SVGItem viewBox="0 0 24 24" width="24" height="24">
                     <path d="M2.80777 1.39355L21.1925 19.7783L19.7783 21.1925L16.0316 17.4456L12 21.4852L3.52154 12.9932C1.48186 10.7095 1.49309 7.2403 3.55524 4.96974L1.39355 2.80777L2.80777 1.39355ZM4.98009 11.6233L12 18.6545L14.6176 16.0316L4.97206 6.38638C3.67816 7.8828 3.67138 10.1211 4.98009 11.6233ZM20.2428 4.75752C22.5054 7.02488 22.5831 10.6372 20.4788 12.9932L18.8442 14.6292L17.4302 13.2152L19.0202 11.6233C20.3937 10.0469 20.3191 7.66541 18.8271 6.17026C17.3281 4.66809 14.9078 4.60717 13.3371 6.01703L12.0021 7.21539L10.6662 6.01796C10.3163 5.70431 9.92487 5.4634 9.51117 5.29488L7.2604 3.04566C8.92926 2.8395 10.6682 3.33385 12.0011 4.52869C14.3502 2.42016 17.9802 2.49016 20.2428 4.75752Z" fill="#790000"></path>

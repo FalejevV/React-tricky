@@ -18,6 +18,7 @@ export const RandomContainer = styled.div`
     width:100%;
     max-width:1350px;
     height:750px;
+    max-height: 90vh;
     border-radius:10px;
     border: 3px solid #d0b8a848;
 `
