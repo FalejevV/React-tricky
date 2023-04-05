@@ -8,7 +8,7 @@ export const CardSwipeStackContainer = styled.div`
 `
 
 export const NoContainer = styled.div<{
-    hoverable:boolean,
+    dragOver:boolean,
 }>`
     width:330px;
     height:430px;
@@ -27,10 +27,10 @@ export const NoContainer = styled.div<{
     justify-content: center;
     background-color:#ffffff17;
 
-    &:hover{
-        opacity: ${({ hoverable }) => hoverable ? 1 : 0.4};
-    }
 
+    ${({ dragOver }) => dragOver && css`
+        opacity: 1;
+    `}
     @media(max-width:1144px){
         width:220px;
         height:320px;
