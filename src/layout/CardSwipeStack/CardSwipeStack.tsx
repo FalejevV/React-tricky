@@ -69,7 +69,7 @@ function CardSwipeStack(){
                 let y = (cursorPosY || 0) - relativeContainer.top;
 
                 // If card drag goes outside the container => stop dragging and return to default position
-                if(x < 25 || x  > relativeContainer.width - 25 || y > relativeContainer.height - 25 || y < 25){
+                if(x < -25 || x  > relativeContainer.width +25 || y > relativeContainer.height + 25 || y < -25){
                     setIsMouseDown(false);
                     setMouseDownStart(null);
                     card.style.transition = "all 0.3s";
@@ -180,7 +180,7 @@ function CardSwipeStack(){
         }
     }
     function mouseLeave(){
-
+ 
         // Returns card to its original state if drag is out of bounds.
         setIsMouseDown(false);
         setMouseDownStart(null);

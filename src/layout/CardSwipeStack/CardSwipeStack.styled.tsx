@@ -26,21 +26,70 @@ export const NoContainer = styled.div<{
     align-items: center;
     justify-content: center;
     background-color:#ffffff17;
+    z-index: 9999;
+    
+    @media(max-width:1080px){
+        left:-40vw;
+        background-color:transparent;
+        width:100%;
+        max-width:60vw;
+        height:550px;
+        max-height:100vh;
+        border:0px;
+        svg{
+            display:none;
+        }
+
+        &:after{
+            width: 1px;
+            height:100%;
+            content:"";
+            position:absolute;
+            left:calc(40vw - 20px);
+            top:0px;
+            box-shadow:0px 0px 60px 60px red;
+            border-radius: 50%;
+            opacity:0.4;
+        }
+    }
 
 
+    
     ${({ dragOver }) => dragOver && css`
         opacity: 1;
     `}
-    @media(max-width:1144px){
-        width:220px;
-        height:320px;
-    }
 `
 
 export const YesContainer = styled(NoContainer)`
     border:5px solid #0079008e;
     left:unset;
     right:20px;
+
+    @media(max-width:1080px){
+        right:-40vw;
+        background-color:transparent;
+        width:100%;
+        max-width:60vw;
+        height:550px;
+        max-height:100vh;
+        border:0px;
+        svg{
+            display:none;
+        }
+
+        &:after{
+            width: 1px;
+            height:100%;
+            content:"";
+            position:absolute;
+            left:unset;
+            right:calc(40vw - 20px);
+            top:0px;
+            box-shadow:0px 0px 60px 60px #82fa7a;
+            border-radius: 50%;
+            opacity:0.4;
+        }
+    }
 `
 
 export const SVGItem = styled.svg`

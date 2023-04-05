@@ -36,6 +36,12 @@ export const CardSwipeContainer = styled.div<{
     box-shadow: 0px 0px 5px 5px #04040454;
     transition: transform 0.3s;
     z-index:10000;
+
+    @media(max-width:1080px){
+        z-index: 1;
+    }
+    
+
     ${({ rotation, left, top }) => rotation && left && top && css`
         left: ${`calc(${left || "0px"} + 50%)`};
         top: ${`calc(${top || "0px"} + 50%)`};
@@ -49,11 +55,6 @@ export const CardSwipeContainer = styled.div<{
     `}
 
     animation: ${scaleIn} 0.4s forwards;
-
-    @media(max-width:1144px){
-        max-width: 200px;
-        height:300px;
-    }
 `
 
 export const CardSwipeImage = styled.div<{
