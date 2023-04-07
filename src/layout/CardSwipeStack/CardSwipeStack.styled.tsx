@@ -21,7 +21,6 @@ export const NoContainer = styled.div<{
     left:20px;
     top:50%;
     transform: translateY(-50%);
-    transition: opacity 0.3s;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -45,11 +44,10 @@ export const NoContainer = styled.div<{
             height:100%;
             content:"";
             position:absolute;
-            left:calc(40vw - 20px);
+            left:calc(40vw - 24px);
             top:0px;
-            box-shadow:0px 0px 60px 60px red;
+            box-shadow:0px 0px 30px 30px red;
             border-radius: 50%;
-            opacity:0.4;
         }
     }
 
@@ -83,11 +81,10 @@ export const YesContainer = styled(NoContainer)`
             content:"";
             position:absolute;
             left:unset;
-            right:calc(40vw - 20px);
+            right:calc(40vw - 25px);
             top:0px;
-            box-shadow:0px 0px 60px 60px #82fa7a;
+            box-shadow:0px 0px 30px 30px #82fa7a;
             border-radius: 50%;
-            opacity:0.4;
         }
     }
 `
