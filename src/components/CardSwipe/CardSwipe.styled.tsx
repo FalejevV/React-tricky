@@ -35,7 +35,7 @@ export const CardSwipeContainer = styled.div<{
     padding:15px;
     box-shadow: 0px 0px 5px 5px #04040454;
     transition: transform 0.3s;
-    z-index:10000;
+    z-index:5;
 
     @media(max-width:1080px){
         z-index: 1;

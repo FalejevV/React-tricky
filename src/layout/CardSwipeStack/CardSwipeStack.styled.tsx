@@ -25,7 +25,7 @@ export const NoContainer = styled.div<{
     align-items: center;
     justify-content: center;
     background-color:#ffffff17;
-    z-index: 9999;
+    z-index: 4;
     
     @media(max-width:1080px){
         left:-40vw;

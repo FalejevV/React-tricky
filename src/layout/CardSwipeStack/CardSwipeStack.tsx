@@ -115,18 +115,22 @@ function CardSwipeStack(){
         }
 
         // if statements check if target element is main CardDivContainer, otherwise sets target parent.
-        if(element.tagName !== "DIV"){
-            element = element.parentElement || element;
-        }else{
-            if(!element.className.includes("CSC")){
-                element = element.parentElement || element; 
+        try{
+            if(element.tagName !== "DIV"){
+                element = element.parentElement || element;
+            }else{
+                if(!element.className.includes("CSC")){
+                    element = element.parentElement || element; 
+                }
             }
-        }
-        if(element.className.includes("CSC") && element.id === "card-"+currentIndex){
-            setIsMouseDown(true);
-        }else{
-            setIsMouseDown(false);
-            setMouseDownStart(null);
+            if(element.className.includes("CSC") && element.id === "card-"+currentIndex){
+                setIsMouseDown(true);
+            }else{
+                setIsMouseDown(false);
+                setMouseDownStart(null);
+            }
+        }catch{
+            return;
         }
 
         setDragAction("");
