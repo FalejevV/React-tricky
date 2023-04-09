@@ -6,7 +6,7 @@ export const MenuContainer = styled.div<{
 }>`
     max-width: 100vw;
     min-width:100vw;
-    min-height:100vh;
+    height:100vh;
     background-color: #000000;
     display:grid;
     grid-template-columns: repeat(4, minmax(100px,250px));
@@ -18,12 +18,13 @@ export const MenuContainer = styled.div<{
     padding:20px;
     gap:20px;
     position:absolute;
+    top:0px;
     z-index:10;
     opacity: 0;
     pointer-events: none;
     user-select:none;
 
-    transition: all 0.3s;
+    transition: all 0.5s;
     ${({ toggle }) => toggle && css`
         opacity: 1;
         pointer-events: auto;

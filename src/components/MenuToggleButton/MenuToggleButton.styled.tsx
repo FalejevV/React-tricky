@@ -2,18 +2,18 @@ import styled from "styled-components";
 
 
 export const MenuButtonContainer = styled.div`
-    width:60px;
-    height:60px;
+    width:55px;
+    height:55px;
     display:flex;
+    border:2px solid grey;
     justify-content:center;
     align-items:center;
     padding:10px;
     background-color:black;
-    border:1px solid white;
     opacity:0.5;
     position:absolute;
-    top:0px;
-    left:0px;
+    top:-1px;
+    left:-1px;
     cursor:pointer;
     border-radius:0px 10px 10px 10px;
     z-index: 15;

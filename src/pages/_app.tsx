@@ -1,4 +1,4 @@
-import MenuButton from '@/components/MenuButton/MenuButton';
+import MenuToggleButton from '@/components/MenuToggleButton/MenuToggleButton';
 import Menu from '@/layout/Menu/Menu';
 import '@/styles/globals.css'
 import { PageMain } from '@/styles/styles.styled';
@@ -23,7 +23,7 @@ export default function App({ Component, pageProps }: AppProps) {
       </Head>
       <PageMain>
           <Menu setToggleMenu={setToggleMenu} toggleMenu={toggleMenu}/>
-          <MenuButton onClick={() => setToggleMenu(prev => !prev)}/>
+          <MenuToggleButton onClick={() => setToggleMenu(prev => !prev)}/>
           <Component setToggleMenu={setToggleMenu} {...pageProps} />
       </PageMain>
     </>
