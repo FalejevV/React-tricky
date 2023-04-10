@@ -5,10 +5,7 @@ import { BlackBackgroundClickField, BnbBottomBar, BnbContainer, BnbHeader, BnbLo
 import { useState } from "react";
 
 
-
-
-
-function airbnb(){    
+function Airbnb(){    
     const [menuToggle, setMenuToggle] = useState(false);
 
     const toggleMenu = () => {
@@ -43,4 +40,4 @@ function airbnb(){
 }
 
 
-export default airbnb;
+export default Airbnb;
