@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 
 export const BnbMenuContainer = styled.div`
@@ -7,9 +7,10 @@ export const BnbMenuContainer = styled.div`
     justify-content: center;
 `
 
-export const BnbSmallMenu = styled.div`
+export const BnbSmallMenu = styled.div<{
+    menuToggle:boolean,
+}>`
     position: relative;
-    width:354px;
     height:48px;
     display: flex;
     align-items: center;
@@ -19,10 +20,19 @@ export const BnbSmallMenu = styled.div`
     border: 1px solid #cbcbcb;
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.08);
     cursor: pointer;
-    transition: all 0.3s;
+    transition: all 0.3s, opacity 0.4s;
+
     &:hover{
         box-shadow: 0px 5px 4px 0px rgba(0,0,0,0.08);
     }
+
+    ${({menuToggle}) => menuToggle && css`
+        position: absolute;
+        top:15px;
+        transform:scale(1.5) scaleX(1.4) translateY(40px);
+        opacity:0;
+        pointer-events: none;
+    `}
 `
 
 export const SmallMenuDivider = styled.div`
@@ -37,9 +47,14 @@ export const BnbSmallMenuText = styled.p`
     font-weight: 500;
     white-space: nowrap;
     padding:0px 16px;
-
+    
     &:first-of-type{
         padding-left:0px;
+    }
+
+    &:last-of-type{
+        opacity: 0.5;
+        padding-right:35px;
     }
 `
 

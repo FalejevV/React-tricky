@@ -3,10 +3,13 @@ import { BnbMenuContainer, BnbSmallMenu, BnbSmallMenuSearhIcon, BnbSmallMenuText
 
 
 
-function BnbMenu(){
+function BnbMenu(props:{
+    onClick:Function,
+    menuToggle:boolean
+}){
     return(
         <BnbMenuContainer>
-            <BnbSmallMenu>
+            <BnbSmallMenu menuToggle={props.menuToggle} onClick={() => props.onClick((prev:boolean) => !prev)}>
                 <BnbSmallMenuText>Anywhere</BnbSmallMenuText>
                 <SmallMenuDivider></SmallMenuDivider>
                 <BnbSmallMenuText>Any week</BnbSmallMenuText>
