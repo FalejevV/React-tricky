@@ -47,7 +47,9 @@ export const BnbSmallMenuText = styled.p`
     font-weight: 500;
     white-space: nowrap;
     padding:0px 16px;
-    
+    height:100%;
+    display:flex;
+    align-items: center;
     &:first-of-type{
         padding-left:0px;
     }

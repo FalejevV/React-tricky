@@ -84,10 +84,12 @@ export const BnbLargeMenuTypeButton = styled.div<{
 `
 
 
-export const BnbLargeStayPicker = styled.div`
+export const BnbLargeStayPicker = styled.div<{
+    isActive:boolean,
+}>`
     width:100%;
     max-width: 848px;
-    height:70px;
+    height:68px;
     display: flex;
     align-items: center;
     border-radius:60px;
@@ -97,4 +99,66 @@ export const BnbLargeStayPicker = styled.div`
     bottom:50px;
     left:50%;
     transform: translateX(-50%);
+    ${({ isActive }) => isActive && css`
+        background-color:#e6e5e5;
+        border: 1px solid white;
+    `}
+`
+
+export const BnbLargeStayPickerButton = styled.div<{
+    flexFill:string,
+    stayPick:boolean,
+}>`
+    height:100%;
+    padding:16px 32px;
+    font-size:12px;
+    font-weight: 600;
+    color:#222222;
+    position: relative;
+    display: flex;
+    flex:${({ flexFill }) => `${flexFill} 0 0px` || `1 auto`};
+    flex-direction: column;
+    gap:3px;
+    border-radius: 60px;
+    background-color:transparent;
+    cursor:pointer;
+    
+    &:not(:first-child){
+        padding:16px 24px;
+    }
+
+    &:hover{
+        background-color:#dadada;
+    }
+
+    ${({ stayPick }) => stayPick && css`
+        background-color: white;    
+        box-shadow: 0px 5px 5px 5px rgba(0,0,0,0.1);
+
+
+        &:hover{
+            background-color:white;
+        }
+    `}    
+`
+
+export const StayInputField = styled.input`
+    width:100%;
+    height:18px;
+    color:#222;
+    background-color:transparent;
+    border:0px;
+    font-size:14px;
+    &:focus{
+        outline:none;
+        border:none;
+    }
+`
+
+export const BnbLargeStayDivider = styled.div<{
+    visible:boolean,
+}>`
+    width:1px;
+    height:30px;
+    background-color:${({ visible }) => visible ? 'transparent' : "#cbcbcb"};
 `

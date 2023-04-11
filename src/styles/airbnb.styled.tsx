@@ -49,8 +49,10 @@ export const BnbTopBar = styled.nav<{
 export const BnbTopBarFlex = styled.div<{
     justify?:string,
 }>`
+    height:48px;
     flex:1 0 140px;
     display: flex;
+    align-items: center;
     justify-content: ${({ justify }) => justify || "flex-start"};
 `
 
