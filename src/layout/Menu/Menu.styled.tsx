@@ -19,7 +19,7 @@ export const MenuContainer = styled.div<{
     gap:20px;
     position:absolute;
     top:0px;
-    z-index:10;
+    z-index:100;
     opacity: 0;
     pointer-events: none;
     user-select:none;

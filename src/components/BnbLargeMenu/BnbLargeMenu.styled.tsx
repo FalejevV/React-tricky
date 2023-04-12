@@ -155,6 +155,61 @@ export const StayInputField = styled.input`
     }
 `
 
+export const StayPickerText = styled.p`
+    color:#838383;
+    font-size:14px; 
+    font-weight: 500;
+`
+
+export const StayPickerSearchButton = styled.div<{
+    expand:boolean,
+}>`
+    position: absolute;
+    right:8px;
+    top:50%;
+    transform: translateY(-50%);
+    width:48px;
+    height:48px;
+    background-color:#FF385C;
+    border-radius: 60px;
+    overflow: hidden;
+    transition: all 0.3s;
+
+    ${({ expand }) => expand && css`
+        width:110px;
+    `}
+
+    &:hover{
+        background-color:#df2e4e;
+    }
+
+    display:flex;
+    align-items:center;
+
+`
+
+export const PickerSearchSVG = styled.svg<{
+    toggled: boolean
+}>`
+    fill:white;
+    min-width:16px;
+    min-height: 16px;
+    width:16px; 
+    height:16px;
+    margin:0px 16px;
+
+    transition: all 0.3s;
+    ${({ toggled }) => toggled && css`
+        margin-right:8px;
+    `}
+`
+
+export const PickerSearchText = styled.p`
+    font-size:16px;
+    color:white;
+    font-weight: 600;
+`
+
 export const BnbLargeStayDivider = styled.div<{
     visible:boolean,
 }>`

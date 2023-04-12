@@ -20,10 +20,13 @@ function Airbnb(){
         }
 
         let target = e.target as HTMLElement;
-        if(!target.className.includes("Large")){
-            setStayPick(0);
+        try{
+            if(!target.className.includes("Large")){
+                setStayPick(0);
+            }
+        }catch{
+            
         }
-        
     }
 
     return(
