@@ -108,9 +108,10 @@ export const BnbLargeStayPicker = styled.div<{
 export const BnbLargeStayPickerButton = styled.div<{
     flexFill:string,
     stayPick:boolean,
+    first?:boolean,
 }>`
     height:100%;
-    padding:16px 32px;
+    padding:16px 24px;
     font-size:12px;
     font-weight: 600;
     color:#222222;
@@ -122,10 +123,11 @@ export const BnbLargeStayPickerButton = styled.div<{
     border-radius: 60px;
     background-color:transparent;
     cursor:pointer;
-    
-    &:not(:first-child){
-        padding:16px 24px;
-    }
+
+
+    ${({ first }) => first && css`
+        padding:16px 32px;
+    `}
 
     &:hover{
         background-color:#dadada;

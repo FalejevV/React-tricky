@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BnbLargeMenuContainer, BnbLargeMenuTopBar, BnbLargeMenuTypeButton, BnbLargeStayDivider, BnbLargeStayPicker, BnbLargeStayPickerButton, PickerSearchSVG, PickerSearchText, StayInputField, StayPickerSearchButton, StayPickerText } from "./BnbLargeMenu.styled";
+import BnbRegionPicker from "../BnbRegionPicker/BnbRegionPicker";
 
 
 
@@ -10,9 +11,19 @@ function BnbLargeMenu(props:{
 }){
 
     const [menuType, setMenuType] = useState(0);
-    
+    const [regionPicked, setRegionPicked] = useState("");
     const [hoveredPick, setHoveredPick] = useState(-1);
+    const [regionInput, setRegionInput] = useState("");
 
+    useEffect(() => {
+        setRegionInput(regionPicked);
+    },[regionPicked]);
+
+    useEffect(() => {
+        if(regionPicked !== regionInput){
+            setRegionPicked(regionInput);
+        }
+    },[regionInput]);
     return(
         <BnbLargeMenuContainer menuToggle={props.menuToggle}>
             <BnbLargeMenuTopBar>
@@ -21,9 +32,12 @@ function BnbLargeMenu(props:{
                 <BnbLargeMenuTypeButton>Online Experiences</BnbLargeMenuTypeButton>
             </BnbLargeMenuTopBar>
             <BnbLargeStayPicker isActive={props.stayPick > 0}>
-                <BnbLargeStayPickerButton onMouseEnter={() => setHoveredPick(1)} onMouseLeave={() => setHoveredPick(-1)} stayPick={props.stayPick === 1} onClick={() => props.setStayPick(1)} flexFill="1.55">
+                {props.stayPick === 1 && <BnbRegionPicker regionPicked={regionPicked} setRegionPicked={setRegionPicked} />}
+
+
+                <BnbLargeStayPickerButton first onMouseEnter={() => setHoveredPick(1)} onMouseLeave={() => setHoveredPick(-1)} stayPick={props.stayPick === 1} onClick={() => props.setStayPick(1)} flexFill="1.55">
                     Where
-                    <StayInputField placeholder="Search destinations"/>
+                    <StayInputField placeholder="Search destinations" value={regionInput} onChange={(e) => setRegionInput(e.target.value)}/>
                 </BnbLargeStayPickerButton>
 
                 <BnbLargeStayDivider visible={hoveredPick > 0 && hoveredPick < 3 || props.stayPick === 1 || props.stayPick === 2}></BnbLargeStayDivider>
