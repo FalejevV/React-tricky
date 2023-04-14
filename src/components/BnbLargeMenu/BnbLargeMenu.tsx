@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { BnbLargeMenuContainer, BnbLargeMenuTopBar, BnbLargeMenuTypeButton, BnbLargeStayDivider, BnbLargeStayPicker, BnbLargeStayPickerButton, PickerSearchSVG, PickerSearchText, StayInputField, StayPickerSearchButton, StayPickerText } from "./BnbLargeMenu.styled";
+import { BnbLargeMenuContainer, BnbLargeMenuTopBar, BnbLargeMenuTypeButton, BnbLargeStayDivider, BnbLargeStayPicker, BnbLargeStayPickerButton, PickerSearchSVG, PickerSearchText, StayInputClearIcon, StayInputField, StayPickerSearchButton, StayPickerText } from "./BnbLargeMenu.styled";
 import BnbRegionPicker from "../BnbRegionPicker/BnbRegionPicker";
+import BnbDatePicker from "../BnbDatePicker/BnbDatePicker";
 
 
 
@@ -32,12 +33,15 @@ function BnbLargeMenu(props:{
                 <BnbLargeMenuTypeButton>Online Experiences</BnbLargeMenuTypeButton>
             </BnbLargeMenuTopBar>
             <BnbLargeStayPicker isActive={props.stayPick > 0}>
-                {props.stayPick === 1 && <BnbRegionPicker regionPicked={regionPicked} setRegionPicked={setRegionPicked} />}
-
+                {props.stayPick === 1 && <BnbRegionPicker setStayPick={props.setStayPick} regionPicked={regionPicked} setRegionPicked={setRegionPicked} />}
+                {props.stayPick === 2 && <BnbDatePicker />}
 
                 <BnbLargeStayPickerButton first onMouseEnter={() => setHoveredPick(1)} onMouseLeave={() => setHoveredPick(-1)} stayPick={props.stayPick === 1} onClick={() => props.setStayPick(1)} flexFill="1.55">
                     Where
                     <StayInputField placeholder="Search destinations" value={regionInput} onChange={(e) => setRegionInput(e.target.value)}/>
+                    <StayInputClearIcon onClick={() => setRegionInput("")} toggle={props.stayPick === 1} viewBox="0 0 24 24" width="24" height="24">
+                        <path d="M12.0007 10.5865L16.9504 5.63672L18.3646 7.05093L13.4149 12.0007L18.3646 16.9504L16.9504 18.3646L12.0007 13.4149L7.05093 18.3646L5.63672 16.9504L10.5865 12.0007L5.63672 7.05093L7.05093 5.63672L12.0007 10.5865Z" fill="#000"></path>
+                    </StayInputClearIcon>
                 </BnbLargeStayPickerButton>
 
                 <BnbLargeStayDivider visible={hoveredPick > 0 && hoveredPick < 3 || props.stayPick === 1 || props.stayPick === 2}></BnbLargeStayDivider>

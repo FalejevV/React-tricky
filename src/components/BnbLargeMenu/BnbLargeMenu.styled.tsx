@@ -157,6 +157,29 @@ export const StayInputField = styled.input`
     }
 `
 
+export const StayInputClearIcon = styled.svg<{
+    toggle: boolean
+}>`
+    position:absolute;
+    right:17px;
+    top:50%;
+    transform: translateY(-50%);
+    width:22px;
+    height:22px;
+    padding:3px;
+    border-radius: 50%;
+    background-color:#e5e5e5;
+    display:none;
+
+    ${({ toggle }) => toggle && css`
+        display:block;
+    `}
+
+    &:hover{
+        background-color:#dadada;
+    }
+`
+
 export const StayPickerText = styled.p`
     color:#838383;
     font-size:14px; 

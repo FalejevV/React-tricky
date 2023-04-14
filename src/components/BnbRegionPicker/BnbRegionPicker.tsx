@@ -3,37 +3,43 @@ import { BnbRegionItem, BnbRegionItemImage, BnbRegionItemText, BnbRegionPickerCo
 function BnbRegionPicker(props:{
     regionPicked:string,
     setRegionPicked:Function,
+    setStayPick:Function,
 }){
+
+    function selectRegion(region:string){
+        props.setRegionPicked(region);
+        props.setStayPick(2);
+    }
     return(
         <BnbRegionPickerContainer>
             <BnbRegionPickerTitle>Search by region</BnbRegionPickerTitle>
             <BnbRegionPickerGrid>
-                <BnbRegionItem onClick={() => props.setRegionPicked("I'm flexible")}>
+                <BnbRegionItem onClick={() => selectRegion("I'm flexible")}>
                     <BnbRegionItemImage picked={props.regionPicked === "I'm flexible"} src={"/airbnb/regions/All.jpg"} />
                     <BnbRegionItemText>I&#39;m flexible</BnbRegionItemText>
                 </BnbRegionItem>
 
-                <BnbRegionItem onClick={() => props.setRegionPicked("Southest Asia")}>
+                <BnbRegionItem onClick={() => selectRegion("Southest Asia")}>
                     <BnbRegionItemImage picked={props.regionPicked === "Southest Asia"} src={"/airbnb/regions/Southest Asia.jpg"} />
                     <BnbRegionItemText>Southest Asia</BnbRegionItemText>
                 </BnbRegionItem>
 
-                <BnbRegionItem onClick={() => props.setRegionPicked("Spain")}>
+                <BnbRegionItem onClick={() => selectRegion("Spain")}>
                     <BnbRegionItemImage picked={props.regionPicked === "Spain"} src={"/airbnb/regions/Spain.jpg"} />
                     <BnbRegionItemText>Spain</BnbRegionItemText>
                 </BnbRegionItem>
 
-                <BnbRegionItem onClick={() => props.setRegionPicked("Middle East")}>
+                <BnbRegionItem onClick={() => selectRegion("Middle East")}>
                     <BnbRegionItemImage picked={props.regionPicked === "Middle East"} src={"/airbnb/regions/Middle East.jpg"} />
                     <BnbRegionItemText>Middle East</BnbRegionItemText>
                 </BnbRegionItem>
 
-                <BnbRegionItem onClick={() => props.setRegionPicked("Italy")}>
+                <BnbRegionItem onClick={() => selectRegion("Italy")}>
                     <BnbRegionItemImage picked={props.regionPicked === "Italy"} src={"/airbnb/regions/Italy.jpg"} />
                     <BnbRegionItemText>Italy</BnbRegionItemText>
                 </BnbRegionItem>
 
-                <BnbRegionItem onClick={() => props.setRegionPicked("United States")}>
+                <BnbRegionItem onClick={() => selectRegion("United States")}>
                     <BnbRegionItemImage picked={props.regionPicked === "United States"} src={"/airbnb/regions/United States.jpg"} />
                     <BnbRegionItemText>United States</BnbRegionItemText>
                 </BnbRegionItem>

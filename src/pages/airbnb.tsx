@@ -21,7 +21,7 @@ function Airbnb(){
 
         let target = e.target as HTMLElement;
         try{
-            if(!target.className.includes("Large")){
+            if(!target.className.includes("Large") && !target.className.includes("Picker")){
                 setStayPick(0);
             }
         }catch{

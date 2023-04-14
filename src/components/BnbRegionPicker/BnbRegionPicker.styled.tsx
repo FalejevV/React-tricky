@@ -14,6 +14,7 @@ export const BnbRegionPickerContainer = styled.div`
     display:flex;
     flex-direction:column;
     gap:30px;
+    box-shadow:0px 0px 3px 3px #00000021;
 `
 
 
