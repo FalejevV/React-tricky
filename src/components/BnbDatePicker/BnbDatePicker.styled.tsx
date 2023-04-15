@@ -15,12 +15,13 @@ export const BnbDatePickerContainer = styled.div`
     display:flex;
     flex-direction: column;
     align-items: center;
+    gap:30px;
 `
 
 
 export const BnbDatePickerTypeContainer = styled.div`
     width:303px;
-    height:44px;
+    height:50px;
     background-color:rgb(235, 235, 235);
     border-radius:30px;
     display:flex;
@@ -57,4 +58,11 @@ export const DateTypeButton = styled.p<{
     &:active{
         scale:0.97;
     }
+`
+
+export const BnbMonthsContainer = styled.div`
+    height:100%;
+    flex:1 auto;
+    display:flex;
+    justify-content: space-between;
 `

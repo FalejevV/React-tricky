@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { BnbLargeMenuContainer, BnbLargeMenuTopBar, BnbLargeMenuTypeButton, BnbLargeStayDivider, BnbLargeStayPicker, BnbLargeStayPickerButton, PickerSearchSVG, PickerSearchText, StayInputClearIcon, StayInputField, StayPickerSearchButton, StayPickerText } from "./BnbLargeMenu.styled";
 import BnbRegionPicker from "../BnbRegionPicker/BnbRegionPicker";
 import BnbDatePicker from "../BnbDatePicker/BnbDatePicker";
@@ -25,6 +25,12 @@ function BnbLargeMenu(props:{
             setRegionPicked(regionInput);
         }
     },[regionInput]);
+
+
+    const datePickerMemo = useMemo(() => {
+        return <BnbDatePicker />
+    },[]);
+    
     return(
         <BnbLargeMenuContainer menuToggle={props.menuToggle}>
             <BnbLargeMenuTopBar>
@@ -34,7 +40,7 @@ function BnbLargeMenu(props:{
             </BnbLargeMenuTopBar>
             <BnbLargeStayPicker isActive={props.stayPick > 0}>
                 {props.stayPick === 1 && <BnbRegionPicker setStayPick={props.setStayPick} regionPicked={regionPicked} setRegionPicked={setRegionPicked} />}
-                {props.stayPick === 2 && <BnbDatePicker />}
+                {props.stayPick === 2 && datePickerMemo}
 
                 <BnbLargeStayPickerButton first onMouseEnter={() => setHoveredPick(1)} onMouseLeave={() => setHoveredPick(-1)} stayPick={props.stayPick === 1} onClick={() => props.setStayPick(1)} flexFill="1.55">
                     Where
