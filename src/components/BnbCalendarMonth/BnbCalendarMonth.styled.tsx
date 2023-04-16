@@ -1,14 +1,20 @@
 import styled, { css } from "styled-components";
 
 
-export const BnbCalendarMonthContainer = styled.div`
+export const BnbCalendarMonthContainer = styled.div<{
+    displayHidden:boolean,
+}>`
     width:390px;
     height:380px;
     display:flex;
     flex-direction:column;
-    gap:40px;
+    gap:50px;
     align-items: center;
     padding:0px 27px;
+
+    ${({ displayHidden}) => displayHidden && css`
+        display:none;
+    `}
 `
 
 export const BnbCalendarMonthTitle = styled.p`
@@ -23,10 +29,12 @@ export const BnbMonthGrid = styled.div`
     display:grid;
     grid-template-columns:repeat(7,46px);
     grid-auto-rows: 46px;
+    justify-content: space-between;
 `
 
 export const BnbMonthItem = styled.p<{
-    toggle: boolean
+    toggle: boolean,
+    available: boolean,
 }>`
     display:flex;
     align-items: center;
@@ -38,7 +46,7 @@ export const BnbMonthItem = styled.p<{
     font-size:15px;
     font-weight: 600;
     border:1px solid transparent;
-    
+    opacity:0.7;
     cursor:pointer;
     &:hover{
         border:1px solid black;
@@ -47,6 +55,15 @@ export const BnbMonthItem = styled.p<{
     ${({ toggle }) => toggle && css`
         background-color: black;
         color:white;
+    `}
+
+    ${({ available }) => !available && css`
+        opacity: 0.2;
+
+        &:hover{
+            border:1px solid transparent;
+            cursor:default;
+        }
     `}
 `
 
