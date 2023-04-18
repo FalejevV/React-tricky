@@ -1,10 +1,17 @@
 import { useEffect, useState } from "react";
 import { BnbDatePickerContainer, BnbDatePickerTypeContainer, BnbMonthSwitchArrowSvgLeft, BnbMonthSwitchArrowSvgRight, BnbMonthsArrowContainer, BnbMonthsContainer, BnbMonthsList, DateTypeButton } from "./BnbDatePicker.styled";
 import BnbCalendarMonth from "../BnbCalendarMonth/BnbCalendarMonth";
+import { nanoid } from "nanoid";
+import { DatePick } from "../../../interface";
 
 
 
-function BnbDatePicker(){
+function BnbDatePicker(props:{
+    datePick:DatePick,
+    setDatePick:Function,
+    stayPick:number,
+    setStayPick:Function,
+}){
     const [dateType, setDateType] = useState(1);
     const [slider,setSlider] = useState(0);
 
@@ -13,11 +20,10 @@ function BnbDatePicker(){
         for(let i = 0; i < 10; i++){
             let date = new Date();
             var newDate = new Date(date.setMonth(date.getMonth()+i));
-            calendarArray.push(<BnbCalendarMonth hidden={false} month={newDate.getMonth()} year={newDate.getFullYear()} />);
+            calendarArray.push(<BnbCalendarMonth setStayPick={props.setStayPick} stayPick={props.stayPick} datePick={props.datePick} setDatePick={props.setDatePick} hidden={false} month={newDate.getMonth()} year={newDate.getFullYear()} key={nanoid()} />);
         }
         return calendarArray;
     }
-
     function doSlide(value:number){
         if(slider + value < 0) return;
         if(slider + value > 8) return;

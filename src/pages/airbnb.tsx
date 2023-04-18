@@ -2,13 +2,17 @@ import BnbLargeMenu from "@/components/BnbLargeMenu/BnbLargeMenu";
 import BnbMenu from "@/components/BnbMenu/BnbMenu";
 import BnbUserPanel from "@/components/BnbUserPanel/BnbUserPanel";
 import { BlackBackgroundClickField, BnbBottomBar, BnbContainer, BnbHeader, BnbLogo, BnbTopBar, BnbTopBarContainer, BnbTopBarFlex } from "@/styles/airbnb.styled";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { DatePick } from "../../interface";
 
 
 function Airbnb(){    
     const [menuToggle, setMenuToggle] = useState(false);
     const [stayPick,setStayPick] = useState(1);
-
+    const [datePick,setDatePick] = useState<DatePick>({
+        startDate: new Date(0,0,0),
+        endDate: new Date(0,0,0),
+    });
     const toggleMenu = () => {
         setMenuToggle(!menuToggle);
     }
@@ -28,7 +32,6 @@ function Airbnb(){
             
         }
     }
-
     return(
         <>
             <BlackBackgroundClickField onClick={() => setMenuToggle(false)}></BlackBackgroundClickField>
@@ -41,7 +44,7 @@ function Airbnb(){
                                 <BnbLogo src="/airbnb.svg"/>
                             </BnbTopBarFlex>
                             <BnbMenu setStayPick={setStayPick} onClick={toggleMenu} menuToggle={menuToggle}/>
-                            <BnbLargeMenu stayPick={stayPick} setStayPick={setStayPick} menuToggle={menuToggle}/>
+                            <BnbLargeMenu datePick={datePick} setDatePick={setDatePick} stayPick={stayPick} setStayPick={setStayPick} menuToggle={menuToggle}/>
                             <BnbTopBarFlex justify="flex-end">
                                 <BnbUserPanel />
                             </BnbTopBarFlex>

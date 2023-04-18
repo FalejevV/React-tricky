@@ -180,10 +180,16 @@ export const StayInputClearIcon = styled.svg<{
     }
 `
 
-export const StayPickerText = styled.p`
+export const StayPickerText = styled.p<{
+    datePicked?:boolean,
+}>`
     color:#838383;
     font-size:14px; 
     font-weight: 500;
+
+    ${({ datePicked }) => datePicked && css`
+        color:black;
+    `}
 `
 
 export const StayPickerSearchButton = styled.div<{

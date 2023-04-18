@@ -29,12 +29,14 @@ export const BnbMonthGrid = styled.div`
     display:grid;
     grid-template-columns:repeat(7,46px);
     grid-auto-rows: 46px;
-    justify-content: space-between;
+    row-gap:1px;
 `
 
 export const BnbMonthItem = styled.p<{
     toggle: boolean,
     available: boolean,
+    selected: boolean,
+    isBetweenDates:boolean
 }>`
     display:flex;
     align-items: center;
@@ -45,11 +47,25 @@ export const BnbMonthItem = styled.p<{
     color:black;
     font-size:15px;
     font-weight: 600;
-    border:1px solid transparent;
     opacity:0.7;
     cursor:pointer;
+    position: relative;
+
+    &:after{
+        position: absolute;
+        content:"";
+        left:0px;
+        top:0px;
+        width:calc(100% - 2px);
+        height:calc(100% - 2px);
+        border-radius: 50%;
+        border:1px solid transparent;
+    }
+
     &:hover{
-        border:1px solid black;
+        &:after{
+            border:1px solid black;
+        }
     }
 
     ${({ toggle }) => toggle && css`
@@ -61,9 +77,23 @@ export const BnbMonthItem = styled.p<{
         opacity: 0.2;
 
         &:hover{
-            border:1px solid transparent;
             cursor:default;
         }
+    `}
+
+    ${({ selected }) => selected && css`
+        background-color: black;
+        color:white;
+        opacity:1;
+        &:hover{
+            background-color: black;
+            color:white;
+        }
+    `}
+
+    ${({ isBetweenDates }) => isBetweenDates && css`
+        background-color:#d1d1d148;
+        border-radius: 0px;
     `}
 `
 
