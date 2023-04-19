@@ -12,7 +12,7 @@ export const BnbCalendarMonthContainer = styled.div<{
     align-items: center;
     padding:0px 27px;
 
-    ${({ displayHidden}) => displayHidden && css`
+    ${({ displayHidden }) => displayHidden && css`
         display:none;
     `}
 `
@@ -75,7 +75,7 @@ export const BnbMonthItem = styled.p<{
 
     ${({ available }) => !available && css`
         opacity: 0.2;
-
+        pointer-events: none;
         &:hover{
             cursor:default;
         }

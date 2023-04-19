@@ -1,9 +1,9 @@
-import BnbLargeMenu from "@/components/BnbLargeMenu/BnbLargeMenu";
-import BnbMenu from "@/components/BnbMenu/BnbMenu";
-import BnbUserPanel from "@/components/BnbUserPanel/BnbUserPanel";
 import { BlackBackgroundClickField, BnbBottomBar, BnbContainer, BnbHeader, BnbLogo, BnbTopBar, BnbTopBarContainer, BnbTopBarFlex } from "@/styles/airbnb.styled";
-import { useState } from "react";
-import { DatePick } from "../../interface";
+import { useEffect, useState } from "react";
+import { DatePick, Guests } from "../../interface";
+import BnbMenu from "@/components/Bnb/BnbMenu/BnbMenu";
+import BnbLargeMenu from "@/components/Bnb/BnbLargeMenu/BnbLargeMenu";
+import BnbUserPanel from "@/components/Bnb/BnbUserPanel/BnbUserPanel";
 
 
 function Airbnb(){    
@@ -12,6 +12,12 @@ function Airbnb(){
     const [datePick,setDatePick] = useState<DatePick>({
         startDate: new Date(0,0,0),
         endDate: new Date(0,0,0),
+    });
+    const [guests,setGuests] = useState<Guests>({
+        adults:0,
+        children:0,
+        infants:0,
+        pets:0,
     });
     const toggleMenu = () => {
         setMenuToggle(!menuToggle);
@@ -25,7 +31,7 @@ function Airbnb(){
 
         let target = e.target as HTMLElement;
         try{
-            if(!target.className.includes("Large") && !target.className.includes("Picker") && !target.className.includes("Date") && !target.className.includes("Month")){
+            if(!target.className.includes("Large") && !target.className.includes("Picker") && !target.className.includes("Date") && !target.className.includes("Month") && !target.className.includes("Guest")){
                 setStayPick(0);
             }
         }catch{
@@ -44,7 +50,7 @@ function Airbnb(){
                                 <BnbLogo src="/airbnb.svg"/>
                             </BnbTopBarFlex>
                             <BnbMenu setStayPick={setStayPick} onClick={toggleMenu} menuToggle={menuToggle}/>
-                            <BnbLargeMenu datePick={datePick} setDatePick={setDatePick} stayPick={stayPick} setStayPick={setStayPick} menuToggle={menuToggle}/>
+                            <BnbLargeMenu guests={guests} setGuests={setGuests} datePick={datePick} setDatePick={setDatePick} stayPick={stayPick} setStayPick={setStayPick} menuToggle={menuToggle}/>
                             <BnbTopBarFlex justify="flex-end">
                                 <BnbUserPanel />
                             </BnbTopBarFlex>

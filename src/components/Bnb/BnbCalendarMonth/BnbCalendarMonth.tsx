@@ -1,7 +1,7 @@
 import { BnbCalendarMonthContainer, BnbCalendarMonthTitle, BnbMonthBlankItem, BnbMonthGrid, BnbMonthItem } from "./BnbCalendarMonth.styled";
 import { nanoid } from "nanoid";
 import { useEffect, useState } from "react";
-import { DatePick } from "../../../interface";
+import { DatePick } from "../../../../interface";
 
 const monthNames = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"
