@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { BnbDatePickerContainer, BnbDatePickerTypeContainer, BnbMonthSwitchArrowSvgLeft, BnbMonthSwitchArrowSvgRight, BnbMonthsArrowContainer, BnbMonthsContainer, BnbMonthsList, DateTypeButton } from "./BnbDatePicker.styled";
 import BnbCalendarMonth from "../BnbCalendarMonth/BnbCalendarMonth";
 import { nanoid } from "nanoid";
-import { DatePick } from "../../../interface";
+import { DatePick } from "../../../../interface";
 
 
 

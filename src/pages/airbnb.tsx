@@ -1,9 +1,9 @@
 import { BlackBackgroundClickField, BnbBottomBar, BnbContainer, BnbHeader, BnbLogo, BnbTopBar, BnbTopBarContainer, BnbTopBarFlex } from "@/styles/airbnb.styled";
-import { useEffect, useState } from "react";
-import { DatePick, Guests } from "../../interface";
+import {useState } from "react";
 import BnbMenu from "@/components/Bnb/BnbMenu/BnbMenu";
 import BnbLargeMenu from "@/components/Bnb/BnbLargeMenu/BnbLargeMenu";
 import BnbUserPanel from "@/components/Bnb/BnbUserPanel/BnbUserPanel";
+import { DatePick, Guests } from "../../interface";
 
 
 function Airbnb(){    
