@@ -51,6 +51,32 @@ function BnbLargeMenu(props:{
         
     }
 
+    function clearGuests(){
+        props.setGuests(() => ({
+            adults:0,
+            children:0,
+            infants:0,
+            pets:0,
+        }));
+    }
+
+    function guestsToText(){
+        let guestCounter = props.guests.adults + props.guests.children;
+        let infantCounter = props.guests.infants;
+        let petCounter = props.guests.pets;
+
+        let guestText = guestCounter > 0 ? `${guestCounter} guest${guestCounter > 1 ? "s" : ""}` : "";
+        guestText = guestCounter > 15 ? `16+ guests` : guestText;
+        let infantText =  infantCounter > 0 ? `${infantCounter} infant${infantCounter > 1 ? "s" : ""}` : "";
+        let petText = petCounter > 0 ? `${petCounter} pet${petCounter > 1 ? "s" : ""}` : "";
+
+        if(guestText === ""){
+            return "Add guests";
+        }
+
+        return `${guestText}${infantText !== "" ? `,${infantText}` : ""}${petText !== "" ? `,${petText}` : ""}`;
+    }
+
     return(
         <BnbLargeMenuContainer menuToggle={props.menuToggle}>
             <BnbLargeMenuTopBar>
@@ -76,7 +102,7 @@ function BnbLargeMenu(props:{
 
                 <BnbLargeStayPickerButton onMouseEnter={() => setHoveredPick(2)} onMouseLeave={() => setHoveredPick(-1)} stayPick={props.stayPick === 2} onClick={() => props.setStayPick(2)} flexFill="0.5">
                     Check in
-                    <StayPickerText datePicked={props.datePick.startDate.valueOf() !== new Date(0,0,0).valueOf()}>{getDateName(props.datePick.startDate) ? getDateName(props.datePick.startDate) : "Add dates"}</StayPickerText>
+                    <StayPickerText picked={props.datePick.startDate.valueOf() !== new Date(0,0,0).valueOf()}>{getDateName(props.datePick.startDate) ? getDateName(props.datePick.startDate) : "Add dates"}</StayPickerText>
                     <StayInputClearIcon onClick={clearDatePick} toggle={props.stayPick === 2 && props.datePick.startDate.valueOf() !== new Date(0,0,0).valueOf()} viewBox="0 0 24 24" width="24" height="24">
                         <path d="M12.0007 10.5865L16.9504 5.63672L18.3646 7.05093L13.4149 12.0007L18.3646 16.9504L16.9504 18.3646L12.0007 13.4149L7.05093 18.3646L5.63672 16.9504L10.5865 12.0007L5.63672 7.05093L7.05093 5.63672L12.0007 10.5865Z" fill="#000"></path>
                     </StayInputClearIcon>
@@ -86,7 +112,7 @@ function BnbLargeMenu(props:{
 
                 <BnbLargeStayPickerButton onMouseEnter={() => setHoveredPick(3)} onMouseLeave={() => setHoveredPick(-1)} stayPick={props.stayPick === 3} onClick={() => props.setStayPick(3)} flexFill="0.5">
                     Check out
-                    <StayPickerText  datePicked={props.datePick.endDate.valueOf() !== new Date(0,0,0).valueOf()}>{getDateName(props.datePick.endDate) ? getDateName(props.datePick.endDate) : "Add dates"}</StayPickerText>
+                    <StayPickerText  picked={props.datePick.endDate.valueOf() !== new Date(0,0,0).valueOf()}>{getDateName(props.datePick.endDate) ? getDateName(props.datePick.endDate) : "Add dates"}</StayPickerText>
                     <StayInputClearIcon onClick={clearDatePick} toggle={props.stayPick === 3 && props.datePick.endDate.valueOf() !== new Date(0,0,0).valueOf()} viewBox="0 0 24 24" width="24" height="24">
                         <path d="M12.0007 10.5865L16.9504 5.63672L18.3646 7.05093L13.4149 12.0007L18.3646 16.9504L16.9504 18.3646L12.0007 13.4149L7.05093 18.3646L5.63672 16.9504L10.5865 12.0007L5.63672 7.05093L7.05093 5.63672L12.0007 10.5865Z" fill="#000"></path>
                     </StayInputClearIcon>
@@ -96,8 +122,10 @@ function BnbLargeMenu(props:{
 
                 <BnbLargeStayPickerButton onMouseEnter={() => setHoveredPick(4)} onMouseLeave={() => setHoveredPick(-1)} stayPick={props.stayPick === 4} onClick={() => props.setStayPick(4)} flexFill="1.25">
                     Who
-                    <StayPickerText>Add guests</StayPickerText>
-
+                    <StayPickerText shorten={props.stayPick > 0} picked={props.guests.adults > 0}>{guestsToText()}</StayPickerText>
+                    <StayInputClearIcon right="130px" onClick={clearGuests} toggle={props.guests.adults > 0 && props.stayPick === 4} viewBox="0 0 24 24" width="24" height="24">
+                        <path d="M12.0007 10.5865L16.9504 5.63672L18.3646 7.05093L13.4149 12.0007L18.3646 16.9504L16.9504 18.3646L12.0007 13.4149L7.05093 18.3646L5.63672 16.9504L10.5865 12.0007L5.63672 7.05093L7.05093 5.63672L12.0007 10.5865Z" fill="#000"></path>
+                    </StayInputClearIcon>
                     <StayPickerSearchButton expand={props.stayPick > 0}>
                         <PickerSearchSVG toggled={props.stayPick > 0} viewBox="0 0 512 512">
                             <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/>

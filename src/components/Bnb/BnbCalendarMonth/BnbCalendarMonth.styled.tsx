@@ -27,7 +27,7 @@ export const BnbMonthGrid = styled.div`
     width:100%;
     height:100%;
     display:grid;
-    grid-template-columns:repeat(7,46px);
+    grid-template-columns:repeat(7,48px);
     grid-auto-rows: 46px;
     row-gap:1px;
 `
@@ -54,9 +54,9 @@ export const BnbMonthItem = styled.p<{
     &:after{
         position: absolute;
         content:"";
-        left:0px;
+        left:2px;
         top:0px;
-        width:calc(100% - 2px);
+        width:calc(100% - 4px);
         height:calc(100% - 2px);
         border-radius: 50%;
         border:1px solid transparent;

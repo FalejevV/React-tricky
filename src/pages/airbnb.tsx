@@ -5,6 +5,7 @@ import BnbLargeMenu from "@/components/Bnb/BnbLargeMenu/BnbLargeMenu";
 import BnbUserPanel from "@/components/Bnb/BnbUserPanel/BnbUserPanel";
 import { DatePick, Guests } from "../../interface";
 
+const ignoreArray = ["Large", "Picker", "Date", "Month", "Guest"];
 
 function Airbnb(){    
     const [menuToggle, setMenuToggle] = useState(false);
@@ -31,7 +32,15 @@ function Airbnb(){
 
         let target = e.target as HTMLElement;
         try{
-            if(!target.className.includes("Large") && !target.className.includes("Picker") && !target.className.includes("Date") && !target.className.includes("Month") && !target.className.includes("Guest")){
+            let found = false;
+            ignoreArray.forEach((className) => {
+                if(found) return;
+
+                if(target.className.includes(className)){
+                    found = true;
+                }
+            })
+            if(!found){
                 setStayPick(0);
             }
         }catch{

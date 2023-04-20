@@ -11,6 +11,7 @@ function BnbGuestItem(props:{
     limit:number,
     setGuests:Function,
     adultRequired?:boolean,
+    noMore?:boolean,
 }){
 
     function changeGuestValue(increment:number){
@@ -52,7 +53,7 @@ function BnbGuestItem(props:{
             <GuestCounterContainer>
                     <GuestCounterButton onClick={() => changeGuestValue(-1)} isDisabled={props.guests < 1} blocked={props.adultRequired}>-</GuestCounterButton>
                     <GuestCounterIndicator>{props.guests}</GuestCounterIndicator>
-                    <GuestCounterButton onClick={() => changeGuestValue(1)} isDisabled={props.guests >= props.limit}>+</GuestCounterButton>
+                    <GuestCounterButton onClick={() => changeGuestValue(1)} isDisabled={props.guests >= props.limit || (props.noMore || false)}>+</GuestCounterButton>
                 </GuestCounterContainer>
         </BnbGuestItemContainer>
     )

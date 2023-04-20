@@ -111,7 +111,7 @@ export const BnbLargeStayPickerButton = styled.div<{
     first?:boolean,
 }>`
     height:100%;
-    padding:16px 24px;
+    padding:15px 24px;
     font-size:12px;
     font-weight: 600;
     color:#222222;
@@ -158,7 +158,8 @@ export const StayInputField = styled.input`
 `
 
 export const StayInputClearIcon = styled.svg<{
-    toggle: boolean
+    toggle: boolean,
+    right?:string,
 }>`
     position:absolute;
     right:17px;
@@ -175,20 +176,34 @@ export const StayInputClearIcon = styled.svg<{
         display:block;
     `}
 
+    ${({ right }) => right && css`
+        right: ${right};
+    `}
+
     &:hover{
         background-color:#dadada;
     }
 `
 
 export const StayPickerText = styled.p<{
-    datePicked?:boolean,
+    picked?:boolean,
+    shorten?:boolean
 }>`
     color:#838383;
     font-size:14px; 
     font-weight: 500;
-
-    ${({ datePicked }) => datePicked && css`
+    text-overflow: ellipsis;
+    overflow: hidden; 
+    white-space: nowrap;
+    width:77%;
+    min-width: 81px;
+    height:100%;
+    ${({ picked }) => picked && css`
         color:black;
+    `}
+    transition: all 0.3s;
+    ${({ shorten }) => shorten && css`
+        width:84px;
     `}
 `
 
