@@ -10,6 +10,7 @@ const ignoreArray = ["Large", "Picker", "Date", "Month", "Guest"];
 function Airbnb(){    
     const [menuToggle, setMenuToggle] = useState(false);
     const [stayPick,setStayPick] = useState(1);
+    const [approxDate, setApproxDate] = useState(0);
     const [datePick,setDatePick] = useState<DatePick>({
         startDate: new Date(0,0,0),
         endDate: new Date(0,0,0),
@@ -59,7 +60,7 @@ function Airbnb(){
                                 <BnbLogo src="/airbnb.svg"/>
                             </BnbTopBarFlex>
                             <BnbMenu setStayPick={setStayPick} onClick={toggleMenu} menuToggle={menuToggle}/>
-                            <BnbLargeMenu guests={guests} setGuests={setGuests} datePick={datePick} setDatePick={setDatePick} stayPick={stayPick} setStayPick={setStayPick} menuToggle={menuToggle}/>
+                            <BnbLargeMenu approxDate={approxDate} setApproxDate={setApproxDate} guests={guests} setGuests={setGuests} datePick={datePick} setDatePick={setDatePick} stayPick={stayPick} setStayPick={setStayPick} menuToggle={menuToggle}/>
                             <BnbTopBarFlex justify="flex-end">
                                 <BnbUserPanel />
                             </BnbTopBarFlex>

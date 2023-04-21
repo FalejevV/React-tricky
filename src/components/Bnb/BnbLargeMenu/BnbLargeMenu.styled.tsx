@@ -187,7 +187,8 @@ export const StayInputClearIcon = styled.svg<{
 
 export const StayPickerText = styled.p<{
     picked?:boolean,
-    shorten?:boolean
+    shorten?:boolean,
+    toggle?:boolean,
 }>`
     color:#838383;
     font-size:14px; 
@@ -198,12 +199,19 @@ export const StayPickerText = styled.p<{
     width:77%;
     min-width: 81px;
     height:100%;
+
     ${({ picked }) => picked && css`
         color:black;
     `}
-    transition: all 0.3s;
+    
+    transition: width 0.3s;
     ${({ shorten }) => shorten && css`
         width:84px;
+    `}
+    
+    ${({ toggle }) => toggle && css`
+        min-width:60px;
+        width:72%;
     `}
 `
 

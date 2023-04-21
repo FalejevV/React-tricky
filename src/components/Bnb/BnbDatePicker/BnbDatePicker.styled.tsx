@@ -112,10 +112,22 @@ export const BnbMonthSwitchArrowSvgLeft = styled.svg<{
 
     ${({ isDisabled }) => isDisabled && css`
         cursor:not-allowed;
-        opacity: 0.4;
+        opacity: 0.1;
     `}
 `
 
 export const BnbMonthSwitchArrowSvgRight = styled(BnbMonthSwitchArrowSvgLeft)`
 
+`
+
+export const BnbWeekDaysWrapper = styled.div`
+    position: absolute;
+    width:100%;
+    top:25px;
+    left:0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding:0px 40px;
+    gap:75px;
 `

@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
-import { BnbDatePickerContainer, BnbDatePickerTypeContainer, BnbMonthSwitchArrowSvgLeft, BnbMonthSwitchArrowSvgRight, BnbMonthsArrowContainer, BnbMonthsContainer, BnbMonthsList, DateTypeButton } from "./BnbDatePicker.styled";
+import { useState } from "react";
+import { BnbDatePickerContainer, BnbDatePickerTypeContainer, BnbMonthSwitchArrowSvgLeft, BnbMonthSwitchArrowSvgRight, BnbMonthsArrowContainer, BnbMonthsContainer, BnbMonthsList, BnbWeekDaysWrapper, DateTypeButton } from "./BnbDatePicker.styled";
 import BnbCalendarMonth from "../BnbCalendarMonth/BnbCalendarMonth";
 import { nanoid } from "nanoid";
 import { DatePick } from "../../../../interface";
+import BnbWeekDays from "../BnbWeekDays/BnbWeekDays";
+import BnbApproxDate from "../BnbApproxDate/BnbApproxDate";
 
 
 
@@ -11,6 +13,8 @@ function BnbDatePicker(props:{
     setDatePick:Function,
     stayPick:number,
     setStayPick:Function,
+    approxDate:number,
+    setApproxDate:Function,
 }){
     const [dateType, setDateType] = useState(1);
     const [slider,setSlider] = useState(0);
@@ -47,12 +51,17 @@ function BnbDatePicker(props:{
                 </BnbMonthSwitchArrowSvgRight>
 
             </BnbMonthsArrowContainer>
-
             <BnbMonthsContainer>
+                <BnbWeekDaysWrapper>
+                    <BnbWeekDays/>
+                    <BnbWeekDays/>
+                </BnbWeekDaysWrapper>
                 <BnbMonthsList slider={slider}>
                     {getCalendarList()}
                 </BnbMonthsList>
             </BnbMonthsContainer>
+
+            <BnbApproxDate approxDate={props.approxDate} setApproxDate={props.setApproxDate} />
         </BnbDatePickerContainer>
     )
 }

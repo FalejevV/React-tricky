@@ -30,8 +30,6 @@ function BnbGuestPicker(props:{
             setAdultRequired(false);
         }
     },[props.guests]);
-
-    console.log(adultRequired);
     return(
         <BnbGuestPickerContainer>
             <BnbGuestItem noMore={props.guests.adults + props.guests.children > 15} setGuests={props.setGuests} title="Adults" subTitle={"Ages 13 or above"} guests={props.guests.adults} limit={16} adultRequired={adultRequired}/>
