@@ -3,7 +3,7 @@ import {useState } from "react";
 import BnbMenu from "@/components/Bnb/BnbMenu/BnbMenu";
 import BnbLargeMenu from "@/components/Bnb/BnbLargeMenu/BnbLargeMenu";
 import BnbUserPanel from "@/components/Bnb/BnbUserPanel/BnbUserPanel";
-import { DatePick, Guests } from "../../interface";
+import { DatePick, FlexDate, Guests } from "../../interface";
 
 const ignoreArray = ["Large", "Picker", "Date", "Month", "Guest"];
 
@@ -11,10 +11,16 @@ function Airbnb(){
     const [menuToggle, setMenuToggle] = useState(false);
     const [stayPick,setStayPick] = useState(1);
     const [approxDate, setApproxDate] = useState(0);
+    const [dateType, setDateType] = useState(0);
+    const [flexDate,setFlexDate] = useState<FlexDate>({
+        duration:0,
+        dates:[]    
+    });
     const [datePick,setDatePick] = useState<DatePick>({
         startDate: new Date(0,0,0),
         endDate: new Date(0,0,0),
     });
+    
     const [guests,setGuests] = useState<Guests>({
         adults:0,
         children:0,
@@ -60,7 +66,7 @@ function Airbnb(){
                                 <BnbLogo src="/airbnb.svg"/>
                             </BnbTopBarFlex>
                             <BnbMenu setStayPick={setStayPick} onClick={toggleMenu} menuToggle={menuToggle}/>
-                            <BnbLargeMenu approxDate={approxDate} setApproxDate={setApproxDate} guests={guests} setGuests={setGuests} datePick={datePick} setDatePick={setDatePick} stayPick={stayPick} setStayPick={setStayPick} menuToggle={menuToggle}/>
+                            <BnbLargeMenu dateType={dateType} setDateType={setDateType} flexDate={flexDate} setFlexDate={setFlexDate} approxDate={approxDate} setApproxDate={setApproxDate} guests={guests} setGuests={setGuests} datePick={datePick} setDatePick={setDatePick} stayPick={stayPick} setStayPick={setStayPick} menuToggle={menuToggle}/>
                             <BnbTopBarFlex justify="flex-end">
                                 <BnbUserPanel />
                             </BnbTopBarFlex>

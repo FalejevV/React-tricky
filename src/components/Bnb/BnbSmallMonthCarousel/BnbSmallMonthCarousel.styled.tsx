@@ -1,29 +1,30 @@
 import styled, { css } from "styled-components";
 
-
-export const BnbApproxDateContainer = styled.div`
+export const BnbSmallMonthCarouselContainer = styled.div`
     width:100%;
-    position: absolute;
-    bottom: 35px;
-    left:0px;
-    padding:0px 62px;
-    display:flex;
-    gap:10px;
+    height:144px;
+    overflow-x:scroll;
+    padding:5px 0px;
+    scrollbar-width: none;
+    overflow-y:hidden;
 `
 
+export const BnbSmallMonthCarouselList = styled.div`
+    flex:1;
+    height:100%;
+    display:flex;
+    align-items: center;
+    gap:8px;
+`
 
-export const BnbApproxDateButton = styled.button<{
+export const BnbSmallMonthCarouselItem = styled.div<{
     toggle: boolean
 }>`
-    cursor: pointer;
-    color:black;
-    background-color: white;
-    padding:7px 15px;
+    width:122px;
+    min-width: 123px;
+    height:134px;
     border:1px solid #d6d6d6;
-    font-size: 12px;
     border-radius: 20px;
-    margin:2px;
-    transition: transform 0.15s;
 
     &:active{
         transform: scale(0.93);

@@ -9,3 +9,8 @@ export interface Guests{
         infants:number,
         pets:number,
 }
+
+export interface FlexDate{
+        duration:number,
+        dates:Date[],
+}

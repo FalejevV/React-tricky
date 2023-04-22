@@ -3,7 +3,7 @@ import { BnbLargeMenuContainer, BnbLargeMenuTopBar, BnbLargeMenuTypeButton, BnbL
 import BnbDatePicker from "../BnbDatePicker/BnbDatePicker";
 import BnbGuestPicker from "../BnbGuestPicker/BnbGuestPicker";
 import BnbRegionPicker from "../BnbRegionPicker/BnbRegionPicker";
-import { DatePick, Guests } from "../../../../interface";
+import { DatePick, FlexDate, Guests } from "../../../../interface";
 
 
 
@@ -17,6 +17,10 @@ function BnbLargeMenu(props:{
     setGuests:Function,
     approxDate:number,
     setApproxDate:Function,
+    dateType:number,
+    setDateType:Function,
+    flexDate:FlexDate,
+    setFlexDate:Function,
 }){
 
     const [menuType, setMenuType] = useState(0);
@@ -34,6 +38,7 @@ function BnbLargeMenu(props:{
         }
     },[regionInput]);
 
+    // Month day pick convertc to month name with number
     function getDateName(date:Date){
         if(date.valueOf() === new Date(0,0,0).valueOf())return false;
         const month = date.toLocaleString('en-us', { month: 'short' });
@@ -43,8 +48,8 @@ function BnbLargeMenu(props:{
     }
 
     const datePickerMemo = useMemo(() => {
-        return <BnbDatePicker approxDate={props.approxDate} setApproxDate={props.setApproxDate} setStayPick={props.setStayPick} stayPick={props.stayPick} setDatePick={props.setDatePick} datePick={props.datePick}/>
-    },[props.stayPick, props.datePick,props.approxDate]);
+        return <BnbDatePicker dateType={props.dateType} setDateType={props.setDateType} flexDate={props.flexDate} setFlexDate={props.setFlexDate} approxDate={props.approxDate} setApproxDate={props.setApproxDate} setStayPick={props.setStayPick} stayPick={props.stayPick} setDatePick={props.setDatePick} datePick={props.datePick}/>
+    },[props.stayPick, props.datePick,props.approxDate,props.dateType,props.flexDate]);
     
     function clearDatePick(){
         props.setDatePick({
