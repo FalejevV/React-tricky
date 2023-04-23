@@ -12,5 +12,5 @@ export interface Guests{
 
 export interface FlexDate{
         duration:number,
-        dates:Date[],
+        dates:number[][],
 }
