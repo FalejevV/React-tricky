@@ -5,7 +5,9 @@ import BnbGuestPicker from "../BnbGuestPicker/BnbGuestPicker";
 import BnbRegionPicker from "../BnbRegionPicker/BnbRegionPicker";
 import { DatePick, FlexDate, Guests } from "../../../../interface";
 
-
+const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
 
 function BnbLargeMenu(props:{
     menuToggle: boolean,
@@ -85,7 +87,27 @@ function BnbLargeMenu(props:{
 
         return `${guestText}${infantText !== "" ? `,${infantText}` : ""}${petText !== "" ? `,${petText}` : ""}`;
     }
-    
+
+    function flexDateToText(){
+        let durationText = props.flexDate.duration === 0 ? "weekend" : props.flexDate.duration === 1 ? "week" : "month";
+        if(props.flexDate.dates.length === 0) return `Any ${durationText}`;
+
+        
+        let durationTextToArray = durationText.split("");
+        durationTextToArray[0] = durationTextToArray[0].toUpperCase();
+        let durationUpperCaseText = durationTextToArray.join("");
+        if(props.flexDate.dates.length === 1){
+            return `${durationUpperCaseText} in ${monthNames[props.flexDate.dates[0][1]]}`
+        }else{
+            let orderedDates = props.flexDate.dates.sort((dateItema:number[],dateItemb:number[]) => {
+                return dateItema[1] - dateItemb[1];
+            });
+
+            let shortenedMonthsArray = orderedDates.map((date:number[]) => monthNames[date[1]].slice(0,3));
+            return `${durationUpperCaseText} in ${shortenedMonthsArray}`
+        }
+    }
+
     return(
         <BnbLargeMenuContainer menuToggle={props.menuToggle}>
             <BnbLargeMenuTopBar>
@@ -107,27 +129,37 @@ function BnbLargeMenu(props:{
                     </StayInputClearIcon>
                 </BnbLargeStayPickerButton>
 
-                <BnbLargeStayDivider visible={hoveredPick > 0 && hoveredPick < 3 || props.stayPick === 1 || props.stayPick === 2}></BnbLargeStayDivider>
+                <BnbLargeStayDivider visible={hoveredPick > 0 && hoveredPick < 3 || props.stayPick === 1 || props.stayPick === 2 || props.stayPick === 5}></BnbLargeStayDivider>
 
-                <BnbLargeStayPickerButton onMouseEnter={() => setHoveredPick(2)} onMouseLeave={() => setHoveredPick(-1)} stayPick={props.stayPick === 2} onClick={() => props.setStayPick(2)} flexFill="0.5">
-                    Check in
-                    <StayPickerText toggle={props.stayPick === 2 && props.datePick.startDate.valueOf() !== new Date(0,0,0).valueOf()} picked={props.datePick.startDate.valueOf() !== new Date(0,0,0).valueOf()}>{getDateName(props.datePick.startDate) ? getDateName(props.datePick.startDate) : "Add dates"}</StayPickerText>
-                    <StayInputClearIcon onClick={clearDatePick} toggle={props.stayPick === 2 && props.datePick.startDate.valueOf() !== new Date(0,0,0).valueOf()} viewBox="0 0 24 24" width="24" height="24">
-                        <path d="M12.0007 10.5865L16.9504 5.63672L18.3646 7.05093L13.4149 12.0007L18.3646 16.9504L16.9504 18.3646L12.0007 13.4149L7.05093 18.3646L5.63672 16.9504L10.5865 12.0007L5.63672 7.05093L7.05093 5.63672L12.0007 10.5865Z" fill="#000"></path>
-                    </StayInputClearIcon>
-                </BnbLargeStayPickerButton>
 
-                <BnbLargeStayDivider visible={hoveredPick > 1 && hoveredPick < 4 || props.stayPick === 2 || props.stayPick === 3}></BnbLargeStayDivider>
+                {props.dateType === 0 && <>
+                    <BnbLargeStayPickerButton onMouseEnter={() => setHoveredPick(2)} onMouseLeave={() => setHoveredPick(-1)} stayPick={props.stayPick === 2} onClick={() => props.setStayPick(2)} flexFill="0.5">
+                        Check in
+                        <StayPickerText toggle={props.stayPick === 2 && props.datePick.startDate.valueOf() !== new Date(0,0,0).valueOf()} picked={props.datePick.startDate.valueOf() !== new Date(0,0,0).valueOf()}>{getDateName(props.datePick.startDate) ? getDateName(props.datePick.startDate) : "Add dates"}</StayPickerText>
+                        <StayInputClearIcon onClick={clearDatePick} toggle={props.stayPick === 2 && props.datePick.startDate.valueOf() !== new Date(0,0,0).valueOf()} viewBox="0 0 24 24" width="24" height="24">
+                            <path d="M12.0007 10.5865L16.9504 5.63672L18.3646 7.05093L13.4149 12.0007L18.3646 16.9504L16.9504 18.3646L12.0007 13.4149L7.05093 18.3646L5.63672 16.9504L10.5865 12.0007L5.63672 7.05093L7.05093 5.63672L12.0007 10.5865Z" fill="#000"></path>
+                        </StayInputClearIcon>
+                    </BnbLargeStayPickerButton>
 
-                <BnbLargeStayPickerButton onMouseEnter={() => setHoveredPick(3)} onMouseLeave={() => setHoveredPick(-1)} stayPick={props.stayPick === 3} onClick={() => props.setStayPick(3)} flexFill="0.5">
-                    Check out
-                    <StayPickerText toggle={props.stayPick === 3 && props.datePick.endDate.valueOf() !== new Date(0,0,0).valueOf()} picked={props.datePick.endDate.valueOf() !== new Date(0,0,0).valueOf()}>{getDateName(props.datePick.endDate) ? getDateName(props.datePick.endDate) : "Add dates"}</StayPickerText>
-                    <StayInputClearIcon onClick={clearDatePick} toggle={props.stayPick === 3 && props.datePick.endDate.valueOf() !== new Date(0,0,0).valueOf()} viewBox="0 0 24 24" width="24" height="24">
-                        <path d="M12.0007 10.5865L16.9504 5.63672L18.3646 7.05093L13.4149 12.0007L18.3646 16.9504L16.9504 18.3646L12.0007 13.4149L7.05093 18.3646L5.63672 16.9504L10.5865 12.0007L5.63672 7.05093L7.05093 5.63672L12.0007 10.5865Z" fill="#000"></path>
-                    </StayInputClearIcon>
-                </BnbLargeStayPickerButton>
+                    <BnbLargeStayDivider visible={hoveredPick > 1 && hoveredPick < 4 || props.stayPick === 2 || props.stayPick === 3}></BnbLargeStayDivider>
 
-                <BnbLargeStayDivider visible={hoveredPick > 2 && hoveredPick < 5 || props.stayPick === 3 || props.stayPick === 4}></BnbLargeStayDivider>
+                    <BnbLargeStayPickerButton onMouseEnter={() => setHoveredPick(3)} onMouseLeave={() => setHoveredPick(-1)} stayPick={props.stayPick === 3} onClick={() => props.setStayPick(3)} flexFill="0.5">
+                        Check out
+                        <StayPickerText toggle={props.stayPick === 3 && props.datePick.endDate.valueOf() !== new Date(0,0,0).valueOf()} picked={props.datePick.endDate.valueOf() !== new Date(0,0,0).valueOf()}>{getDateName(props.datePick.endDate) ? getDateName(props.datePick.endDate) : "Add dates"}</StayPickerText>
+                    </BnbLargeStayPickerButton>
+                </>}
+
+                {props.dateType === 1 && <>
+                    <BnbLargeStayPickerButton onMouseEnter={() => setHoveredPick(1)} onMouseLeave={() => setHoveredPick(-1)} stayPick={props.stayPick === 2} onClick={() => props.setStayPick(2)} flexFill="1.3">
+                        When
+                        <StayPickerText toggle={props.stayPick === 5} picked>{flexDateToText()}</StayPickerText>
+                        <StayInputClearIcon onClick={clearDatePick} toggle={props.stayPick === 2 && props.datePick.startDate.valueOf() !== new Date(0,0,0).valueOf()} viewBox="0 0 24 24" width="24" height="24">
+                            <path d="M12.0007 10.5865L16.9504 5.63672L18.3646 7.05093L13.4149 12.0007L18.3646 16.9504L16.9504 18.3646L12.0007 13.4149L7.05093 18.3646L5.63672 16.9504L10.5865 12.0007L5.63672 7.05093L7.05093 5.63672L12.0007 10.5865Z" fill="#000"></path>
+                        </StayInputClearIcon>
+                    </BnbLargeStayPickerButton>
+                </>}
+
+                <BnbLargeStayDivider visible={hoveredPick > 2 && hoveredPick < 5 || props.stayPick === 3 || props.stayPick === 4 || props.stayPick === 5}></BnbLargeStayDivider>
 
                 <BnbLargeStayPickerButton onMouseEnter={() => setHoveredPick(4)} onMouseLeave={() => setHoveredPick(-1)} stayPick={props.stayPick === 4} onClick={() => props.setStayPick(4)} flexFill="1.25">
                     Who

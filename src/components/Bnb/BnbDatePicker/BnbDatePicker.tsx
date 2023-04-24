@@ -21,7 +21,7 @@ function BnbDatePicker(props:{
         <BnbDatePickerContainer shrink={props.dateType === 1}>
             <BnbDatePickerTypeContainer>
                 <DateTypeButton onClick={() => props.setDateType(0)} toggle={props.dateType === 0}>Choose dates</DateTypeButton>
-                <DateTypeButton onClick={() => props.setDateType(1)} toggle={props.dateType === 1}>Flexible dates</DateTypeButton>
+                <DateTypeButton onClick={() => {props.setDateType(1); props.setStayPick(2)}} toggle={props.dateType === 1}>Flexible dates</DateTypeButton>
             </BnbDatePickerTypeContainer>
 
             {props.dateType === 0 && <BnbExactDatesPicker setStayPick={props.setStayPick} stayPick={props.stayPick} datePick={props.datePick} setDatePick={props.setDatePick} setApproxDate={props.setApproxDate} approxDate={props.approxDate} />}
