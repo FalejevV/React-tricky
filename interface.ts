@@ -14,3 +14,8 @@ export interface FlexDate{
         duration:number,
         dates:number[][],
 }
+
+export interface ExperiencesDate{
+        startDate:Date,
+        endDate:Date,
+}

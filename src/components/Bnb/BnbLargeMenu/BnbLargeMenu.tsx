@@ -3,7 +3,8 @@ import { BnbLargeMenuContainer, BnbLargeMenuTopBar, BnbLargeMenuTypeButton, BnbL
 import BnbDatePicker from "../BnbDatePicker/BnbDatePicker";
 import BnbGuestPicker from "../BnbGuestPicker/BnbGuestPicker";
 import BnbRegionPicker from "../BnbRegionPicker/BnbRegionPicker";
-import { DatePick, FlexDate, Guests } from "../../../../interface";
+import { DatePick, ExperiencesDate, FlexDate, Guests } from "../../../../interface";
+import BnbDatePickMinimal from "../BnbDatePickMinimal/BnbDatePickMinimal";
 
 const monthNames = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"
@@ -23,12 +24,15 @@ function BnbLargeMenu(props:{
     setDateType:Function,
     flexDate:FlexDate,
     setFlexDate:Function,
+    experiencesDate:ExperiencesDate,
+    setExperiencesDate:Function,
 }){
 
     const [menuType, setMenuType] = useState(0);
     const [regionPicked, setRegionPicked] = useState("");
     const [hoveredPick, setHoveredPick] = useState(-1);
     const [regionInput, setRegionInput] = useState("");
+
 
     useEffect(() => {
         setRegionInput(regionPicked);
@@ -52,6 +56,10 @@ function BnbLargeMenu(props:{
     const datePickerMemo = useMemo(() => {
         return <BnbDatePicker dateType={props.dateType} setDateType={props.setDateType} flexDate={props.flexDate} setFlexDate={props.setFlexDate} approxDate={props.approxDate} setApproxDate={props.setApproxDate} setStayPick={props.setStayPick} stayPick={props.stayPick} setDatePick={props.setDatePick} datePick={props.datePick}/>
     },[props.stayPick, props.datePick,props.approxDate,props.dateType,props.flexDate]);
+
+    const datePickerMemoLimited = useMemo(() => {
+        return <BnbDatePickMinimal minimal setStayPick={props.setStayPick} stayPick={props.stayPick} datePick={props.experiencesDate} setDatePick={props.setExperiencesDate} setApproxDate={() => {}} approxDate={0} />
+    },[props.stayPick, props.experiencesDate]);
     
     function clearDatePick(){
         props.setDatePick({
@@ -111,15 +119,17 @@ function BnbLargeMenu(props:{
     return(
         <BnbLargeMenuContainer menuToggle={props.menuToggle}>
             <BnbLargeMenuTopBar>
-                <BnbLargeMenuTypeButton toggle={menuType === 0} onClick={() => setMenuType(0)}>Stays</BnbLargeMenuTypeButton>
-                <BnbLargeMenuTypeButton toggle={menuType === 1} onClick={() => setMenuType(1)}>Experiences</BnbLargeMenuTypeButton>
+                <BnbLargeMenuTypeButton toggle={menuType === 0} onClick={() => {setMenuType(0); props.setStayPick(-1)}}>Stays</BnbLargeMenuTypeButton>
+                <BnbLargeMenuTypeButton toggle={menuType === 1} onClick={() => {setMenuType(1); props.setStayPick(-1)}}>Experiences</BnbLargeMenuTypeButton>
                 <BnbLargeMenuTypeButton>Online Experiences</BnbLargeMenuTypeButton>
             </BnbLargeMenuTopBar>
             <BnbLargeStayPicker isActive={props.stayPick > 0}>
                 {props.stayPick === 1 && <BnbRegionPicker setStayPick={props.setStayPick} regionPicked={regionPicked} setRegionPicked={setRegionPicked} />}
-                {props.stayPick === 2 && datePickerMemo}
-                {props.stayPick === 3 && datePickerMemo}
+                {props.stayPick === 2 && menuType === 0 && datePickerMemo}
+                {props.stayPick === 3 && menuType === 0 && datePickerMemo}
                 {props.stayPick === 4 && <BnbGuestPicker guests={props.guests} setGuests={props.setGuests} />}
+                {props.stayPick === 2 && menuType === 1 && datePickerMemoLimited}
+                {props.stayPick === 3 && menuType === 1 && datePickerMemoLimited}
 
                 <BnbLargeStayPickerButton first onMouseEnter={() => setHoveredPick(1)} onMouseLeave={() => setHoveredPick(-1)} stayPick={props.stayPick === 1} onClick={() => props.setStayPick(1)} flexFill="1.55">
                     Where
@@ -129,10 +139,10 @@ function BnbLargeMenu(props:{
                     </StayInputClearIcon>
                 </BnbLargeStayPickerButton>
 
-                <BnbLargeStayDivider visible={hoveredPick > 0 && hoveredPick < 3 || props.stayPick === 1 || props.stayPick === 2 || props.stayPick === 5}></BnbLargeStayDivider>
+                <BnbLargeStayDivider visible={hoveredPick > 0 && hoveredPick < 3 || props.stayPick === 1 || props.stayPick === 2  || hoveredPick === 5  || props.stayPick === 5}></BnbLargeStayDivider>
 
 
-                {props.dateType === 0 && <>
+                {props.dateType === 0 && menuType === 0 &&  <>
                     <BnbLargeStayPickerButton onMouseEnter={() => setHoveredPick(2)} onMouseLeave={() => setHoveredPick(-1)} stayPick={props.stayPick === 2} onClick={() => props.setStayPick(2)} flexFill="0.5">
                         Check in
                         <StayPickerText toggle={props.stayPick === 2 && props.datePick.startDate.valueOf() !== new Date(0,0,0).valueOf()} picked={props.datePick.startDate.valueOf() !== new Date(0,0,0).valueOf()}>{getDateName(props.datePick.startDate) ? getDateName(props.datePick.startDate) : "Add dates"}</StayPickerText>
@@ -146,20 +156,27 @@ function BnbLargeMenu(props:{
                     <BnbLargeStayPickerButton onMouseEnter={() => setHoveredPick(3)} onMouseLeave={() => setHoveredPick(-1)} stayPick={props.stayPick === 3} onClick={() => props.setStayPick(3)} flexFill="0.5">
                         Check out
                         <StayPickerText toggle={props.stayPick === 3 && props.datePick.endDate.valueOf() !== new Date(0,0,0).valueOf()} picked={props.datePick.endDate.valueOf() !== new Date(0,0,0).valueOf()}>{getDateName(props.datePick.endDate) ? getDateName(props.datePick.endDate) : "Add dates"}</StayPickerText>
-                    </BnbLargeStayPickerButton>
-                </>}
-
-                {props.dateType === 1 && <>
-                    <BnbLargeStayPickerButton onMouseEnter={() => setHoveredPick(1)} onMouseLeave={() => setHoveredPick(-1)} stayPick={props.stayPick === 2} onClick={() => props.setStayPick(2)} flexFill="1.3">
-                        When
-                        <StayPickerText toggle={props.stayPick === 5} picked>{flexDateToText()}</StayPickerText>
-                        <StayInputClearIcon onClick={clearDatePick} toggle={props.stayPick === 2 && props.datePick.startDate.valueOf() !== new Date(0,0,0).valueOf()} viewBox="0 0 24 24" width="24" height="24">
+                        <StayInputClearIcon onClick={clearDatePick} toggle={props.stayPick === 3} viewBox="0 0 24 24" width="24" height="24">
                             <path d="M12.0007 10.5865L16.9504 5.63672L18.3646 7.05093L13.4149 12.0007L18.3646 16.9504L16.9504 18.3646L12.0007 13.4149L7.05093 18.3646L5.63672 16.9504L10.5865 12.0007L5.63672 7.05093L7.05093 5.63672L12.0007 10.5865Z" fill="#000"></path>
                         </StayInputClearIcon>
                     </BnbLargeStayPickerButton>
                 </>}
 
-                <BnbLargeStayDivider visible={hoveredPick > 2 && hoveredPick < 5 || props.stayPick === 3 || props.stayPick === 4 || props.stayPick === 5}></BnbLargeStayDivider>
+                {props.dateType === 1 && menuType === 0 && <>
+                    <BnbLargeStayPickerButton onMouseEnter={() => setHoveredPick(1)} onMouseLeave={() => setHoveredPick(-1)} stayPick={props.stayPick === 2} onClick={() => props.setStayPick(2)} flexFill="1.3">
+                        When
+                        <StayPickerText toggle picked>{flexDateToText()}</StayPickerText>
+                    </BnbLargeStayPickerButton>
+                </>}
+
+                {menuType === 1 && <>
+                    <BnbLargeStayPickerButton onMouseEnter={() => setHoveredPick(5)} onMouseLeave={() => setHoveredPick(-1)} stayPick={props.stayPick === 2 || props.stayPick === 3} onClick={() => props.setStayPick(2)} flexFill="1.3">
+                        Date
+                        <StayPickerText toggle={props.stayPick === 2} picked={false}>Add dates</StayPickerText>
+                    </BnbLargeStayPickerButton>
+                </>}
+
+                <BnbLargeStayDivider visible={hoveredPick > 2 && hoveredPick <= 5 || props.stayPick === 3 || props.stayPick === 4 || props.stayPick === 5}></BnbLargeStayDivider>
 
                 <BnbLargeStayPickerButton onMouseEnter={() => setHoveredPick(4)} onMouseLeave={() => setHoveredPick(-1)} stayPick={props.stayPick === 4} onClick={() => props.setStayPick(4)} flexFill="1.25">
                     Who

@@ -199,7 +199,7 @@ export const StayPickerText = styled.p<{
     width:77%;
     min-width: 81px;
     height:100%;
-
+    max-width: 200px;
     ${({ picked }) => picked && css`
         color:black;
     `}

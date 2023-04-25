@@ -25,7 +25,9 @@ export const BnbMonthSwitchArrowSvgRight = styled(BnbMonthSwitchArrowSvgLeft)`
 
 `
 
-export const BnbMonthsArrowContainer = styled.div`
+export const BnbMonthsArrowContainer = styled.div<{
+    minimal:boolean
+}>`
     width:100%;
     height:20px;
     display:flex;
@@ -35,6 +37,10 @@ export const BnbMonthsArrowContainer = styled.div`
     position: absolute;
     top:108px;
     z-index: 2;
+
+    ${({ minimal }) => minimal && css`
+        top:54px;
+    `}
 `
 
 
@@ -63,7 +69,12 @@ export const BnbMonthsList = styled.div<{
 
 `
 
-
+export const BnbExactDatesSpacer = styled.div`
+    width:100%;
+    height:0px;
+    margin-top:-10px;
+    background-color: transparent;
+`
 
 export const BnbWeekDaysWrapper = styled.div`
     position: absolute;

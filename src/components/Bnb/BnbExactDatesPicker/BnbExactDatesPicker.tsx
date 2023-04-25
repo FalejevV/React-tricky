@@ -4,7 +4,7 @@ import BnbWeekDays from "../BnbWeekDays/BnbWeekDays";
 import BnbCalendarMonth from "../BnbCalendarMonth/BnbCalendarMonth";
 import { DatePick } from "../../../../interface";
 import { nanoid } from "nanoid";
-import { BnbMonthSwitchArrowSvgLeft, BnbMonthSwitchArrowSvgRight, BnbMonthsArrowContainer, BnbMonthsContainer, BnbMonthsList, BnbWeekDaysWrapper } from "./BnbExactDatesPicker.styled";
+import { BnbExactDatesSpacer, BnbMonthSwitchArrowSvgLeft, BnbMonthSwitchArrowSvgRight, BnbMonthsArrowContainer, BnbMonthsContainer, BnbMonthsList, BnbWeekDaysWrapper } from "./BnbExactDatesPicker.styled";
 
 
 
@@ -15,6 +15,7 @@ function BnbExactDatesPicker(props:{
     setDatePick:Function,
     setApproxDate:Function,
     approxDate:number,
+    minimal?:boolean
 }){
     const [slider,setSlider] = useState(0);
     
@@ -37,7 +38,8 @@ function BnbExactDatesPicker(props:{
 
     return(
         <>
-            <BnbMonthsArrowContainer>
+            {props.minimal && <BnbExactDatesSpacer></BnbExactDatesSpacer>}
+            <BnbMonthsArrowContainer minimal={props.minimal || false}>
                 <BnbMonthSwitchArrowSvgLeft isDisabled={slider -1 < 0} onClick={() => doSlide(-1)} viewBox="0 0 24 24">
                     <path d="M10.8284 12.0007L15.7782 16.9504L14.364 18.3646L8 12.0007L14.364 5.63672L15.7782 7.05093L10.8284 12.0007Z"></path>
                 </BnbMonthSwitchArrowSvgLeft>
@@ -57,7 +59,7 @@ function BnbExactDatesPicker(props:{
                 </BnbMonthsList>
             </BnbMonthsContainer>
 
-            <BnbApproxDate approxDate={props.approxDate} setApproxDate={props.setApproxDate} />
+            {!props.minimal && <BnbApproxDate approxDate={props.approxDate} setApproxDate={props.setApproxDate} />}
         </>
     )
 }

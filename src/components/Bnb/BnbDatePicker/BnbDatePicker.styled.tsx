@@ -3,6 +3,7 @@ import styled, { css } from "styled-components";
 
 export const BnbDatePickerContainer = styled.div<{
     shrink:boolean,
+    minimal?:boolean,
 }>`
     position: absolute;
     left:0px;
@@ -23,6 +24,10 @@ export const BnbDatePickerContainer = styled.div<{
 
     ${({ shrink }) => shrink && css`
         height:475px;
+    `}
+
+    ${({ minimal }) => minimal && css`
+        height:460px;
     `}
 `
 
