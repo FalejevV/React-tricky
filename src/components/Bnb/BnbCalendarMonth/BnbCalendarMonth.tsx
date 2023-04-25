@@ -41,16 +41,35 @@ function BnbCalendarMonth(props:{
 
     function datePickHandler(year:number,month:number,day:number){
         if(props.stayPick === 2){
-            props.setDatePick((prev:DatePick) => ({
-                ...prev,
-                startDate: new Date(year,month,day)
-            }));
-            props.setStayPick(3);
-            return;
+            if(props.minimal){
+                props.setDatePick({
+                    startDate: new Date(year,month,day),
+                    endDate:new Date(year,month,day),
+                });
+                props.setStayPick(3);
+                return;
+            }else{
+                props.setDatePick((prev:DatePick) => ({
+                    ...prev,
+                    startDate: new Date(year,month,day)
+                }));
+    
+                props.setStayPick(3);
+                return;
+            }
         }
 
         if(props.stayPick === 3){
             if(new Date(year,month,day).valueOf() < props.datePick.startDate.valueOf()){
+                if(props.minimal){
+                    props.setDatePick(({
+                        startDate: new Date(year,month,day),
+                        endDate:new Date(year,month,day),
+                    }));
+                    props.setStayPick(2);
+                    return;
+                }
+
                 props.setDatePick(({
                     startDate: new Date(year,month,day),
                     endDate:new Date(0,0,0),
