@@ -17,6 +17,7 @@ function BnbDatePicker(props:{
     flexDate:FlexDate,
     setFlexDate:Function,
 }){
+
     return(
         <BnbDatePickerContainer shrink={props.dateType === 1}>
             <BnbDatePickerTypeContainer>

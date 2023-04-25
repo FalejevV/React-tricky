@@ -23,6 +23,7 @@ function BnbCalendarMonth(props:{
     setDatePick:Function,
     stayPick:number,
     setStayPick:Function,
+    minimal?:boolean
 }){
     const [month,setMonth] = useState(props.month);
     const [year,setYear] = useState(props.year);
@@ -57,13 +58,26 @@ function BnbCalendarMonth(props:{
                 props.setStayPick(3);
                 return;
             }
+
             props.setDatePick((prev:DatePick) => ({
                 ...prev,
                 endDate: new Date(year,month,day)
             }))
+            if(props.minimal){
+                props.setStayPick(2);
+            }
             return;
         }
     }
+
+    useEffect(() => {
+        if(props.datePick.startDate.valueOf() > props.datePick.endDate.valueOf() && props.datePick.endDate.valueOf() !== new Date(0,0,0).valueOf()){
+            props.setDatePick((prev:DatePick) => ({
+                ...prev,
+                endDate:new Date(0,0,0)
+            }))
+        }
+    },[props.datePick]);
 
     function isSelected(year:number,month:number,day:number){
         if(!isAvaliable(year,month,day)) return false;

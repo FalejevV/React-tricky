@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import BnbApproxDate from "../BnbApproxDate/BnbApproxDate";
 import BnbWeekDays from "../BnbWeekDays/BnbWeekDays";
 import BnbCalendarMonth from "../BnbCalendarMonth/BnbCalendarMonth";
@@ -18,13 +18,12 @@ function BnbExactDatesPicker(props:{
     minimal?:boolean
 }){
     const [slider,setSlider] = useState(0);
-    
     function getCalendarList(){
         let calendarArray = [];
         for(let i = 0; i < 10; i++){
             let date = new Date();
             var newDate = new Date(date.setMonth(date.getMonth()+i));
-            calendarArray.push(<BnbCalendarMonth setStayPick={props.setStayPick} stayPick={props.stayPick} datePick={props.datePick} setDatePick={props.setDatePick} hidden={false} month={newDate.getMonth()} year={newDate.getFullYear()} key={nanoid()} />);
+            calendarArray.push(<BnbCalendarMonth minimal={props.minimal} setStayPick={props.setStayPick} stayPick={props.stayPick} datePick={props.datePick} setDatePick={props.setDatePick} hidden={false} month={newDate.getMonth()} year={newDate.getFullYear()} key={nanoid()} />);
         }
         return calendarArray;
     }
@@ -33,6 +32,7 @@ function BnbExactDatesPicker(props:{
     function doSlide(value:number){
         if(slider + value < 0) return;
         if(slider + value > 8) return;
+
         setSlider(prev => prev + value);
     }
 

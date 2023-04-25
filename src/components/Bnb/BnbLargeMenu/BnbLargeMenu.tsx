@@ -116,6 +116,20 @@ function BnbLargeMenu(props:{
         }
     }
 
+    function experiencesDateToText(){
+        let firstMonth = "";
+        let secontMonth = "";
+        if(props.experiencesDate.startDate.valueOf() !== new Date(0,0,0).valueOf()){
+            firstMonth = monthNames[props.experiencesDate.startDate.getMonth()].slice(0,3) + " " + props.experiencesDate.startDate.getDate();
+        }
+        if(props.experiencesDate.endDate.valueOf() !== new Date(0,0,0).valueOf()){
+            secontMonth = monthNames[props.experiencesDate.endDate.getMonth()].slice(0,3) + " " + props.experiencesDate.endDate.getDate();
+        }
+        if(firstMonth === "") return "Add dates";
+        
+        return `${firstMonth} ${secontMonth !== "" ? "- " + secontMonth : ""} `;
+    }
+
     return(
         <BnbLargeMenuContainer menuToggle={props.menuToggle}>
             <BnbLargeMenuTopBar>
@@ -172,7 +186,7 @@ function BnbLargeMenu(props:{
                 {menuType === 1 && <>
                     <BnbLargeStayPickerButton onMouseEnter={() => setHoveredPick(5)} onMouseLeave={() => setHoveredPick(-1)} stayPick={props.stayPick === 2 || props.stayPick === 3} onClick={() => props.setStayPick(2)} flexFill="1.3">
                         Date
-                        <StayPickerText toggle={props.stayPick === 2} picked={false}>Add dates</StayPickerText>
+                        <StayPickerText toggle={props.stayPick === 2} picked={experiencesDateToText() !== "Add dates"}>{experiencesDateToText()}</StayPickerText>
                     </BnbLargeStayPickerButton>
                 </>}
 
