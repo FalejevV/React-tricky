@@ -139,11 +139,9 @@ function BnbLargeMenu(props:{
             </BnbLargeMenuTopBar>
             <BnbLargeStayPicker isActive={props.stayPick > 0}>
                 {props.stayPick === 1 && <BnbRegionPicker setStayPick={props.setStayPick} regionPicked={regionPicked} setRegionPicked={setRegionPicked} />}
-                {props.stayPick === 2 && menuType === 0 && datePickerMemo}
-                {props.stayPick === 3 && menuType === 0 && datePickerMemo}
+                {props.stayPick > 1 && props.stayPick <= 3 && menuType === 0 && datePickerMemo}
                 {props.stayPick === 4 && <BnbGuestPicker guests={props.guests} setGuests={props.setGuests} />}
-                {props.stayPick === 2 && menuType === 1 && datePickerMemoLimited}
-                {props.stayPick === 3 && menuType === 1 && datePickerMemoLimited}
+                {props.stayPick > 1 && props.stayPick <= 3 && menuType === 1 && datePickerMemoLimited}
 
                 <BnbLargeStayPickerButton first onMouseEnter={() => setHoveredPick(1)} onMouseLeave={() => setHoveredPick(-1)} stayPick={props.stayPick === 1} onClick={() => props.setStayPick(1)} flexFill="1.55">
                     Where
