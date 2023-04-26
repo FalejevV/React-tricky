@@ -8,6 +8,11 @@ export const BnbWeekDaysContainer = styled.div`
     display:flex;
     align-items: center;
     justify-content: space-between;
+
+    @media(max-width:948px){
+        width:310px;
+    }
+    
 `
 
 export const BnbWeekDaysItem = styled.p`

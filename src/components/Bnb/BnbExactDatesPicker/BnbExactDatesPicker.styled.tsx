@@ -41,6 +41,11 @@ export const BnbMonthsArrowContainer = styled.div<{
     ${({ minimal }) => minimal && css`
         top:54px;
     `}
+
+    @media(max-width:948px){
+        width:400px;
+    }
+
 `
 
 
@@ -51,6 +56,11 @@ export const BnbMonthsContainer = styled.div`
     justify-content: space-between;
     position: relative;
     overflow: hidden;
+    
+    @media(max-width:948px){
+        justify-content: center;
+        width:400px;
+    }
 `
 
 export const BnbMonthsList = styled.div<{
@@ -65,6 +75,10 @@ export const BnbMonthsList = styled.div<{
     transition: all 0.3s;
     ${({ slider }) => css`
         left:calc((${slider} * 50% + ${slider}*-1px) * -1);
+
+        @media(max-width:948px){
+            left:calc(${slider} * 390px * -1);
+        }
     `}
 
 `
@@ -86,4 +100,10 @@ export const BnbWeekDaysWrapper = styled.div`
     justify-content: space-between;
     padding:0px 40px;
     gap:75px;
+`
+
+export const BnbWeekDaysResponsiveWrapper = styled.div`
+    @media(max-width:948px){
+        display:none;
+    }
 `

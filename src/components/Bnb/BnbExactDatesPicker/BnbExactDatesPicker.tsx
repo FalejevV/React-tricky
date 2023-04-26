@@ -4,7 +4,7 @@ import BnbWeekDays from "../BnbWeekDays/BnbWeekDays";
 import BnbCalendarMonth from "../BnbCalendarMonth/BnbCalendarMonth";
 import { DatePick } from "../../../../interface";
 import { nanoid } from "nanoid";
-import { BnbExactDatesSpacer, BnbMonthSwitchArrowSvgLeft, BnbMonthSwitchArrowSvgRight, BnbMonthsArrowContainer, BnbMonthsContainer, BnbMonthsList, BnbWeekDaysWrapper } from "./BnbExactDatesPicker.styled";
+import { BnbExactDatesSpacer, BnbMonthSwitchArrowSvgLeft, BnbMonthSwitchArrowSvgRight, BnbMonthsArrowContainer, BnbMonthsContainer, BnbMonthsList, BnbWeekDaysResponsiveWrapper, BnbWeekDaysWrapper } from "./BnbExactDatesPicker.styled";
 
 
 
@@ -52,7 +52,9 @@ function BnbExactDatesPicker(props:{
             <BnbMonthsContainer>
                 <BnbWeekDaysWrapper>
                     <BnbWeekDays/>
-                    <BnbWeekDays/>
+                    <BnbWeekDaysResponsiveWrapper>
+                        <BnbWeekDays/>
+                    </BnbWeekDaysResponsiveWrapper>
                 </BnbWeekDaysWrapper>
                 <BnbMonthsList slider={slider}>
                     {getCalendarList()}

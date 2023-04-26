@@ -21,11 +21,24 @@ export const BnbLargeMenuContainer = styled.div<{
     padding-top: 15px;
 
     transition: all 0.3s;
+    
+    @media(max-width:948px){
+        left:100px;
+    }
+
     ${({ menuToggle }) => menuToggle && css`
         opacity: 1;
         pointer-events: auto;
+        left:50%;
         transform: translate(-50%,0%) scale(1);
+
+        @media(max-width:948px){
+            top:65px;
+            left:0;
+            transform: translate(0%,0%) scale(1);
+        }
     `}
+
 `
 
 
@@ -34,6 +47,11 @@ export const BnbLargeMenuTopBar = styled.div`
     display: flex;
     justify-content: center;
     gap:33px;
+
+    @media(max-width:1126px){
+        gap:25px;
+    }
+
 `
 
 export const BnbLargeMenuTypeButton = styled.div<{
@@ -81,6 +99,14 @@ export const BnbLargeMenuTypeButton = styled.div<{
             }
         }
     `}
+
+    @media(max-width:1126px){
+        font-size:14px;
+    }
+
+    @media(max-width:950px){
+        font-size:16px;
+    }
 `
 
 
@@ -183,6 +209,10 @@ export const StayInputClearIcon = styled.svg<{
     &:hover{
         background-color:#dadada;
     }
+
+    @media(max-width:948px){
+        display:none;
+    }
 `
 
 export const StayPickerText = styled.p<{
@@ -207,6 +237,10 @@ export const StayPickerText = styled.p<{
     transition: width 0.3s;
     ${({ shorten }) => shorten && css`
         width:84px;
+
+        @media(max-width:948px){
+            width:77%;
+        }
     `}
     
     ${({ toggle }) => toggle && css`
@@ -231,6 +265,10 @@ export const StayPickerSearchButton = styled.div<{
 
     ${({ expand }) => expand && css`
         width:110px;
+
+        @media(max-width:948px){
+            width:48px;
+        }
     `}
 
     &:hover{
@@ -262,6 +300,10 @@ export const PickerSearchText = styled.p`
     font-size:16px;
     color:white;
     font-weight: 600;
+
+    @media(max-width:948px){
+        display:none;
+    }
 `
 
 export const BnbLargeStayDivider = styled.div<{

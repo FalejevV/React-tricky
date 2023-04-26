@@ -9,6 +9,10 @@ export const BnbApproxDateContainer = styled.div`
     padding:0px 62px;
     display:flex;
     gap:10px;
+
+    @media(max-width:948px){
+        justify-content:center;
+    }
 `
 
 

@@ -8,6 +8,10 @@ export const BnbContainer = styled.div`
     width:100%;
     max-width:2543px;
     padding:0px 91.5px;
+
+    @media(max-width:1440px){
+        padding:0px 40px;
+    }
 `
 export const BlackBackgroundClickField = styled.div`
     width:100%;
@@ -19,13 +23,13 @@ export const BlackBackgroundClickField = styled.div`
 
 export const BnbHeader = styled.header`
     width:100%;
-    height:160px;
     display:flex;
     flex-direction: column;
     background-color: #FFFFFF;
     position:fixed;
     top:0px;
     left:0px;
+
 `
 
 export const BnbTopBar = styled.nav<{
@@ -42,18 +46,31 @@ export const BnbTopBar = styled.nav<{
 
     ${({ menuToggle }) => menuToggle && css`
         height:160px;
+
+        @media(max-width:948px){
+            height:240px;
+        }
     `}
     z-index: 2;
 `
 
 export const BnbTopBarFlex = styled.div<{
     justify?:string,
+    left?:boolean,
 }>`
     height:48px;
     flex:1 0 140px;
     display: flex;
     align-items: center;
     justify-content: ${({ justify }) => justify || "flex-start"};
+
+    
+
+   ${({ left }) => left && css`
+        @media(max-width:948px){
+            flex:0 0 55px;
+        }
+   `}
 `
 
 export const BnbTopBarContainer = styled.div`
@@ -66,10 +83,29 @@ export const BnbTopBarContainer = styled.div`
 
 
 
-export const BnbLogo = styled.img`
+export const BnbLogo = styled.img<{
+    large?:boolean
+}>`
     width:102px;
     height:100%;
     object-fit: contain;
+    display:none;
+
+    ${({ large }) => large && css`
+        display:block;
+        @media(max-width:1126px){
+            display:none;
+        }
+    `}
+
+    ${({ large }) => !large && css`
+        display:none;
+        @media(max-width:1126px){
+            display:block;
+            width:30px;
+            height:100%;
+        }
+    `}
 `
 
 export const BnbBottomBar = styled.div`

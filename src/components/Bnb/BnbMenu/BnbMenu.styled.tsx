@@ -21,7 +21,6 @@ export const BnbSmallMenu = styled.div<{
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.08);
     cursor: pointer;
     transition: all 0.3s, opacity 0.4s;
-
     &:hover{
         box-shadow: 0px 5px 4px 0px rgba(0,0,0,0.08);
     }
@@ -32,6 +31,16 @@ export const BnbSmallMenu = styled.div<{
         transform:scale(1.5) scaleX(1.4) translateY(40px);
         opacity:0;
         pointer-events: none;
+
+        @media(max-width:948px){
+            transition: all 0.1s, opacity 0.1s;
+            top:0px;
+            left:150px;
+            position: absolute;
+            transform:translateY(80px) scale(1.5) scaleX(1.4);
+            opacity:0;
+            pointer-events: none;
+        }
     `}
 `
 
