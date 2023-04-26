@@ -4,7 +4,6 @@ import styled from "styled-components";
 export const BnbGuestPickerContainer = styled.div`
     position: absolute;
     width:406px;
-    height:400px;
     background-color: white;
     border-radius:30px;
     top:80px;

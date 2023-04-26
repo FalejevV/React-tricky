@@ -19,8 +19,8 @@ export const BnbSmallMonthTabContainer = styled.div<{
     padding-top:10px;
     margin:1px;
     cursor:pointer;
-    transition: all 0.3s;
 
+    transition: all 0.15s;
     &:active{
         transition: all 0.3s;
         transform: scale(0.93);
@@ -29,7 +29,6 @@ export const BnbSmallMonthTabContainer = styled.div<{
 
 
     ${({ toggle }) => toggle && css`
-        transition: all 0.3s;
         border:2px solid black;
         &:active{
             transform: scale(0.93);
@@ -39,10 +38,17 @@ export const BnbSmallMonthTabContainer = styled.div<{
 `
 
 
-export const BnbSmallMonthTabSVG = styled.svg`
+export const BnbSmallMonthTabSVG = styled.svg<{
+    toggle: boolean,
+}>`
     width:35px;
     height:35px;
     fill:#767676;
+    display: none;
+
+    ${({ toggle }) => toggle && css`
+        display:block;
+    `}
 `
 
 export const BnbSmallMonthName = styled.p`

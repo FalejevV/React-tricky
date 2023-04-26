@@ -15,6 +15,9 @@ function getDayStart(year:number, month:number){
 }
   
 
+/* 
+    Individual interactive calendar month, used in date picking window.
+*/
 function BnbCalendarMonth(props:{
     hidden:boolean,
     month:number,
@@ -38,7 +41,14 @@ function BnbCalendarMonth(props:{
             setYear(props.year);
         }
     },[props.month,props.year]);
+    
+    /*
+        Function is handling clicks of month day click (BnbMonthItem).
+        stayPick = 2 ? first "Check in" date pick.
+        stayPick = 3 ? second "Check out" date pick.
 
+        minimal prop defines a behaviour of "Experiences" menu tab. It has "minimised" UI and functionality.
+    */
     function datePickHandler(year:number,month:number,day:number){
         if(props.stayPick === 2){
             if(props.minimal){
@@ -89,6 +99,8 @@ function BnbCalendarMonth(props:{
         }
     }
 
+
+    // Effect checks if picked "Check in" date is later than "Check out" date.
     useEffect(() => {
         if(props.datePick.startDate.valueOf() > props.datePick.endDate.valueOf() && props.datePick.endDate.valueOf() !== new Date(0,0,0).valueOf()){
             props.setDatePick((prev:DatePick) => ({
@@ -98,6 +110,7 @@ function BnbCalendarMonth(props:{
         }
     },[props.datePick]);
 
+    // Check is current month day is selected as "Check in" or "Check out" date, to apply selected styles
     function isSelected(year:number,month:number,day:number){
         if(!isAvaliable(year,month,day)) return false;
         let date = new Date(year,month,day);
@@ -105,6 +118,7 @@ function BnbCalendarMonth(props:{
         return false;
     }
 
+    // Checks if current month day is in between the selected "Check in" and "Check out" dates, to apply some highlight styles.
     function isBetweenDates(year:number,month:number,day:number){
         if(!isAvaliable(year,month,day)) return false;
         if(props.datePick.startDate.valueOf() === new Date(0,0,0).valueOf() || props.datePick.endDate.valueOf() === new Date(0,0,0).valueOf()) return false;
@@ -113,10 +127,12 @@ function BnbCalendarMonth(props:{
         return false;
     }
 
+    // Checks if current month day has not passed, and can be selected.
     function isAvaliable(year:number,month:number,day:number){
         return currentDate.getDate() <= day || currentDate.getMonth() < month || currentDate.getFullYear() < year;
     }
 
+    // By passed in year and month props, creates an element array of days, that together form an interactive calendar month.
     function getMonthItems(){
         let itemsArray:JSX.Element[] = [];
         let startDay = getDayStart(year, month);

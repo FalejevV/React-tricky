@@ -37,3 +37,39 @@ export const BnbFlexDateDurationButton = styled(BnbApproxDateButton)`
 export const BnbFlexDateMonthsTitle = styled(BnbFlexDateTitle)`
     padding-top:24px;
 `
+
+export const BnbFlexDateCarouselWrap = styled.div`
+    position:relative;
+`
+
+
+export const BnbFlexDateCarouselArrowSVG = styled.svg<{
+    left?:boolean,
+    right?:boolean,
+    enabled:boolean,
+}>`
+    position: absolute;
+    top:50%;
+    padding:4px;
+    transform: translateY(-50%);
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    border:1px solid #e1e1e1;
+    box-shadow: 0px 0px 3px 3px #3c3c3c14;
+    cursor: pointer;
+    background-color: white;
+    z-index: 10;
+
+    ${({ right }) => right && css`
+        right:-7px;
+    `}
+
+    ${({ left }) => left && css`
+        left:-12px;
+    `}
+
+    ${({ enabled }) => !enabled && css`
+        display:none;
+    `}
+`

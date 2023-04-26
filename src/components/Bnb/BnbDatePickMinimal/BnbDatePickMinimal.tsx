@@ -3,6 +3,9 @@ import { BnbDatePickerContainer } from "../BnbDatePicker/BnbDatePicker.styled";
 import BnbExactDatesPicker from "../BnbExactDatesPicker/BnbExactDatesPicker";
 
 
+/*
+    Minimised Date picker element, that used in Experiences tab.
+*/
 
 function BnbDatePickMinimal(props:{
     setStayPick:Function,

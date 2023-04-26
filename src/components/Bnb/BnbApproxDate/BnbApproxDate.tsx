@@ -2,6 +2,12 @@ import { BnbApproxDateButton, BnbApproxDateContainer } from "./BnbApproxDate.sty
 
 
 
+/*
+
+    This is a button row that is located at the bottom of the default date picking window.
+    Adds the ability to select approximate (±) dates.
+
+*/
 
 function BnbApproxDate(props:{
     approxDate:number,

@@ -10,6 +10,18 @@ const monthNames = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"
 ];
 
+
+
+/*
+    This is an Airbnb large header menu. That toggles when menuToggle prop is true.
+
+---------------------------------------------------------------
+        Stays   Experiences     Online Experiences
+
+    (Where)   (Check in)   (Check out)   (Who  (🔍))
+---------------------------------------------------------------
+
+*/
 function BnbLargeMenu(props:{
     menuToggle: boolean,
     stayPick:number,
@@ -99,6 +111,8 @@ function BnbLargeMenu(props:{
             return "Add guests";
         }
 
+        if(menuType === 1) return `${guestText}${infantText !== "" ? `,${infantText}` : ""}`;
+
         return `${guestText}${infantText !== "" ? `,${infantText}` : ""}${petText !== "" ? `,${petText}` : ""}`;
     }
 
@@ -158,7 +172,7 @@ function BnbLargeMenu(props:{
                 {props.stayPick === 1 && <BnbRegionPicker setStayPick={props.setStayPick} regionPicked={regionPicked} setRegionPicked={setRegionPicked} />}
                 {props.stayPick > 1 && props.stayPick <= 3 && menuType === 0 && datePickerMemo}
                 {props.stayPick > 1 && props.stayPick <= 3 && menuType === 1 && datePickerMemoLimited}
-                {props.stayPick === 4 && <BnbGuestPicker guests={props.guests} setGuests={props.setGuests} />}
+                {props.stayPick === 4 && <BnbGuestPicker minimal={menuType === 1} guests={props.guests} setGuests={props.setGuests} />}
 
 
                 {/*  Region pick button  */}

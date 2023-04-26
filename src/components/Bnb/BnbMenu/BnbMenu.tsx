@@ -1,7 +1,15 @@
 import { BnbMenuContainer, BnbSmallMenu, BnbSmallMenuSearhIcon, BnbSmallMenuText, SmallMenuDivider } from "./BnbMenu.styled";
 
 
+/*
 
+    Small header menu
+
+---------------------------------------------------------
+    (Anywhere) | (Any week) | (Add guests (🔍))
+---------------------------------------------------------
+
+*/
 
 function BnbMenu(props:{
     onClick:Function,

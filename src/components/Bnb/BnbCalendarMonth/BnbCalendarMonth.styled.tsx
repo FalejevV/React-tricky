@@ -54,7 +54,7 @@ export const BnbMonthItem = styled.p<{
     &:after{
         position: absolute;
         content:"";
-        left:2px;
+        left:1px;
         top:0px;
         width:calc(100% - 4px);
         height:calc(100% - 2px);

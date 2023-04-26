@@ -7,8 +7,10 @@ function BnbRegionPicker(props:{
 }){
 
     function selectRegion(region:string){
-        props.setRegionPicked(region);
-        props.setStayPick(2);
+        if(props.regionPicked !== region){
+            props.setRegionPicked(region);
+            props.setStayPick(2);
+        }
     }
     return(
         <BnbRegionPickerContainer>

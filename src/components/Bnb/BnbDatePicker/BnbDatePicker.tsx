@@ -4,6 +4,9 @@ import BnbFlexibleDatePicker from "../BnbFlexibleDatePicker/BnbFlexibleDatePicke
 import BnbExactDatesPicker from "../BnbExactDatesPicker/BnbExactDatesPicker";
 
 
+/*
+    Main date picker component used in "Stays" tab, to pick "Check in" and "Check out" dates.
+*/
 
 function BnbDatePicker(props:{
     datePick:DatePick,
