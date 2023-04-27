@@ -39,6 +39,10 @@ export const BnbLargeMenuContainer = styled.div<{
         }
     `}
 
+    @media(max-width:750px){
+        display:none;
+    }
+
 `
 
 

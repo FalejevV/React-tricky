@@ -4,6 +4,8 @@ import BnbMenu from "@/components/Bnb/BnbMenu/BnbMenu";
 import BnbLargeMenu from "@/components/Bnb/BnbLargeMenu/BnbLargeMenu";
 import BnbUserPanel from "@/components/Bnb/BnbUserPanel/BnbUserPanel";
 import { DatePick, ExperiencesDate, FlexDate, Guests } from "../../interface";
+import BnbMobileSearchMenu from "@/components/Bnb/Mobile/BnbMobileSearchMenu/BnbMobileSearchMenu";
+import BnbMobileLargeMenu from "@/components/Bnb/Mobile/BnbMobileLargeMenu/BnbMobileLargeMenu";
 
 const ignoreArray = ["Stay", "Picker", "Date", "Month", "Guest"];
 
@@ -76,6 +78,9 @@ function Airbnb(){
                             <BnbTopBarFlex justify="flex-end">
                                 <BnbUserPanel />
                             </BnbTopBarFlex>
+
+                            <BnbMobileSearchMenu setMenuToggle={setMenuToggle} />
+                            <BnbMobileLargeMenu menuToggle={menuToggle} setMenuToggle={setMenuToggle} />
                         </BnbTopBarContainer>
                     </BnbContainer>
                 </BnbTopBar>

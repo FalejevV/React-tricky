@@ -12,6 +12,10 @@ export const BnbContainer = styled.div`
     @media(max-width:1440px){
         padding:0px 40px;
     }
+
+    @media(max-width:750px){
+        padding:0px 25px;
+    }
 `
 export const BlackBackgroundClickField = styled.div`
     width:100%;
@@ -50,6 +54,10 @@ export const BnbTopBar = styled.nav<{
         @media(max-width:948px){
             height:240px;
         }
+
+        @media(max-width:750px){
+            height:80px;
+        }
     `}
     z-index: 2;
 `
@@ -64,11 +72,17 @@ export const BnbTopBarFlex = styled.div<{
     align-items: center;
     justify-content: ${({ justify }) => justify || "flex-start"};
 
-    
+    @media(max-width:750px){
+        display:none;
+    }
 
    ${({ left }) => left && css`
         @media(max-width:948px){
             flex:0 0 55px;
+        }
+
+        @media(max-width:750px){
+            display:none;
         }
    `}
 `

@@ -12,7 +12,7 @@ export const MenuButtonContainer = styled.div`
     background-color:black;
     opacity:0.5;
     position:absolute;
-    top:-1px;
+    top:100px;
     left:-1px;
     cursor:pointer;
     border-radius:0px 10px 10px 10px;

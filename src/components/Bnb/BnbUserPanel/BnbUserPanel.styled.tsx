@@ -7,4 +7,8 @@ export const BnbUserPanelContainer = styled.div`
     height:45px;
     background-color: blue;
     border-radius: 60px;
+
+    @media(max-width:750px){
+        display:none;
+    }
 `

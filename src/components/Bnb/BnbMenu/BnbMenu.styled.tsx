@@ -5,6 +5,10 @@ export const BnbMenuContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @media(max-width:750px){
+        display:none;
+    }
 `
 
 export const BnbSmallMenu = styled.div<{
