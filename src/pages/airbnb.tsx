@@ -11,7 +11,7 @@ const ignoreArray = ["Stay", "Picker", "Date", "Month", "Guest"];
 
 function Airbnb(){    
     const [menuToggle, setMenuToggle] = useState(false);
-    const [stayPick,setStayPick] = useState(1);
+    const [stayPick,setStayPick] = useState(0);
     const [approxDate, setApproxDate] = useState(0);
     const [dateType, setDateType] = useState(0);
     const [flexDate,setFlexDate] = useState<FlexDate>({
@@ -45,6 +45,7 @@ function Airbnb(){
         }
 
         let target = e.target as HTMLElement;
+        if(target.className.includes("Mobile")) return;
         try{
             let found = false;
             ignoreArray.forEach((className) => {
@@ -78,10 +79,10 @@ function Airbnb(){
                             <BnbTopBarFlex justify="flex-end">
                                 <BnbUserPanel />
                             </BnbTopBarFlex>
-
-                            <BnbMobileSearchMenu setMenuToggle={setMenuToggle} />
-                            <BnbMobileLargeMenu menuToggle={menuToggle} setMenuToggle={setMenuToggle} />
                         </BnbTopBarContainer>
+
+                        <BnbMobileSearchMenu setMenuToggle={setMenuToggle} />
+                        <BnbMobileLargeMenu menuToggle={menuToggle} setMenuToggle={setMenuToggle} stayPick={stayPick} setStayPick={setStayPick} />
                     </BnbContainer>
                 </BnbTopBar>
                 <BnbBottomBar>

@@ -22,71 +22,52 @@ export const BnbMobileLargeMenuContainer = styled.div<{
     
 `
 
-export const BnbMobileCloseButton = styled.svg`
-    width:30px;
-    height:30px;
-    padding:5px;
-    background-color:white;
-    border:1px solid #bfbfbf;
-    border-radius: 50%;
+export const BnbMobileDropdownList= styled.div`
+    display: flex;
+    flex-direction: column;
+    gap:10px;
     position: absolute;
-    top:22px;
-    left:22px;
-    cursor: pointer;
+    width:100%;
+    overflow: hidden;
+    left:0px;
+    top:70px;
+    padding:5px 10px;
+    min-height: 100vh;
 `
 
-export const BnbMobileMenuTypeContainer = styled.div`
-    position: absolute;
-    top:27px;
-    left:50%;
-    transform: translateX(-50%);
+export const BnbMobileRegionPickContainer = styled.div`
+    position: relative;
+    width:100%;
+    height:fit-content;
     display:flex;
+    overflow: hidden;
+    flex-direction: column;
+`
+
+export const BnbMobileRegionFlex = styled.div`
+    display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    gap:20px;
+    overflow-x:scroll;
+    padding-bottom: 10px;
 `
 
-export const BnbMobileTypeButton = styled.div<{
-    toggle: boolean;
-}>`
-    font-size: 16px;
-    line-height: 20px;
-    font-weight: 600;
-    color:#858585;
-    padding:0px 10px;
-    cursor:pointer;
-    transition: all 0.15s;
-    user-select: none;
-    
-    &:active{
-        transform:scale(0.95);
-    }
-
-    ${({ toggle }) => toggle && css`
-        color:#292929;
-        cursor:default;
-        &:active{
-            transform:scale(1);
-        }
-    `}
-
+export const BnbMobileDatePickContainer = styled.div`
+    position: relative;
+    width:100%;
+    height:100vh;
+    display:flex;
+    overflow: hidden;
+    background-color:red;
+    max-height:calc(100vh - 205px);
 `
 
-export const BnbMobileTypeButtonUnderline = styled.div.attrs((props:{
-    width:string,
-    left:string,
-}) => ({
-    style:{
-        left:props.left,
-        width:props.width
-    }
-  }))<{
-    width:string,
-    left:string,
-  } >`
-    transition: all 0.15s;
-    position: absolute;
-    height:2px;
-    top:24px;
-    width:100px;
-    background-color:#292929;
-  `;
+export const BnbMobileGuestPickContainer = styled.div`
+    position: relative;
+    width:100%;
+    height:341px;
+    display:flex;
+    overflow: hidden;
+    background-color:blue;
+`
