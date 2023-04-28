@@ -1,9 +1,11 @@
+import { fadeIn } from "@/styles/airbnb.styled";
 import styled, { css } from "styled-components";
 
 
 export const BnbMobileDropdownContainer = styled.div<{
     toggle:boolean,
     downSharpBorder:boolean,
+    fadeDelay:string,
 }>`
     width:100%;
     height:55px;
@@ -16,7 +18,10 @@ export const BnbMobileDropdownContainer = styled.div<{
     align-items: center;
     justify-content: space-between;
     padding:0px 20px;
-
+    position:relative;
+    opacity:0;
+    animation: ${fadeIn} 0.5s ${({fadeDelay}) => fadeDelay || "0.2s"} forwards;
+    
     ${({ toggle, downSharpBorder }) => toggle && css`
         height:fit-content;
         border-radius: ${downSharpBorder ? "25px 25px 0px 0px" : "25px"};

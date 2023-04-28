@@ -12,10 +12,11 @@ function BnbMobileDropdownItem(props:{
     setStayPick:Function,
     i:number,
     downSharpBorder?:boolean,
+    fadeDelay:string,
 }){
     
     return(
-        <BnbMobileDropdownContainer downSharpBorder={props.downSharpBorder || false} onClick={() => {props.setStayPick(props.i); console.log(props.i)}} toggle={props.stayPick === props.i}>
+        <BnbMobileDropdownContainer fadeDelay={props.fadeDelay} downSharpBorder={props.downSharpBorder || false} onClick={() => props.setStayPick(props.i)} toggle={props.stayPick === props.i}>
             {props.stayPick !== props.i && <>
                 <BnbMobileDropdownTitle toggle={false}>{props.title}</BnbMobileDropdownTitle>
                 <BnbMobileDropdownValue>{props.value}</BnbMobileDropdownValue>

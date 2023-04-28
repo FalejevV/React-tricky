@@ -1,5 +1,14 @@
-import styled, { css } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 
+export const fadeIn = keyframes`
+    from{
+        opacity: 0;
+        top:-50px;
+    }to{
+        opacity: 1;
+        top:0px;
+    }
+`
 
 export const BnbContainer = styled.div`
     @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap');

@@ -1,3 +1,4 @@
+import { fadeIn } from "@/styles/airbnb.styled";
 import styled, { css } from "styled-components";
 
 
@@ -38,10 +39,11 @@ export const BnbMobileDropdownList= styled.div`
 export const BnbMobileRegionPickContainer = styled.div`
     position: relative;
     width:100%;
-    height:fit-content;
+    height:240px;
     display:flex;
     overflow: hidden;
     flex-direction: column;
+    gap:22px;
 `
 
 export const BnbMobileRegionFlex = styled.div`
@@ -50,7 +52,7 @@ export const BnbMobileRegionFlex = styled.div`
     justify-content: flex-start;
     gap:20px;
     overflow-x:scroll;
-    padding-bottom: 10px;
+    padding-bottom: 20px;
 `
 
 export const BnbMobileDatePickContainer = styled.div`
@@ -59,8 +61,11 @@ export const BnbMobileDatePickContainer = styled.div`
     height:100vh;
     display:flex;
     overflow: hidden;
-    background-color:red;
+    background-color:white;
     max-height:calc(100vh - 205px);
+    flex-direction: column;
+    align-items: center;
+    padding-top:8px;
 `
 
 export const BnbMobileGuestPickContainer = styled.div`

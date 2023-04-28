@@ -1,20 +1,11 @@
-import styled, { css, keyframes } from "styled-components";
-
-let fadeIn = keyframes`
-    from{
-        opacity: 0;
-        top:-50px;
-    }to{
-        opacity: 1;
-        top:0px;
-    }
-`
+import { fadeIn } from "@/styles/airbnb.styled";
+import styled, { css } from "styled-components";
 
 export const BnbMobileLargeMenuHeaderContainer = styled.div`
     width:100%;
     position:relative;
-    
-    animation: ${fadeIn} 0.5s forwards;
+    opacity: 0;
+    animation: ${fadeIn} 0.5s 0.15s forwards;
 `
 
 export const BnbMobileCloseButton = styled.svg`

@@ -1,5 +1,5 @@
 import { BlackBackgroundClickField, BnbBottomBar, BnbContainer, BnbHeader, BnbLogo, BnbTopBar, BnbTopBarContainer, BnbTopBarFlex } from "@/styles/airbnb.styled";
-import {useState } from "react";
+import {useEffect, useState } from "react";
 import BnbMenu from "@/components/Bnb/BnbMenu/BnbMenu";
 import BnbLargeMenu from "@/components/Bnb/BnbLargeMenu/BnbLargeMenu";
 import BnbUserPanel from "@/components/Bnb/BnbUserPanel/BnbUserPanel";
@@ -7,11 +7,11 @@ import { DatePick, ExperiencesDate, FlexDate, Guests } from "../../interface";
 import BnbMobileSearchMenu from "@/components/Bnb/Mobile/BnbMobileSearchMenu/BnbMobileSearchMenu";
 import BnbMobileLargeMenu from "@/components/Bnb/Mobile/BnbMobileLargeMenu/BnbMobileLargeMenu";
 
-const ignoreArray = ["Stay", "Picker", "Date", "Month", "Guest"];
+const ignoreArray = ["Stay", "Picker", "Date", "Month", "Guest","Region"];
 
 function Airbnb(){    
     const [menuToggle, setMenuToggle] = useState(false);
-    const [stayPick,setStayPick] = useState(0);
+    const [stayPick,setStayPick] = useState(1);
     const [approxDate, setApproxDate] = useState(0);
     const [dateType, setDateType] = useState(0);
     const [flexDate,setFlexDate] = useState<FlexDate>({
@@ -45,8 +45,13 @@ function Airbnb(){
         }
 
         let target = e.target as HTMLElement;
-        if(target.className.includes("Mobile")) return;
         try{
+            if(target.tagName !== "div"){
+                target = target.parentElement as HTMLElement;
+            }
+            if(target.className.includes("Mobile")){
+                return;
+            };
             let found = false;
             ignoreArray.forEach((className) => {
                 if(found) return;
@@ -82,7 +87,7 @@ function Airbnb(){
                         </BnbTopBarContainer>
 
                         <BnbMobileSearchMenu setMenuToggle={setMenuToggle} />
-                        <BnbMobileLargeMenu menuToggle={menuToggle} setMenuToggle={setMenuToggle} stayPick={stayPick} setStayPick={setStayPick} />
+                        <BnbMobileLargeMenu dateType={dateType} setDateType={setDateType} menuToggle={menuToggle} setMenuToggle={setMenuToggle} stayPick={stayPick} setStayPick={setStayPick} />
                     </BnbContainer>
                 </BnbTopBar>
                 <BnbBottomBar>
