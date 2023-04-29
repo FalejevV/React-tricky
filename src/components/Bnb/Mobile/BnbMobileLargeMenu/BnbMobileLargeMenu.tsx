@@ -1,10 +1,12 @@
 import { useState } from "react";
-import { BnbMobileDatePickContainer, BnbMobileDropdownList, BnbMobileGuestPickContainer, BnbMobileLargeMenuContainer, BnbMobileRegionFlex, BnbMobileRegionPickContainer} from "./BnbMobileLargeMenu.styled";
+import { BnbMobileDateBottomBarContainer, BnbMobileDateNextButton, BnbMobileDatePickContainer, BnbMobileDateSkipResetButton, BnbMobileDropdownList, BnbMobileGuestPickContainer, BnbMobileLargeMenuContainer, BnbMobileRegionFlex, BnbMobileRegionPickContainer} from "./BnbMobileLargeMenu.styled";
 import BnbMobileLargeMenuHeader from "../BnbMobileLargeMenuHeader/BnbMobileLargeMenuHeader";
 import BnbMobileDropdownItem from "../BnbMobileDropdownItem/BnbMobileDropdownItem";
 import BnbRegionList from "../../BnbRegionList/BnbRegionList";
 import BnbMobileFakeRegionSearch from "../BnbMobileFakeRegionSearch/BnbMobileFakeRegionSearch";
 import { BnbDatePickerTypeContainer, DateTypeButton } from "../../BnbDatePicker/BnbDatePicker.styled";
+import { DatePick } from "../../../../../interface";
+import BnbMobileExactDatePicker from "../BnbMobileExactDatePicker/BnbMobileExactDatePicker";
 
 
 
@@ -15,6 +17,10 @@ function BnbMobileLargeMenu(props:{
     setStayPick:Function,
     dateType:number,
     setDateType:Function,
+    datePick:DatePick,
+    setDatePick:Function,
+    approxDate:number,
+    setApproxDate:Function,
 }){
 
     const [menuType, setMenuType] = useState(0);
@@ -22,10 +28,14 @@ function BnbMobileLargeMenu(props:{
     function selectRegion(region:string){
         if(regionPicked !== region){
             setRegionPicked(region);
-            setTimeout(() => {
-                props.setStayPick(2);
-            },0)
+            switchStayPick(2);
         }
+    }
+
+    function switchStayPick(index:number){
+        setTimeout(() => {
+            props.setStayPick(index);
+        },0)
     }
 
     return(
@@ -48,11 +58,16 @@ function BnbMobileLargeMenu(props:{
                             <DateTypeButton onClick={() => props.setDateType(0)} toggle={props.dateType === 0}>Choose dates</DateTypeButton>
                             <DateTypeButton onClick={() => {props.setDateType(1); props.setStayPick(2)}} toggle={props.dateType === 1}>Flexible dates</DateTypeButton>
                         </BnbDatePickerTypeContainer>
+                       {props.dateType === 0 && <BnbMobileExactDatePicker approxDate={props.approxDate} setApproxDate={props.setApproxDate}/>}
+                        <BnbMobileDateBottomBarContainer>
+                            <BnbMobileDateSkipResetButton onClick={() => switchStayPick(4)}>Skip</BnbMobileDateSkipResetButton>
+                            <BnbMobileDateNextButton onClick={() => switchStayPick(4)}>Next</BnbMobileDateNextButton>
+                        </BnbMobileDateBottomBarContainer>
                     </BnbMobileDatePickContainer>
                 </BnbMobileDropdownItem>
 
 
-                <BnbMobileDropdownItem fadeDelay="0.4s" i={3} stayPick={props.stayPick} setStayPick={props.setStayPick} title={"Who"} titleActive={""} value={"Add guests"}>
+                <BnbMobileDropdownItem fadeDelay="0.4s" i={4} stayPick={props.stayPick} setStayPick={props.setStayPick} title={"Who"} titleActive={""} value={"Add guests"}>
                     <BnbMobileGuestPickContainer>
                     </BnbMobileGuestPickContainer>
                 </BnbMobileDropdownItem>

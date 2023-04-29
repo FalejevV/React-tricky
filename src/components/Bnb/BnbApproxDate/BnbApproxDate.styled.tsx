@@ -1,7 +1,9 @@
 import styled, { css } from "styled-components";
 
 
-export const BnbApproxDateContainer = styled.div`
+export const BnbApproxDateContainer = styled.div<{
+    mobile?:boolean
+}>`
     width:100%;
     position: absolute;
     bottom: 35px;
@@ -13,6 +15,44 @@ export const BnbApproxDateContainer = styled.div`
     @media(max-width:948px){
         justify-content:center;
     }
+
+    ${({ mobile }) => mobile && css`
+        white-space: nowrap;
+        position:relative;
+        top:0px;
+        bottom:0px;
+        left:-10px;
+        justify-content:flex-start;
+        padding:10px 0px;
+
+        @media(max-width:948px){
+            justify-content:flex-start;
+        }
+
+        &:before{
+            content: '';
+            position: absolute;
+            left: -27px;
+            bottom:0px;
+            width: calc(100% + 54px);
+            height: 1px;
+            background-color: #d8d8d8;
+        }
+
+        &:after{
+            content: '';
+            position: absolute;
+            left: -27px;
+            top:0px;
+            width: calc(100% + 54px);
+            height: 1px;
+            background-color: #d8d8d8;
+        }
+        
+        ${BnbApproxDateButton}{
+            padding:6px 14px;
+        }
+    `}
 `
 
 

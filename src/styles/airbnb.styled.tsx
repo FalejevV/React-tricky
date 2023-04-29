@@ -17,7 +17,7 @@ export const BnbContainer = styled.div`
     width:100%;
     max-width:2543px;
     padding:0px 91.5px;
-
+    margin:0 auto;
     @media(max-width:1440px){
         padding:0px 40px;
     }
@@ -42,7 +42,6 @@ export const BnbHeader = styled.header`
     position:fixed;
     top:0px;
     left:0px;
-
 `
 
 export const BnbTopBar = styled.nav<{
@@ -56,7 +55,7 @@ export const BnbTopBar = styled.nav<{
     border-bottom:1px solid #c7c7c7;
     padding-top:15px;
     transition: all 0.3s;
-
+    
     ${({ menuToggle }) => menuToggle && css`
         height:160px;
 

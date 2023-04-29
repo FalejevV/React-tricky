@@ -92,17 +92,17 @@ export const BnbExactDatesSpacer = styled.div`
 
 export const BnbWeekDaysWrapper = styled.div`
     position: absolute;
-    width:100%;
+    width:105%;
     top:25px;
-    left:0px;
+    left:-20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding:0px 40px;
-    gap:75px;
 `
 
 export const BnbWeekDaysResponsiveWrapper = styled.div`
+    width:350px;
     @media(max-width:948px){
         display:none;
     }

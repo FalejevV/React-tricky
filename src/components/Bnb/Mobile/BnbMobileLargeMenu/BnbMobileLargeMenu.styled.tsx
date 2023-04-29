@@ -60,13 +60,44 @@ export const BnbMobileDatePickContainer = styled.div`
     width:100%;
     height:100vh;
     display:flex;
-    overflow: hidden;
     background-color:white;
-    max-height:calc(100vh - 205px);
+    max-height:calc(100vh - 220px);
     flex-direction: column;
     align-items: center;
     padding-top:8px;
+    gap:5px;
 `
+
+
+export const BnbMobileDateBottomBarContainer = styled.div`
+    width:100%;
+    height:55px;
+    display:flex;
+    align-items: center;
+    padding-top:5px;
+    justify-content: space-between;
+`
+
+export const BnbMobileDateSkipResetButton = styled.button`
+    font-size:16px;
+    color:#222222;
+    line-height: 18px;
+    text-decoration: underline;
+    font-weight: 500;
+    background-color: white;
+    border:0px;
+    font-weight: 600;
+    cursor:pointer;
+`
+
+export const BnbMobileDateNextButton = styled(BnbMobileDateSkipResetButton)`
+    text-decoration: none;
+    background-color: black;
+    color:white;
+    padding:14px 24px;
+    border-radius: 10px;
+`
+
 
 export const BnbMobileGuestPickContainer = styled.div`
     position: relative;

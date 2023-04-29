@@ -11,7 +11,8 @@ import { BnbApproxDateButton, BnbApproxDateContainer } from "./BnbApproxDate.sty
 
 function BnbApproxDate(props:{
     approxDate:number,
-    setApproxDate:Function
+    setApproxDate:Function,
+    mobile?:boolean
 }){
     function switchApproxDate(value:number){
         if(props.approxDate !== value){
@@ -19,7 +20,7 @@ function BnbApproxDate(props:{
         }
     }
     return(
-        <BnbApproxDateContainer>
+        <BnbApproxDateContainer mobile={props.mobile || false}>
             <BnbApproxDateButton toggle={props.approxDate === 0} onClick={() => switchApproxDate(0)}>Exact dates</BnbApproxDateButton>
             <BnbApproxDateButton toggle={props.approxDate === 1} onClick={() => switchApproxDate(1)}>± 1day</BnbApproxDateButton>
             <BnbApproxDateButton toggle={props.approxDate === 2} onClick={() => switchApproxDate(2)}>± 2days</BnbApproxDateButton>

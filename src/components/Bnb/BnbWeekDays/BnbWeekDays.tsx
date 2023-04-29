@@ -2,9 +2,11 @@ import { BnbWeekDaysContainer, BnbWeekDaysItem } from "./BnbWeekDays.styled";
 
 
 
-function BnbWeekDays(){
+function BnbWeekDays(props:{
+    width?:string,
+}){
     return(
-        <BnbWeekDaysContainer>
+        <BnbWeekDaysContainer width={props.width}>
             <BnbWeekDaysItem>Su</BnbWeekDaysItem>
             <BnbWeekDaysItem>Mo</BnbWeekDaysItem>
             <BnbWeekDaysItem>Tu</BnbWeekDaysItem>

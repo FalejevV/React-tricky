@@ -27,6 +27,7 @@ export const BnbMobileDropdownContainer = styled.div<{
         border-radius: ${downSharpBorder ? "25px 25px 0px 0px" : "25px"};
         box-shadow: 0px 5px 5px 4px #00000030;
         padding:20px 25px;
+        padding-bottom: 10px;
     `}
 `
 
