@@ -23,7 +23,7 @@ export default function App({ Component, pageProps }: AppProps) {
       </Head>
       <PageMain>
           <Menu setToggleMenu={setToggleMenu} toggleMenu={toggleMenu}/>
-          <MenuToggleButton onClick={() => setToggleMenu(prev => !prev)}/>
+          <MenuToggleButton toggleMenu={toggleMenu} onClick={() => setToggleMenu(prev => !prev)}/>
           <Component setToggleMenu={setToggleMenu} {...pageProps} />
       </PageMain>
     </>

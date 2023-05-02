@@ -2,10 +2,8 @@ import Link from "next/link";
 import styled from "styled-components";
 
 export const MenuElementLink = styled(Link)`
-    width:100%;
-    height:100%;
     opacity:0.5;
-
+    position:relative;
     transition: all 0.3s;
     &:hover{
         opacity:0.8;
@@ -13,8 +11,14 @@ export const MenuElementLink = styled(Link)`
 `
 
 export const MenuImage = styled.img`
-    width:100%;
-    height:100%;
+    width:250px;
+    height:250px;
     object-fit:contain;
     filter: grayscale(100%);
+
+    
+    @media(max-width:950px){
+        width:150px;
+        height:150px;
+    }
 `
