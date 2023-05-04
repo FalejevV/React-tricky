@@ -87,7 +87,7 @@ function Airbnb(){
                         </BnbTopBarContainer>
 
                         <BnbMobileSearchMenu setMenuToggle={setMenuToggle} />
-                        <BnbMobileLargeMenu approxDate={approxDate} setApproxDate={setApproxDate} datePick={datePick} setDatePick={setDatePick} dateType={dateType} setDateType={setDateType} menuToggle={menuToggle} setMenuToggle={setMenuToggle} stayPick={stayPick} setStayPick={setStayPick} />
+                        <BnbMobileLargeMenu guests={guests} setGuests={setGuests} approxDate={approxDate} setApproxDate={setApproxDate} datePick={datePick} setDatePick={setDatePick} dateType={dateType} setDateType={setDateType} menuToggle={menuToggle} setMenuToggle={setMenuToggle} stayPick={stayPick} setStayPick={setStayPick} />
                     </BnbContainer>
                 </BnbTopBar>
                 <BnbBottomBar>

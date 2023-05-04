@@ -1,8 +1,26 @@
 import styled, { css } from "styled-components";
 
 
+export const BnbMonthGrid = styled.div`
+    width:100%;
+    height:100%;
+    display:grid;
+    grid-template-columns:repeat(7,48px);
+    grid-auto-rows: 46px;
+    row-gap:1px;
+`
+
+
+export const BnbCalendarMonthTitle = styled.p`
+    color:black;
+    font-size:16px;
+    font-weight: 600;
+`
+
+
 export const BnbCalendarMonthContainer = styled.div<{
     displayHidden:boolean,
+    mobile?:boolean,
 }>`
     width:390px;
     height:380px;
@@ -15,28 +33,37 @@ export const BnbCalendarMonthContainer = styled.div<{
     ${({ displayHidden }) => displayHidden && css`
         display:none;
     `}
+
+    ${({ mobile }) => mobile && css`
+        width:100%;
+        padding:20px;
+        gap:10px;
+        height:fit-content;
+        ${BnbMonthGrid}{
+            grid-template-columns:repeat(7,10vw);
+            grid-auto-rows:10vw;
+            justify-content:space-between;
+        }
+        ${BnbCalendarMonthTitle}{
+            text-align: left;
+            width:100%;
+            padding-left:10px;
+        }
+
+        @media(max-width:360px){
+            padding:5px;
+        }
+    `}
 `
 
-export const BnbCalendarMonthTitle = styled.p`
-    color:black;
-    font-size:16px;
-    font-weight: 600;
-`
 
-export const BnbMonthGrid = styled.div`
-    width:100%;
-    height:100%;
-    display:grid;
-    grid-template-columns:repeat(7,48px);
-    grid-auto-rows: 46px;
-    row-gap:1px;
-`
 
 export const BnbMonthItem = styled.p<{
     toggle: boolean,
     available: boolean,
     selected: boolean,
-    isBetweenDates:boolean
+    isBetweenDates:boolean,
+    mobile?:boolean,
 }>`
     display:flex;
     align-items: center;

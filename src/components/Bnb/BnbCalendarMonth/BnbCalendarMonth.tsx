@@ -26,7 +26,8 @@ function BnbCalendarMonth(props:{
     setDatePick:Function,
     stayPick:number,
     setStayPick:Function,
-    minimal?:boolean
+    minimal?:boolean,
+    mobile?:boolean,
 }){
     const [month,setMonth] = useState(props.month);
     const [year,setYear] = useState(props.year);
@@ -50,6 +51,7 @@ function BnbCalendarMonth(props:{
         minimal prop defines a behaviour of "Experiences" menu tab. It has "minimised" UI and functionality.
     */
     function datePickHandler(year:number,month:number,day:number){
+        console.log(props.stayPick);
         if(props.stayPick === 2){
             if(props.minimal){
                 props.setDatePick({
@@ -63,7 +65,6 @@ function BnbCalendarMonth(props:{
                     ...prev,
                     startDate: new Date(year,month,day)
                 }));
-    
                 props.setStayPick(3);
                 return;
             }
@@ -141,13 +142,13 @@ function BnbCalendarMonth(props:{
         }
         for (let i = 0; i < getDaysInMonth(year,month); i++){
             itemsArray.push(
-                <BnbMonthItem isBetweenDates={isBetweenDates(year,month,i+1)} selected={isSelected(year,month,i+1)} available={isAvaliable(year,month,i+1)} key={nanoid()} toggle={false} onClick={() => datePickHandler(year, month,i+1)}>{i+1}</BnbMonthItem>
+                <BnbMonthItem mobile={props.mobile || false} isBetweenDates={isBetweenDates(year,month,i+1)} selected={isSelected(year,month,i+1)} available={isAvaliable(year,month,i+1)} key={nanoid()} toggle={false} onClick={() => datePickHandler(year, month,i+1)}>{i+1}</BnbMonthItem>
             )
         }
         return itemsArray;
     }
     return(
-        <BnbCalendarMonthContainer displayHidden={props.hidden}>
+        <BnbCalendarMonthContainer mobile={props.mobile || false} displayHidden={props.hidden}>
             <BnbCalendarMonthTitle>{monthNames[month]} {year}</BnbCalendarMonthTitle>
             <BnbMonthGrid>
                 {getMonthItems()}
