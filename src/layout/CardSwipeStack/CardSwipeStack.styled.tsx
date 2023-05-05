@@ -5,6 +5,7 @@ export const CardSwipeStackContainer = styled.div`
     width:100%;
     height:100%;
     position: relative;
+    max-width:100vw;
 `
 
 export const NoContainer = styled.div<{
