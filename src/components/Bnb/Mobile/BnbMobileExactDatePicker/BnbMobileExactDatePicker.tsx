@@ -13,6 +13,7 @@ function BnbMobileExactDatePicker(props:{
     setDatePick:Function,
     stayPick:number,
     setStayPick:Function,
+    minimal?:boolean
 }){
     return(
         <>
@@ -20,7 +21,7 @@ function BnbMobileExactDatePicker(props:{
                 <BnbWeekDays width="100%"/>
             </BnbMobileWeekDaysContainer>
             <BnbMobileCalendarList datePick={props.datePick} setDatePick={props.setDatePick} stayPick={props.stayPick} setStayPick={props.setStayPick} />
-            <BnbApproxDate mobile approxDate={props.approxDate} setApproxDate={props.setApproxDate} />
+            {!props.minimal && <BnbApproxDate mobile approxDate={props.approxDate} setApproxDate={props.setApproxDate} />}
         </>
     )
 }

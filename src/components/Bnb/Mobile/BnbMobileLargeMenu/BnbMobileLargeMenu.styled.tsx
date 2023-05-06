@@ -14,6 +14,7 @@ export const BnbMobileLargeMenuContainer = styled.div<{
     position: fixed;
     left:0px;
     top:0px;
+    overflow: scroll;
     @media(max-width:750px){
         ${({ menuToggle }) => menuToggle && css`
             display:flex;
@@ -65,7 +66,6 @@ export const BnbMobileDatePickContainer = styled.div`
     flex-direction: column;
     align-items: center;
     padding-top:8px;
-    gap:5px;
 `
 
 
@@ -77,6 +77,11 @@ export const BnbMobileDateBottomBarContainer = styled.div`
     align-items: center;
     padding-top:5px;
     justify-content: space-between;
+    border-top: 1px solid #d8d8d8;
+    width:calc(100% + 60px);
+    margin-left:10px;
+    padding:0px 30px;
+    padding-top:10px;
 `
 
 export const BnbMobileDateSkipResetButton = styled.button`
@@ -103,8 +108,15 @@ export const BnbMobileDateNextButton = styled(BnbMobileDateSkipResetButton)`
 export const BnbMobileGuestPickContainer = styled.div`
     position: relative;
     width:100%;
-    height:341px;
+    height:fit-content;
     display:flex;
-    overflow: hidden;
-    background-color:blue;
+    overflow: scroll;
+    flex-direction: column;
+    gap:10px;
+`
+
+export const BnbMobileGuestPickTitle = styled.p`
+    font-size: 22px;
+    color:black;
+    font-weight: 600;
 `

@@ -9,6 +9,7 @@ function BnbGuestPicker(props:{
     guests:Guests,
     setGuests:Function,
     minimal:boolean,
+    mobile?:boolean,
 }) {
     const [adultRequired, setAdultRequired] = useState(false);
 
@@ -32,7 +33,7 @@ function BnbGuestPicker(props:{
         }
     },[props.guests]);
     return(
-        <BnbGuestPickerContainer>
+        <BnbGuestPickerContainer mobile={props.mobile}>
             <BnbGuestItem noMore={props.guests.adults + props.guests.children > 15} setGuests={props.setGuests} title="Adults" subTitle={"Ages 13 or above"} guests={props.guests.adults} limit={16} adultRequired={adultRequired}/>
             <BnbGuestItem noMore={props.guests.adults + props.guests.children > 15} setGuests={props.setGuests} title="Children" subTitle={"Ages 2–12"} guests={props.guests.children} limit={15}/>
             <BnbGuestItem setGuests={props.setGuests} title="Infants" subTitle={"Under 2"} guests={props.guests.infants} limit={5}/>
