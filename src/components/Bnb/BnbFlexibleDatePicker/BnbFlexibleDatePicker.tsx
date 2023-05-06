@@ -11,6 +11,7 @@ const monthNames = ["January", "February", "March", "April", "May", "June",
 function BnbFlexibleDatePicker(props:{
     flexDate:FlexDate,
     setFlexDate:Function,
+    mobile?:boolean,
 }){
 
     const [slider,setSlider] = useState(0);
@@ -75,25 +76,29 @@ function BnbFlexibleDatePicker(props:{
     }
 
     return(
-        <BnbFlexibleDateContainer>
-            <BnbFlexDateTitle>
-                Stay for a {getStayText()}
+        <BnbFlexibleDateContainer mobile={props.mobile}>
+            <BnbFlexDateTitle mobile={props.mobile}>
+                { !props.mobile && `Stay for a ${getStayText()}`}
+                { props.mobile && `How long would you like to stay?`}
             </BnbFlexDateTitle>
-            <BnbFlexDateDurationContainer>
+            <BnbFlexDateDurationContainer mobile={props.mobile}>
                 <BnbFlexDateDurationButton onClick={() => switchFlexDuration(0)} toggle={props.flexDate.duration === 0}>Weekend</BnbFlexDateDurationButton>
                 <BnbFlexDateDurationButton onClick={() => switchFlexDuration(1)} toggle={props.flexDate.duration === 1}>Week</BnbFlexDateDurationButton>
                 <BnbFlexDateDurationButton onClick={() => switchFlexDuration(2)} toggle={props.flexDate.duration === 2}>Month</BnbFlexDateDurationButton>
             </BnbFlexDateDurationContainer>
-            <BnbFlexDateMonthsTitle>Go {getMonthsText()}</BnbFlexDateMonthsTitle>
-            <BnbFlexDateCarouselWrap>
+            <BnbFlexDateMonthsTitle mobile={props.mobile}>
+                { !props.mobile && `Go {getMonthsText()`}
+                { props.mobile && `Where do you want to go?`}
+            </BnbFlexDateMonthsTitle>
+            <BnbFlexDateCarouselWrap mobile={props.mobile}>
                 
-                <BnbFlexDateCarouselArrowSVG onClick={() => doSlide(-1)} enabled={slider > 0} left viewBox="0 0 24 24">
+                <BnbFlexDateCarouselArrowSVG mobile={props.mobile} onClick={() => doSlide(-1)} enabled={slider > 0} left viewBox="0 0 24 24">
                     <path d="M10.8284 12.0007L15.7782 16.9504L14.364 18.3646L8 12.0007L14.364 5.63672L15.7782 7.05093L10.8284 12.0007Z"></path>
                 </BnbFlexDateCarouselArrowSVG>
                 
-                <BnbSmallMonthCarousel carouselRef={carouselRef} flexDate={props.flexDate} setFlexDate={props.setFlexDate} />
+                <BnbSmallMonthCarousel mobile={props.mobile} carouselRef={carouselRef} flexDate={props.flexDate} setFlexDate={props.setFlexDate} />
 
-                <BnbFlexDateCarouselArrowSVG onClick={() => doSlide(1)} enabled={slider < 3} right viewBox="0 0 24 24">
+                <BnbFlexDateCarouselArrowSVG mobile={props.mobile} onClick={() => doSlide(1)} enabled={slider < 3} right viewBox="0 0 24 24">
                     <path d="M13.1714 12.0007L8.22168 7.05093L9.63589 5.63672L15.9999 12.0007L9.63589 18.3646L8.22168 16.9504L13.1714 12.0007Z"></path>
                 </BnbFlexDateCarouselArrowSVG>
             </BnbFlexDateCarouselWrap>

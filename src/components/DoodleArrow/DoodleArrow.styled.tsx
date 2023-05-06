@@ -23,7 +23,7 @@ let arrowMovement = keyframes`
 export const DoodleArrowImage = styled(Image)`
     width:100px;
     height:100px;
-    position:absolute;
+    position:fixed;
     left:150px;
     bottom:150px;
     opacity:0.6;

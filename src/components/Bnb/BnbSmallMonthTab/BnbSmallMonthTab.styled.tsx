@@ -3,7 +3,8 @@ import styled, { css } from "styled-components";
 
 
 export const BnbSmallMonthTabContainer = styled.div<{
-    toggle: boolean
+    toggle: boolean,
+    mobile?: boolean,
 }>`
     user-select: none;
     width:120px;
@@ -34,6 +35,12 @@ export const BnbSmallMonthTabContainer = styled.div<{
             transform: scale(0.93);
             border:2px solid black;
         }
+    `}
+
+    ${({ mobile }) => mobile && css`
+        width:110px;
+        min-width: 110px;
+        height:115px;
     `}
 `
 

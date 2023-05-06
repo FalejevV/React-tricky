@@ -73,6 +73,7 @@ export const BnbMobileDateBottomBarContainer = styled.div`
     width:100%;
     height:55px;
     display:flex;
+    margin-top:auto;
     align-items: center;
     padding-top:5px;
     justify-content: space-between;

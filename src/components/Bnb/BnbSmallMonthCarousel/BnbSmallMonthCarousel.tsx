@@ -7,7 +7,8 @@ import { FlexDate } from "../../../../interface";
 function BnbSmallMonthCarousel(props:{
     flexDate:FlexDate,
     setFlexDate:Function,
-    carouselRef:any
+    carouselRef:any,
+    mobile?:boolean,
 }){
 
     function getCalendarList(){
@@ -15,7 +16,7 @@ function BnbSmallMonthCarousel(props:{
         for(let i = 1; i < 10; i++){
             let date = new Date();
             let newDate = new Date(date.setMonth(date.getMonth()+i));
-            calendarArray.push(<BnbSmallMonthTab onClick={() => toggleMonthTab([newDate.getFullYear(), newDate.getMonth()])} key={i} date={newDate} toggle={isMonthSelected(newDate.getFullYear(), newDate.getMonth())} />);
+            calendarArray.push(<BnbSmallMonthTab mobile={props.mobile} onClick={() => toggleMonthTab([newDate.getFullYear(), newDate.getMonth()])} key={i} date={newDate} toggle={isMonthSelected(newDate.getFullYear(), newDate.getMonth())} />);
         }
         return calendarArray;
     }

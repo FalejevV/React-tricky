@@ -11,7 +11,7 @@ export const BnbApproxDateContainer = styled.div<{
     padding:0px 62px;
     display:flex;
     gap:10px;
-
+    overflow-x:scroll;
     @media(max-width:948px){
         justify-content:center;
     }
@@ -23,32 +23,14 @@ export const BnbApproxDateContainer = styled.div<{
         bottom:0px;
         left:-10px;
         justify-content:flex-start;
-        padding:10px 0px;
-
+        padding:10px 10px;
+        width:calc(100% + 40px);
         @media(max-width:948px){
             justify-content:flex-start;
         }
-
-        &:before{
-            content: '';
-            position: absolute;
-            left: -27px;
-            bottom:0px;
-            width: calc(100% + 54px);
-            height: 1px;
-            background-color: #d8d8d8;
-        }
-
-        &:after{
-            content: '';
-            position: absolute;
-            left: -27px;
-            top:0px;
-            width: calc(100% + 54px);
-            height: 1px;
-            background-color: #d8d8d8;
-        }
-        
+        margin-left:20px;
+        border-top:1px solid #d8d8d8;
+        border-bottom:1px solid #d8d8d8;
         ${BnbApproxDateButton}{
             padding:6px 14px;
         }

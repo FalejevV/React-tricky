@@ -76,7 +76,7 @@ function Airbnb(){
                     <BnbContainer>
                         <BnbTopBarContainer>
                             <BnbTopBarFlex left>
-                                <BnbLogo large src="/airbnb/airbnb.svg"/>
+                                <BnbLogo alt="logo" large src="/airbnb/airbnb.svg"/>
                                 <BnbLogo src="/airbnb/airbnb-small.svg"/>
                             </BnbTopBarFlex>
                             <BnbMenu setStayPick={setStayPick} onClick={toggleMenu} menuToggle={menuToggle}/>
@@ -87,7 +87,7 @@ function Airbnb(){
                         </BnbTopBarContainer>
 
                         <BnbMobileSearchMenu setMenuToggle={setMenuToggle} />
-                        <BnbMobileLargeMenu guests={guests} setGuests={setGuests} approxDate={approxDate} setApproxDate={setApproxDate} datePick={datePick} setDatePick={setDatePick} dateType={dateType} setDateType={setDateType} menuToggle={menuToggle} setMenuToggle={setMenuToggle} stayPick={stayPick} setStayPick={setStayPick} />
+                        <BnbMobileLargeMenu flexDate={flexDate} setFlexDate={setFlexDate} guests={guests} setGuests={setGuests} approxDate={approxDate} setApproxDate={setApproxDate} datePick={datePick} setDatePick={setDatePick} dateType={dateType} setDateType={setDateType} menuToggle={menuToggle} setMenuToggle={setMenuToggle} stayPick={stayPick} setStayPick={setStayPick} />
                     </BnbContainer>
                 </BnbTopBar>
                 <BnbBottomBar>
