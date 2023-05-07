@@ -38,21 +38,23 @@ function BnbLargeMenu(props:{
     setFlexDate:Function,
     experiencesDate:ExperiencesDate,
     setExperiencesDate:Function,
+    regionPick:string,
+    setRegionPick:Function,
+    alertSelection:Function,
 }){
 
     const [menuType, setMenuType] = useState(0);
-    const [regionPicked, setRegionPicked] = useState("");
     const [hoveredPick, setHoveredPick] = useState(-1);
     const [regionInput, setRegionInput] = useState("");
 
 
     useEffect(() => {
-        setRegionInput(regionPicked);
-    },[regionPicked]);
+        setRegionInput(props.regionPick);
+    },[props.regionPick]);
 
     useEffect(() => {
-        if(regionPicked !== regionInput){
-            setRegionPicked(regionInput);
+        if(props.regionPick !== regionInput){
+            props.setRegionPick(regionInput);
         }
     },[regionInput]);
 
@@ -169,7 +171,7 @@ function BnbLargeMenu(props:{
             </BnbLargeMenuTopBar>
             <BnbLargeStayPicker isActive={props.stayPick > 0}>
                 {/*  Different "pick" windows are displayed depending on stayPick state.  */}
-                {props.stayPick === 1 && <BnbRegionPicker setStayPick={props.setStayPick} regionPicked={regionPicked} setRegionPicked={setRegionPicked} />}
+                {props.stayPick === 1 && <BnbRegionPicker setStayPick={props.setStayPick} regionPicked={props.regionPick} setRegionPicked={props.setRegionPick} />}
                 {props.stayPick > 1 && props.stayPick <= 3 && menuType === 0 && datePickerMemo}
                 {props.stayPick > 1 && props.stayPick <= 3 && menuType === 1 && datePickerMemoLimited}
                 {props.stayPick === 4 && <BnbGuestPicker minimal={menuType === 1} guests={props.guests} setGuests={props.setGuests} />}

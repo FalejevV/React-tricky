@@ -6,6 +6,7 @@ export const BnbMobileDropdownContainer = styled.div<{
     toggle:boolean,
     downSharpBorder:boolean,
     fadeDelay:string,
+    hidden?:boolean
 }>`
     width:100%;
     height:55px;
@@ -28,6 +29,12 @@ export const BnbMobileDropdownContainer = styled.div<{
         box-shadow: 0px 5px 5px 4px #00000030;
         padding:20px 25px;
         padding-bottom: 10px;
+    `}
+
+    ${({ hidden }) => hidden && css`
+        opacity:1;
+        height:0px;
+        overflow:hidden;
     `}
 `
 

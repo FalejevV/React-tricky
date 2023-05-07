@@ -34,7 +34,7 @@ export const BnbMobileDropdownList= styled.div`
     left:0px;
     top:70px;
     padding:5px 10px;
-    min-height: 100vh;
+    height:calc(100% - 70px);
 `
 
 export const BnbMobileRegionPickContainer = styled.div`

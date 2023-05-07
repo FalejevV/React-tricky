@@ -14,6 +14,7 @@ function BnbMobileDropdownItem(props:{
     downSharpBorder?:boolean,
     fadeDelay:string,
     IPlus?:boolean,
+    hidden?:boolean
 }){
     function isPlusOne(){
         if(props.IPlus){
@@ -25,7 +26,7 @@ function BnbMobileDropdownItem(props:{
         return props.stayPick === props.i;
     }
     return(
-        <BnbMobileDropdownContainer fadeDelay={props.fadeDelay} downSharpBorder={props.downSharpBorder || false} onClick={() => props.setStayPick(props.i)} toggle={isPlusOne()}>
+        <BnbMobileDropdownContainer hidden={props.hidden} fadeDelay={props.fadeDelay} downSharpBorder={props.downSharpBorder || false} onClick={() => props.setStayPick(props.i)} toggle={isPlusOne()}>
             {!isPlusOne() && <>
                 <BnbMobileDropdownTitle toggle={false}>{props.title}</BnbMobileDropdownTitle>
                 <BnbMobileDropdownValue>{props.value}</BnbMobileDropdownValue>

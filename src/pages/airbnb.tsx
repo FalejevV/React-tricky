@@ -32,7 +32,8 @@ function Airbnb(){
     const [experiencesDate,setExperiencesDate] = useState<ExperiencesDate>({
         startDate:new Date(0,0,0),
         endDate: new Date(0,0,0),
-    })
+    });
+    const [regionPick,setRegionPick] = useState("");
 
     const toggleMenu = () => {
         setMenuToggle(!menuToggle);
@@ -67,6 +68,14 @@ function Airbnb(){
             
         }
     }
+
+    function alertSelection(){
+        setMenuToggle(false);
+        alert(`Region:  ${regionPick.trim() === "" ? "Any" : regionPick}. 
+Date:  ${dateType === 0 ? `${datePick.startDate.toLocaleDateString()} - ${datePick.endDate.toLocaleDateString()}` : `${flexDate.dates} months for ${flexDate.duration === 0 ? "Weekend" : flexDate.duration === 1 ? "Week" : "Month"}`}.
+Guests: ${guests.adults + guests.children} guests. ${guests.infants} infants. ${guests.pets} pets`);
+    }
+    
     return(
         <>
             <BlackBackgroundClickField onClick={() => setMenuToggle(false)}></BlackBackgroundClickField>
@@ -80,14 +89,14 @@ function Airbnb(){
                                 <BnbLogo src="/airbnb/airbnb-small.svg"/>
                             </BnbTopBarFlex>
                             <BnbMenu setStayPick={setStayPick} onClick={toggleMenu} menuToggle={menuToggle}/>
-                            <BnbLargeMenu experiencesDate={experiencesDate} setExperiencesDate={setExperiencesDate} dateType={dateType} setDateType={setDateType} flexDate={flexDate} setFlexDate={setFlexDate} approxDate={approxDate} setApproxDate={setApproxDate} guests={guests} setGuests={setGuests} datePick={datePick} setDatePick={setDatePick} stayPick={stayPick} setStayPick={setStayPick} menuToggle={menuToggle}/>
+                            <BnbLargeMenu alertSelection={alertSelection} regionPick={regionPick} setRegionPick={setRegionPick} experiencesDate={experiencesDate} setExperiencesDate={setExperiencesDate} dateType={dateType} setDateType={setDateType} flexDate={flexDate} setFlexDate={setFlexDate} approxDate={approxDate} setApproxDate={setApproxDate} guests={guests} setGuests={setGuests} datePick={datePick} setDatePick={setDatePick} stayPick={stayPick} setStayPick={setStayPick} menuToggle={menuToggle}/>
                             <BnbTopBarFlex justify="flex-end">
                                 <BnbUserPanel />
                             </BnbTopBarFlex>
                         </BnbTopBarContainer>
 
                         <BnbMobileSearchMenu setMenuToggle={setMenuToggle} />
-                        <BnbMobileLargeMenu flexDate={flexDate} setFlexDate={setFlexDate} guests={guests} setGuests={setGuests} approxDate={approxDate} setApproxDate={setApproxDate} datePick={datePick} setDatePick={setDatePick} dateType={dateType} setDateType={setDateType} menuToggle={menuToggle} setMenuToggle={setMenuToggle} stayPick={stayPick} setStayPick={setStayPick} />
+                        <BnbMobileLargeMenu alertSelection={alertSelection} regionPick={regionPick} setRegionPick={setRegionPick} flexDate={flexDate} setFlexDate={setFlexDate} guests={guests} setGuests={setGuests} approxDate={approxDate} setApproxDate={setApproxDate} datePick={datePick} setDatePick={setDatePick} dateType={dateType} setDateType={setDateType} menuToggle={menuToggle} setMenuToggle={setMenuToggle} stayPick={stayPick} setStayPick={setStayPick} />
                     </BnbContainer>
                 </BnbTopBar>
                 <BnbBottomBar>
