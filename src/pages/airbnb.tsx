@@ -89,7 +89,7 @@ Guests: ${guests.adults + guests.children} guests. ${guests.infants} infants. ${
                                 <BnbLogo src="/airbnb/airbnb-small.svg"/>
                             </BnbTopBarFlex>
                             <BnbMenu setStayPick={setStayPick} onClick={toggleMenu} menuToggle={menuToggle}/>
-                            <BnbLargeMenu alertSelection={alertSelection} regionPick={regionPick} setRegionPick={setRegionPick} experiencesDate={experiencesDate} setExperiencesDate={setExperiencesDate} dateType={dateType} setDateType={setDateType} flexDate={flexDate} setFlexDate={setFlexDate} approxDate={approxDate} setApproxDate={setApproxDate} guests={guests} setGuests={setGuests} datePick={datePick} setDatePick={setDatePick} stayPick={stayPick} setStayPick={setStayPick} menuToggle={menuToggle}/>
+                            <BnbLargeMenu alertSelection={alertSelection} regionPick={regionPick} setRegionPick={setRegionPick} experiencesDate={datePick} setExperiencesDate={setDatePick} dateType={dateType} setDateType={setDateType} flexDate={flexDate} setFlexDate={setFlexDate} approxDate={approxDate} setApproxDate={setApproxDate} guests={guests} setGuests={setGuests} datePick={datePick} setDatePick={setDatePick} stayPick={stayPick} setStayPick={setStayPick} menuToggle={menuToggle}/>
                             <BnbTopBarFlex justify="flex-end">
                                 <BnbUserPanel />
                             </BnbTopBarFlex>
