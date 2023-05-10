@@ -20,7 +20,8 @@ function Menu(props:{
         <MenuContainer toggle={props.toggleMenu}>
             <MenuList>
                 <MenuElement onClick={() => props.setToggleMenu(false)} href="cards-swipe" icon={"/cards-swipe.jpg"}/>
-                <MenuElement onClick={() => props.setToggleMenu(false)} href="airbnb" icon={"/question-mark.svg"}/>
+                <MenuElement onClick={() => props.setToggleMenu(false)} href="airbnb" icon={"/airbnbPreview.jpg"}/>
+                <MenuElement onClick={() => props.setToggleMenu(false)} href="lights" icon={"/question-mark.svg"}/>
             </MenuList>
         </MenuContainer>
     )

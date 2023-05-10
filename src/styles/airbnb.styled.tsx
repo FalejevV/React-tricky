@@ -17,6 +17,7 @@ export const BnbContainer = styled.div`
     width:100%;
     max-width:2543px;
     padding:0px 91.5px;
+    height:100vh;
     margin:0 auto;
     @media(max-width:1440px){
         padding:0px 40px;
