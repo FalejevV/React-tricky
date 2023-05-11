@@ -1,10 +1,11 @@
-import { LightsContainer, LightsTestImage } from "@/styles/lights.styled";
+import LightConsole from "@/components/Lights/LightConsole/LightConsole";
+import { LightsContainer } from "@/styles/lights.styled";
 
 
 function Lights(){
     return(
         <LightsContainer>
-            <LightsTestImage alt="console"  src="/lights/console.png" />
+            <LightConsole />
         </LightsContainer>
     )
 }

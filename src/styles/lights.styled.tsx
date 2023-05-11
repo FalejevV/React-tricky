@@ -9,10 +9,5 @@ export const LightsContainer = styled.div`
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-`
-
-export const LightsTestImage = styled.img`
-    width:1200px;
-    aspect-ratio:1/0.65;
-    transform: perspective(500px) rotateX(20deg);
+    // transform: perspective(1000px) rotateX(10deg);
 `
