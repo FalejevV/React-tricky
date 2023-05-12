@@ -7,7 +7,7 @@ export const LightsContainer = styled.div`
     margin:0 auto;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     // transform: perspective(1000px) rotateX(10deg);
 `

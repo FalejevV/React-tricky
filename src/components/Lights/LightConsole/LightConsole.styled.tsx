@@ -6,7 +6,7 @@ export const LightConsoleContainer = styled.div`
     height:450px;
     background-color:#202857;
     border-radius:20px;
-    position:relative;
+    position:absolute;
     z-index:1;
     border:10px solid #1f201f;
     border-bottom:0px;
@@ -15,7 +15,7 @@ export const LightConsoleContainer = styled.div`
     justify-content:center;
     padding:20px;
     transform: perspective(1000px) rotateX(10deg);
-    
+    bottom:0px;
     &:before{
         content:"";
         position:absolute;
