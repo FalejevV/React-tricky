@@ -11,3 +11,7 @@ export const LightFadersContainer = styled.div`
     z-index:12;
     gap:5px;
 `
+
+export const FaderContainer = styled.div`
+    display: flex;
+`

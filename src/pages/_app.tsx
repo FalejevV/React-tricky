@@ -5,13 +5,14 @@ import { PageMain } from '@/styles/styles.styled';
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { useState } from 'react';
-
+import { Provider } from 'react-redux';
+import { store } from '@/store/store';
 export default function App({ Component, pageProps }: AppProps) {
 
   const [toggleMenu, setToggleMenu] = useState(false);
 
   return (
-    <>
+    <Provider store={store}>
       <Head>
         <title>Tricky components</title>
         <meta name="description" content="Website about tricky components practice" />
@@ -26,6 +27,6 @@ export default function App({ Component, pageProps }: AppProps) {
           <MenuToggleButton toggleMenu={toggleMenu} onClick={() => setToggleMenu(prev => !prev)}/>
           <Component setToggleMenu={setToggleMenu} {...pageProps} />
       </PageMain>
-    </>
+    </Provider>
   )
 }
