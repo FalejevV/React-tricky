@@ -1,7 +1,6 @@
 import { MeshReflectorMaterial, OrbitControls, PerspectiveCamera, useHelper } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Suspense, useRef } from "react";
-import { SpotLightHelper } from "three/src/helpers/SpotLightHelper";
 
 
 function StageObject(){
