@@ -11,57 +11,57 @@ export function StageModel(props) {
   return (
     <group {...props} dispose={null}>
       <group position={[0, 5.15, 1.87]} scale={[10.08, 1, 1]}>
-        <mesh geometry={nodes.Plane.geometry} material={materials['Black-Basic']} />
-        <mesh geometry={nodes.Plane_1.geometry} material={materials.Wood} />
+        <mesh geometry={nodes.Plane.geometry} receiveShadow material={materials['Black-Basic']} />
+        <mesh geometry={nodes.Plane_1.geometry} receiveShadow material={materials.Wood} />
       </group>
-      <mesh geometry={nodes.BackWall.geometry} material={materials['Material.001']} position={[0, 0.72, 14.63]} rotation={[-Math.PI, 0, -Math.PI]} scale={[-10.5, -1.12, -1]} />
-      <mesh geometry={nodes.Farm.geometry} material={materials.Farm} position={[0, 4.65, 5.14]} rotation={[-Math.PI, 0, 0]} scale={[-2.93, -0.02, -0.02]} />
-      <mesh geometry={nodes.Floor.geometry} material={materials.Wood} position={[0, -0.31, 2.84]} rotation={[-Math.PI, 0, -Math.PI]} scale={[-8.49, -0.17, -1]} />
-      <mesh geometry={nodes.Wall.geometry} material={materials['Black-Basic']} position={[-4.33, 0.85, 1.22]} rotation={[Math.PI / 2, 0, 0]} />
-      <mesh geometry={nodes.Wall001.geometry} material={materials['Black-Basic']} position={[4.34, 2.93, 1.22]} rotation={[-Math.PI / 2, 0, Math.PI]} />
-      <mesh geometry={nodes.Curtain.geometry} material={materials['Cloth-basic']} position={[-3.96, 0.98, -0.25]} rotation={[Math.PI / 2, 0, 0]} />
-      <mesh geometry={nodes.Curtain002.geometry} material={materials['Cloth-basic']} position={[3.97, 0.98, -0.25]} rotation={[Math.PI / 2, 0, 0.05]} />
-      <mesh geometry={nodes.Curtain003.geometry} material={materials['Cloth-basic']} position={[3.49, 0.98, -2.06]} rotation={[Math.PI / 2, 0, 0]} />
-      <mesh geometry={nodes.Curtain004.geometry} material={materials['Cloth-basic']} position={[-3.42, 0.98, -2.08]} rotation={[Math.PI / 2, 0, 0.05]} />
-      <mesh geometry={nodes.Curtain005.geometry} material={materials['Cloth-basic']} position={[2.88, 0.98, -3.87]} rotation={[Math.PI / 2, 0, 0.05]} />
-      <mesh geometry={nodes.Curtain006.geometry} material={materials['Cloth-basic']} position={[-2.95, 0.98, -3.86]} rotation={[Math.PI / 2, 0, 0]} />
-      <mesh geometry={nodes['Stage-wall'].geometry} material={materials['Black-Basic']} position={[0, 3.91, 0.3]} scale={[8.21, 0.11, 1]} />
-      <mesh geometry={nodes['Stage-floor'].geometry} material={materials['Stage-floor']} position={[0, -1.02, 0.11]} scale={[6.24, 1, 1]} />
+      <mesh geometry={nodes.BackWall.geometry} receiveShadow material={materials['Material.001']} position={[0, 0.72, 14.63]} rotation={[-Math.PI, 0, -Math.PI]} scale={[-10.5, -1.12, -1]} />
+      <mesh geometry={nodes.Farm.geometry} castShadow receiveShadow material={materials.Farm} position={[0, 4.65, 5.14]} rotation={[-Math.PI, 0, 0]} scale={[-2.93, -0.02, -0.02]} />
+      <mesh geometry={nodes.Floor.geometry} receiveShadow material={materials.Wood} position={[0, -0.31, 2.84]} rotation={[-Math.PI, 0, -Math.PI]} scale={[-8.49, -0.17, -1]} />
+      <mesh geometry={nodes.Wall.geometry} castShadow receiveShadow material={materials['Black-Basic']} position={[-4.33, 0.85, 1.22]} rotation={[Math.PI / 2, 0, 0]} />
+      <mesh geometry={nodes.Wall001.geometry} castShadow receiveShadow material={materials['Black-Basic']} position={[4.34, 2.93, 1.22]} rotation={[-Math.PI / 2, 0, Math.PI]} />
+      <mesh geometry={nodes.Curtain.geometry} material={materials['Cloth-basic']} castShadow receiveShadow position={[-3.96, 0.98, -0.25]} rotation={[Math.PI / 2, 0, 0]} />
+      <mesh geometry={nodes.Curtain002.geometry} material={materials['Cloth-basic']} castShadow receiveShadow position={[3.97, 0.98, -0.25]} rotation={[Math.PI / 2, 0, 0.05]} />
+      <mesh geometry={nodes.Curtain003.geometry} material={materials['Cloth-basic']} castShadow receiveShadow position={[3.49, 0.98, -2.06]} rotation={[Math.PI / 2, 0, 0]} />
+      <mesh geometry={nodes.Curtain004.geometry} material={materials['Cloth-basic']} castShadow receiveShadow position={[-3.42, 0.98, -2.08]} rotation={[Math.PI / 2, 0, 0.05]} />
+      <mesh geometry={nodes.Curtain005.geometry} material={materials['Cloth-basic']} castShadow receiveShadow position={[2.88, 0.98, -3.87]} rotation={[Math.PI / 2, 0, 0.05]} />
+      <mesh geometry={nodes.Curtain006.geometry} material={materials['Cloth-basic']} castShadow receiveShadow position={[-2.95, 0.98, -3.86]} rotation={[Math.PI / 2, 0, 0]} />
+      <mesh geometry={nodes['Stage-wall'].geometry} material={materials['Black-Basic']} castShadow receiveShadow position={[0, 3.91, 0.3]} scale={[8.21, 0.11, 1]} />
+      <mesh geometry={nodes['Stage-floor'].geometry} material={materials['Stage-floor']} receiveShadow position={[0, -1.02, 0.11]} scale={[6.24, 1, 1]} />
       <group position={[-3.72, 0.26, 3.98]} scale={0.26}>
-        <mesh geometry={nodes.Cube001_1.geometry} material={materials['Cloth.001']} />
-        <mesh geometry={nodes.Cube001_2.geometry} material={materials['Wood.001']} />
+        <mesh geometry={nodes.Cube001_1.geometry} castShadow receiveShadow material={materials['Cloth.001']}  />
+        <mesh geometry={nodes.Cube001_2.geometry} castShadow receiveShadow material={materials['Wood.001']} />
       </group>
       <group position={[-4.44, 0.46, 4.98]} scale={0.26}>
-        <mesh geometry={nodes.Cube007_1.geometry} material={materials['Cloth.001']} />
-        <mesh geometry={nodes.Cube007_2.geometry} material={materials['Wood.001']} />
+        <mesh geometry={nodes.Cube007_1.geometry} castShadow receiveShadow material={materials['Cloth.001']} />
+        <mesh geometry={nodes.Cube007_2.geometry} castShadow receiveShadow material={materials['Wood.001']} />
       </group>
       <group position={[-4.44, 0.66, 5.98]} scale={0.26}>
-        <mesh geometry={nodes.Cube008_1.geometry} material={materials['Cloth.001']} />
-        <mesh geometry={nodes.Cube008_2.geometry} material={materials['Wood.001']} />
+        <mesh geometry={nodes.Cube008_1.geometry} castShadow receiveShadow material={materials['Cloth.001']} />
+        <mesh geometry={nodes.Cube008_2.geometry} castShadow receiveShadow material={materials['Wood.001']} />
       </group>
       <group position={[-5.15, 0.86, 6.98]} scale={0.26}>
-        <mesh geometry={nodes.Cube009_1.geometry} material={materials['Cloth.001']} />
-        <mesh geometry={nodes.Cube009_2.geometry} material={materials['Wood.001']} />
+        <mesh geometry={nodes.Cube009_1.geometry} castShadow receiveShadow material={materials['Cloth.001']} />
+        <mesh geometry={nodes.Cube009_2.geometry} castShadow receiveShadow material={materials['Wood.001']} />
       </group>
       <group position={[-5.15, 1.06, 7.98]} scale={0.26}>
-        <mesh geometry={nodes.Cube010_1.geometry} material={materials['Cloth.001']} />
-        <mesh geometry={nodes.Cube010_2.geometry} material={materials['Wood.001']} />
+        <mesh geometry={nodes.Cube010_1.geometry} castShadow receiveShadow material={materials['Cloth.001']} />
+        <mesh geometry={nodes.Cube010_2.geometry} castShadow receiveShadow material={materials['Wood.001']} />
       </group>
       <group position={[-5.88, 1.26, 8.98]} scale={0.26}>
-        <mesh geometry={nodes.Cube011_1.geometry} material={materials['Cloth.001']} />
-        <mesh geometry={nodes.Cube011_2.geometry} material={materials['Wood.001']} />
+        <mesh geometry={nodes.Cube011_1.geometry} castShadow receiveShadow material={materials['Cloth.001']} />
+        <mesh geometry={nodes.Cube011_2.geometry} castShadow receiveShadow material={materials['Wood.001']} />
       </group>
       <group position={[-5.88, 1.46, 9.98]} scale={0.26}>
-        <mesh geometry={nodes.Cube012_1.geometry} material={materials['Cloth.001']} />
-        <mesh geometry={nodes.Cube012_2.geometry} material={materials['Wood.001']} />
+        <mesh geometry={nodes.Cube012_1.geometry} castShadow receiveShadow material={materials['Cloth.001']} />
+        <mesh geometry={nodes.Cube012_2.geometry} castShadow receiveShadow material={materials['Wood.001']} />
       </group>
       <group position={[-5.88, 1.66, 10.98]} scale={0.26}>
-        <mesh geometry={nodes.Cube013_1.geometry} material={materials['Cloth.001']} />
-        <mesh geometry={nodes.Cube013_2.geometry} material={materials['Wood.001']} />
+        <mesh geometry={nodes.Cube013_1.geometry} castShadow receiveShadow material={materials['Cloth.001']} />
+        <mesh geometry={nodes.Cube013_2.geometry} castShadow receiveShadow material={materials['Wood.001']} />
       </group>
       <group position={[-5.88, 1.86, 11.98]} scale={0.26}>
-        <mesh geometry={nodes.Cube014_1.geometry} material={materials['Cloth.001']} />
-        <mesh geometry={nodes.Cube014_2.geometry} material={materials['Wood.001']} />
+        <mesh geometry={nodes.Cube014_1.geometry} castShadow receiveShadow material={materials['Cloth.001']} />
+        <mesh geometry={nodes.Cube014_2.geometry} castShadow receiveShadow material={materials['Wood.001']} />
       </group>
       <mesh geometry={nodes.Cube010.geometry} material={materials['Profile=Black']} position={[-0.28, 4.32, 4.95]} rotation={[-0.49, -0.04, -0.02]} scale={0.07} />
       <mesh geometry={nodes.Cube011.geometry} material={materials['Profile=Black']} position={[0.39, 4.32, 4.95]} rotation={[-0.49, 0.07, 0.04]} scale={0.07} />

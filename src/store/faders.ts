@@ -8,16 +8,16 @@ const fadersSlice = createSlice({
     name: "faders",
     initialState,
     reducers: {
-        setFader:(state:number[], action:PayloadAction<{
-            faderIndex:number,
-            value:number
-        }>) => {
+        setFader:(state:number[], action:PayloadAction<FaderData>) => {
             state[action.payload.faderIndex] = action.payload.value;
         }
     }
 })
 
-
+export interface FaderData{
+    faderIndex:number,
+    value:number
+}
 export const { setFader } = fadersSlice.actions;
 
 export default fadersSlice.reducer

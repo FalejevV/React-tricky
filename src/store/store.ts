@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 import faders from './faders'
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
+import targets from './targets'
 
 export const store = configureStore({
   reducer: {
-    faders: faders
+    faders: faders,
+    targets:targets
   }
 })
 
