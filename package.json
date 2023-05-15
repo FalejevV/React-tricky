@@ -11,22 +11,25 @@
   "dependencies": {
     "@react-three/drei": "^9.68.2",
     "@react-three/fiber": "^8.13.0",
-    "@react-three/postprocessing": "^2.11.0",
+    "@react-three/postprocessing": "^2.10.0",
     "@reduxjs/toolkit": "^1.9.5",
     "@types/node": "18.15.11",
     "@types/react": "18.0.32",
     "@types/react-dom": "18.0.11",
     "@types/react-redux": "^7.1.25",
     "@types/styled-components": "^5.1.26",
+    "bower": "^1.8.14",
     "eslint": "8.37.0",
     "eslint-config-next": "13.2.4",
     "nanoid": "^4.0.2",
     "next": "13.2.4",
+    "postprocessing": "^6.31.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-redux": "^8.0.5",
     "redux": "^4.2.1",
     "styled-components": "^5.3.9",
+    "three": "^0.150.1",
     "typescript": "5.0.3"
   }
 }
