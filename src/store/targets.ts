@@ -6,7 +6,7 @@ import { Object3D } from "three";
 
 const targetOne = new Object3D;
 targetOne.position.x = -2;
-targetOne.position.y = -4.2;
+targetOne.position.y = -6.5;
 targetOne.position.z = -20;
 
 const targetTwo = new Object3D;
