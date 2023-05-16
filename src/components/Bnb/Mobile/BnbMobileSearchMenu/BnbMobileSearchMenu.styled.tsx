@@ -1,11 +1,13 @@
 import styled from "styled-components";
 
 export const BnbMobileSearchWrap = styled.div`
-    width:100%;
-    position:relative;
+    width:95%;
+    position:absolute;
     display:none;
     @media(max-width:750px){
         display:flex;
+        left:2.5%;
+        top:10px;
     }
 `
 

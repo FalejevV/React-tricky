@@ -30,11 +30,12 @@ export const BnbMobileDropdownList= styled.div`
     gap:10px;
     position: absolute;
     width:100%;
-    overflow: hidden;
+    overflow: scroll;
     left:0px;
     top:70px;
     padding:5px 10px;
     height:calc(100% - 70px);
+
 `
 
 export const BnbMobileRegionPickContainer = styled.div`
