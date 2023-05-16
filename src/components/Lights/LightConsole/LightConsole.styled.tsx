@@ -1,12 +1,24 @@
 import styled from "styled-components";
 
+export const LightConsoleTable = styled.div`
+    width:950px;
+    height:250px;
+    background-color: #0f0f0f;
+    position:absolute;
+    left:50%;
+    bottom:0px;
+    transform: translateX(-50%) perspective(1000px) rotateX(10deg);
+    z-index:10;
+    border-radius: 10px 10px 0px 0px;
+`
 
 export const LightConsoleContainer = styled.div`
-    width:1000px;
-    height:450px;
+    width:700px;
+    height:280px;
     background-color:#202857;
     border-radius:20px;
     position:absolute;
+    left:50%;
     z-index:1;
     border:10px solid #1f201f;
     border-bottom:0px;
@@ -14,13 +26,13 @@ export const LightConsoleContainer = styled.div`
     align-items:flex-end;
     justify-content:center;
     padding:20px;
-    transform: perspective(1000px) rotateX(10deg);
+    transform: translate(-50%);
     bottom:0px;
     &:before{
         content:"";
         position:absolute;
         width:100px;
-        height:455px;
+        height:305px;
         background-color:#202857;
         border-radius:30px 10px 30px 30px;
         left:-20px;
@@ -33,7 +45,7 @@ export const LightConsoleContainer = styled.div`
         content:"";
         position:absolute;
         width:100px;
-        height:455px;
+        height:305px;
         background-color:#202857;
         border-radius:10px 30px 30px 30px;
         right:-20px;

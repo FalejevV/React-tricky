@@ -1,13 +1,15 @@
 import LightFaders from "@/layout/LightFaders/LightFaders";
-import { LightConsoleContainer } from "./LightConsole.styled";
+import { LightConsoleContainer, LightConsoleTable } from "./LightConsole.styled";
 
 
 
 function LightConsole(){
     return(
-        <LightConsoleContainer>
-            <LightFaders />
-        </LightConsoleContainer>
+        <LightConsoleTable>
+            <LightConsoleContainer>
+                <LightFaders />
+            </LightConsoleContainer>
+        </LightConsoleTable>
     )
 }
 

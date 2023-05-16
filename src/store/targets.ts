@@ -1,29 +1,47 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { Object3D } from "three";
 
+export interface Target{
+    x:number,
+    y:number,
+    z:number,
+}
 
+export interface TargetState{
+    left:Target,
+    center:Target,
+    right:Target,
+    head1:Target,
+    head2:Target,
+}
 
-
-const targetOne = new Object3D;
-targetOne.position.x = -2;
-targetOne.position.y = -6.5;
-targetOne.position.z = -20;
-
-const targetTwo = new Object3D;
-targetTwo.position.x = 0;
-targetTwo.position.y = -4.2;
-targetTwo.position.z = -20;
-
-const targetThree = new Object3D;
-targetThree.position.x = 2;
-targetThree.position.y = -4.2;
-targetThree.position.z = -20;
-
-let initialState:Object3D[] = [
-    targetOne,
-    targetTwo,
-    targetThree
-];
+let initialState: TargetState = {
+    left: {
+        x: -2,
+        y: 0,
+        z: -4
+    },
+    center: {
+        x: 0,
+        y: 0,
+        z: -4
+    },
+    right: {
+        x: 2,
+        y: 0,
+        z: -4
+    },
+    head1:{
+        x: -0.5,
+        y: 0,
+        z: -4
+    },
+    head2:{
+        x: 0.5,
+        y: 0,
+        z: -4
+    }
+};
 
 
 
@@ -31,25 +49,14 @@ const targetsSlice = createSlice({
     name: "targets",
     initialState,
     reducers: {
-        setTarget:(state:Object3D[], action:PayloadAction<{
-            targetIndex:number,
-            x:number,
-            y:number,
-            z:number
-        }>) => {
-            let target = state[action.payload.targetIndex] as Object3D;
-            if (target){
-                target.position.x = action.payload.x;
-                target.position.y = action.payload.y;
-                target.position.z = action.payload.z;
-                let tempState = [...state];
-                tempState[action.payload.targetIndex] = target;
-                return tempState;
-            }
-            return state;
+        setTarget:(state: TargetState, action:PayloadAction<{target:Target, key:keyof TargetState}>) =>{
+            state[action.payload.key].x = action.payload.target.x;
+            state[action.payload.key].y = action.payload.target.y;
+            state[action.payload.key].z = action.payload.target.z;
         }
     }
 })
+
 
 export const { setTarget } = targetsSlice.actions;
 

@@ -4,7 +4,7 @@ Command: npx gltfjsx@6.1.11 .\\Stage.glb
 */
 
 import React, { useRef } from 'react'
-import { useGLTF } from '@react-three/drei'
+import { Reflector, useGLTF } from '@react-three/drei'
 import { MeshReflectorMaterial } from "@react-three/drei";
 export function StageModel(props) {
   const { nodes, materials } = useGLTF('/Stage.glb')
@@ -12,13 +12,12 @@ export function StageModel(props) {
     <group {...props} dispose={null}>
       <group position={[0, 5.15, 1.87]} scale={[10.08, 1, 1]}>
         <mesh geometry={nodes.Plane.geometry} receiveShadow castShadow material={materials['Black-Basic']}>
-
         </mesh>
         <mesh geometry={nodes.Plane_1.geometry} receiveShadow castShadow  material={materials.Wood} />
       </group>
       <mesh geometry={nodes.BackWall.geometry} material={materials['Material.001']} receiveShadow castShadow  position={[0, 0.72, 10.94]} rotation={[-Math.PI, 0, -Math.PI]} scale={[-10.5, -1.12, -1]} />
       <mesh geometry={nodes.Farm.geometry} material={materials.Farm} castShadow  position={[0, 4.65, 5.14]} rotation={[-Math.PI, 0, 0]} scale={[-2.93, -0.02, -0.02]} />
-      <mesh geometry={nodes.Floor.geometry} material={materials.Wood} receiveShadow position={[0, -0.31, 2.84]} rotation={[-Math.PI, 0, -Math.PI]} scale={[-8.49, -0.17, -1]} > 
+      <mesh geometry={nodes.Floor.geometry} material={materials.Wood} receiveShadow position={[0, -0.31, 2.84]} rotation={[-Math.PI, 0, -Math.PI]} scale={[-8.49, -0.17, -1]} >
       </mesh>
       <mesh geometry={nodes.Wall.geometry} material={materials['Black-Basic']} receiveShadow castShadow  position={[-4.33, 0.85, 1.22]} rotation={[Math.PI / 2, 0, 0]} />
       <mesh geometry={nodes.Wall001.geometry} material={materials['Black-Basic']} receiveShadow castShadow  position={[4.34, 2.93, 1.22]} rotation={[-Math.PI / 2, 0, Math.PI]} />
