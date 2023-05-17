@@ -59,7 +59,7 @@ function Spotlight(props:{
             target={target}
             distance={props.distance || 15}
             anglePower={2}
-            opacity={props.highlight ? 1 : faderSelector[props.faderIndex] * 0.4}
+            opacity={props.highlight ? 1 : faderSelector[props.faderIndex] * 0.2}
             attenuation={4}
             shadowCameraFov={0}
             shadowCameraLeft={0}
