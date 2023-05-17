@@ -1,11 +1,12 @@
 import { RootState, useAppSelector } from "@/store/store";
-import { MeshReflectorMaterial, OrbitControls, OrthographicCamera, PerspectiveCamera, SpotLight, SpotLightShadow, useDepthBuffer, useHelper } from "@react-three/drei";
+import { OrbitControls, PerspectiveCamera,useHelper } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Suspense, useRef } from "react";
 import {StageModel} from "./StageModel";
 import styled from "styled-components";
 import { SpotLightHelper } from "three/src/helpers/SpotLightHelper";
 import Spotlight from "../Spotlight/Spotlight";
+import { PointLightHelper } from "three";
 
 const StageContainer = styled.div`
     width:100vw;
@@ -13,31 +14,38 @@ const StageContainer = styled.div`
 `
 function StageObject(){
     const light:any = useRef();
-    useHelper(light, SpotLightHelper);
+    useHelper(light, PointLightHelper);
     const faderSelector = useAppSelector((state:RootState) => state.faders);
     return <>
-        <OrbitControls />
+        {false && <OrbitControls />}
         <PerspectiveCamera makeDefault fov={100} position={[0,0,4]} />
-        
         {
             <color args={[0.01,0.01,0.01]} attach="background" />
         }
         <mesh position={[0,-1,-4]} rotation={[0.25,0,0]}>
-            <pointLight castShadow receiveShadow position={[0,1,2]} intensity={faderSelector[9]} color={[0.5,0.5,1]} distance={200}/>
+            <pointLight position={[0,2,-1]} intensity={faderSelector[9]} color={[0.5,0.5,1]} distance={200}/>
 
-            <Spotlight position={[-2.15, 4.3, 4.9]} targetKey={"left"} faderIndex={0} />
-            <Spotlight position={[-1.45, 4.3, 4.9]} targetKey={"left"} faderIndex={0}/>
-
-
-            <Spotlight position={[-0.3, 4.3, 4.9]} targetKey={"center"} faderIndex={1}/>
-            <Spotlight position={[0.36, 4.3, 4.9]} targetKey={"center"} faderIndex={1}/>
-
-            <Spotlight position={[1.58, 4.3, 4.9]} targetKey={"right"} faderIndex={2}/>
-            <Spotlight position={[2.3, 4.3, 4.9]} targetKey={"right"} faderIndex={2}/>
+            <Spotlight position={[-2.15, 4.3, 4.9]} pointDepth={-3} targetKey={"left"} faderIndex={0} />
+            <Spotlight position={[-1.45, 4.3, 4.9]} pointDepth={-3} targetKey={"left"} faderIndex={0}/>
 
 
-            <Spotlight position={[2.5, 4.5, 0]} zoom={0.35} color={"#14a4fd"} distance={10}  targetKey={"head2"} faderIndex={3}/>
-            <Spotlight position={[-2.5, 4.6, 0]} zoom={0.35} color={"#14fd5a"} distance={10}  targetKey={"head1"} faderIndex={3}/>
+            <Spotlight position={[-0.3, 4.3, 4.9]} pointDepth={-3} targetKey={"center"} faderIndex={1}/>
+            <Spotlight position={[0.36, 4.3, 4.9]} pointDepth={-3} targetKey={"center"} faderIndex={1}/>
+
+            <Spotlight position={[1.58, 4.3, 4.9]} pointDepth={-3} targetKey={"right"} faderIndex={2}/>
+            <Spotlight position={[2.3, 4.3, 4.9]} pointDepth={-3} targetKey={"right"} faderIndex={2}/>
+
+
+            <Spotlight position={[-2.5, 4.6, 0]} pointDepth={-3} zoom={0.35} color={"#14fd5a"} distance={10}  targetKey={"head1"} faderIndex={3}/>
+            <Spotlight position={[2.5, 4.5, 0]} pointDepth={-3} zoom={0.35} color={"#14a4fd"} distance={10}  targetKey={"head2"} faderIndex={3}/>
+
+            <Spotlight position={[1, 4.6, -1]} pointDepth={-0.5} zoom={0.6} color={"#fe0000"} distance={10}  targetKey={"head3"} faderIndex={4}/>
+            <Spotlight position={[-1, 4.6, -1]} pointDepth={-0.5} zoom={0.6} color={"#ff0000"} distance={10}  targetKey={"head4"} faderIndex={4}/>
+
+            <Spotlight position={[1, 4.6, -1]} intensityMultiplier={5}  pointDepth={-3} zoom={0.5} color={"#0801b9"} distance={10}  targetKey={"head5"} faderIndex={5}/>
+            <Spotlight position={[-1, 4.6, -1]} intensityMultiplier={5} pointDepth={-3} zoom={0.5} color={"#9000ff"} distance={10}  targetKey={"head6"} faderIndex={6}/>
+            <Spotlight position={[1, 4.6, -4]} intensityMultiplier={5} pointDepth={-2} zoom={0.7} color={"#f200ff"} distance={10}  targetKey={"head7"} faderIndex={7}/>
+            <Spotlight position={[-1, 4.6, -4]} intensityMultiplier={5} pointDepth={-2} zoom={0.7} color={"#0026ff"} distance={10}  targetKey={"head8"} faderIndex={8}/>
 
             <StageModel />
         </mesh>

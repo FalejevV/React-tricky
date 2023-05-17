@@ -14,9 +14,11 @@ function Spotlight(props:{
     distance?:number,
     zoom?:number,
     color?:string,
-    point?:boolean
+    point?:boolean,
+    pointDepth?:number,
+    intensityMultiplier?:number,
 }){
-    const depthBuffer = useDepthBuffer({ size: 128});
+    const depthBuffer = useDepthBuffer({ size: 512});
     const faderSelector = useAppSelector((state:RootState) => state.faders);
     const targetSelector = useAppSelector((state:RootState) => state.targets);
     const [target,setTarget] = useState(new Object3D);
@@ -28,7 +30,7 @@ function Spotlight(props:{
             setTarget(prev => {
                 prev.position.x = targetSelector[props.targetKey].x;
                 prev.position.y = targetSelector[props.targetKey].y;
-                prev.position.z = targetSelector[props.targetKey].z;
+                prev.position.z = targetSelector[props.targetKey].z-7;
                 return prev;
             })
         }
@@ -39,7 +41,7 @@ function Spotlight(props:{
             <pointLight 
                 ref={props.point && light || undefined}
                 intensity={faderSelector[props.faderIndex] * 0.5}
-                position={[targetSelector[props.targetKey].x,targetSelector[props.targetKey].y+1,targetSelector[props.targetKey].z + 3]}
+                position={[targetSelector[props.targetKey].x,targetSelector[props.targetKey].y+1,targetSelector[props.targetKey].z + (props.pointDepth || 0) ]}
                 distance={10}
                 decay={1.5}
                 color={props.color || "#f9c463"}
@@ -48,7 +50,7 @@ function Spotlight(props:{
             <SpotLight
             penumbra={0.2}
             depthBuffer={depthBuffer}
-            intensity={props.highlight ? 100 : faderSelector[props.faderIndex] * 5}
+            intensity={props.highlight ? 100 : faderSelector[props.faderIndex] * 5 * (props.intensityMultiplier || 1)}
             position={props.position}
             angle={props.zoom || 0.5}
             castShadow
@@ -69,7 +71,7 @@ function Spotlight(props:{
             shadowBias={0}
             shadowMapWidth={0}
             shadowMapHeight={0}
-            power={props.highlight ? 100 : faderSelector[props.faderIndex] * 5}
+            power={props.highlight ? 100 : faderSelector[props.faderIndex] * 5 * (props.intensityMultiplier || 1)}
             isLight
             />
         </>

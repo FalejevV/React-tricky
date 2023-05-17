@@ -22,7 +22,7 @@ function LightFader(props:{
 
     return(
         <LightFaderContainer>
-            <LightFaderKnob onChange={(e) => onChange(e)} type="range" value={faderSelector[props.index] * 100} />
+            <LightFaderKnob step={5} onChange={(e) => onChange(e)} type="range" value={faderSelector[props.index] * 100} />
         </LightFaderContainer>
     )
 }
