@@ -16,7 +16,7 @@ function Spotlight(props:{
     color?:string,
     point?:boolean
 }){
-    const depthBuffer = useDepthBuffer({ size: 528, frames: 10000});
+    const depthBuffer = useDepthBuffer({ size: 128});
     const faderSelector = useAppSelector((state:RootState) => state.faders);
     const targetSelector = useAppSelector((state:RootState) => state.targets);
     const [target,setTarget] = useState(new Object3D);
@@ -59,16 +59,16 @@ function Spotlight(props:{
             anglePower={2}
             opacity={props.highlight ? 1 : faderSelector[props.faderIndex]}
             attenuation={10}
-            shadowCameraFov={128}
-            shadowCameraLeft={128}
-            shadowCameraRight={128}
-            shadowCameraTop={128} 
-            shadowCameraBottom={128}
-            shadowCameraNear={128}
-            shadowCameraFar={128}
-            shadowBias={128}
-            shadowMapWidth={128}
-            shadowMapHeight={128}
+            shadowCameraFov={0}
+            shadowCameraLeft={0}
+            shadowCameraRight={0}
+            shadowCameraTop={0} 
+            shadowCameraBottom={0}
+            shadowCameraNear={0}
+            shadowCameraFar={0}
+            shadowBias={0}
+            shadowMapWidth={0}
+            shadowMapHeight={0}
             power={props.highlight ? 100 : faderSelector[props.faderIndex] * 50}
             isLight
             />

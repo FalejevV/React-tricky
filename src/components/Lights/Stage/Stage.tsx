@@ -2,7 +2,7 @@ import { RootState, useAppSelector } from "@/store/store";
 import { MeshReflectorMaterial, OrbitControls, OrthographicCamera, PerspectiveCamera, SpotLight, SpotLightShadow, useDepthBuffer, useHelper } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { Suspense, useRef } from "react";
-import {StageModel} from "./StageModel";
+import {StageO} from "./StageO";
 import styled from "styled-components";
 import { SpotLightHelper } from "three/src/helpers/SpotLightHelper";
 import Spotlight from "../Spotlight/Spotlight";
@@ -39,7 +39,7 @@ function StageObject(){
             <Spotlight position={[2.5, 4.5, 0]} zoom={0.35} color={"#14a4fd"} distance={10}  targetKey={"head2"} faderIndex={3}/>
             <Spotlight position={[-2.5, 4.6, 0]} zoom={0.35} color={"#14fd5a"} distance={10}  targetKey={"head1"} faderIndex={3}/>
 
-            <StageModel />
+            <StageO />
         </mesh>
     </>
 }
