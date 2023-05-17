@@ -48,7 +48,7 @@ function Stage(){
     return(
         <StageContainer>
             <Suspense fallback={null}>
-                <Canvas shadows>
+                <Canvas dpr={0.5} shadows>
                     <StageObject />
                 </Canvas>
             </Suspense>

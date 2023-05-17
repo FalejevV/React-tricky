@@ -16,7 +16,7 @@ export function StageO(props) {
       </group>
       <mesh geometry={nodes.BackWall.geometry} material={materials['Material.001']}  position={[0, 0.72, 10.94]} rotation={[-Math.PI, 0, -Math.PI]} scale={[-10.5, -1.12, -1]} />
       <mesh geometry={nodes.Farm.geometry} material={materials.Farm} position={[0, 4.65, 5.14]}  rotation={[-Math.PI, 0, 0]} scale={[-2.93, -0.02, -0.02]} />
-      <mesh geometry={nodes.Floor.geometry} material={materials.Wood} position={[0, -0.31, 2.84]}  rotation={[-Math.PI, 0, -Math.PI]} scale={[-8.49, -0.17, -1]} />
+      <mesh geometry={nodes.Floor.geometry} material={materials.Wood} receiveShadow position={[0, -0.31, 2.84]}  rotation={[-Math.PI, 0, -Math.PI]} scale={[-8.49, -0.17, -1]} />
       <mesh geometry={nodes.Wall.geometry} material={materials['Black-Basic']} position={[-4.33, 0.85, 1.22]}  rotation={[Math.PI / 2, 0, 0]} />
       <mesh geometry={nodes.Wall001.geometry} material={materials['Black-Basic']} position={[4.34, 2.93, 1.22]}  rotation={[-Math.PI / 2, 0, Math.PI]} />
       <mesh geometry={nodes.Curtain.geometry} material={materials['Cloth-basic']} position={[-3.96, 0.98, -0.25]} receiveShadow castShadow  rotation={[Math.PI / 2, 0, 0]} />
