@@ -1,5 +1,4 @@
 import { RootState, useAppSelector } from "@/store/store";
-import { TargetState } from "@/store/targets";
 import { SpotLight, useDepthBuffer, useHelper } from "@react-three/drei";
 import { useEffect, useRef, useState } from "react";
 import { Object3D, PointLight, PointLightHelper } from "three";
@@ -7,7 +6,7 @@ import { Object3D, PointLight, PointLightHelper } from "three";
 
 
 function Spotlight(props:{
-    targetKey:keyof TargetState,
+    targetKey:number,
     faderIndex:number,
     position:[number,number,number],
     highlight?:boolean,
