@@ -24,7 +24,7 @@ export const LightConsoleContainer = styled.div`
     border-bottom:0px;
     display:flex;
     align-items:flex-end;
-    justify-content:center;
+    justify-content:flex-start;
     padding:20px;
     transform: translate(-50%);
     bottom:0px;

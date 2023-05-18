@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const LightFaderContainer = styled.div`
     width:50px;
@@ -70,4 +70,49 @@ export const LightFaderKnob = styled.input`
     &::-moz-range-track{
         background-color: transparent;
     }
+`
+
+export const LightFaderButton = styled.div<{
+    active: boolean
+}>`
+    width:35px;
+    height:30px;
+    position: absolute;
+    top:-45px;
+    left:50%;
+    transform:translate(-50%);
+    background-color:#1F1F1F;
+    border-radius: 5px;
+    cursor:pointer;
+
+    &:before{
+        width:5px;
+        height:5px;
+        border-radius: 50%;
+        content:"";
+        position: absolute;
+        left:50%;
+        bottom: 5px;
+        transform:translateX(-50%);
+        background-color:red;
+        filter: blur(4px);
+    }
+
+    &:after{
+        width:5px;
+        height:5px;
+        border-radius: 50%;
+        content:"";
+        position: absolute;
+        left:50%;
+        bottom: 5px;
+        transform:translateX(-50%);
+        background-color:red;
+    }
+
+    ${({ active }) => active && css`
+        &:before,&:after{
+            background-color:green;
+        }
+    `}
 `

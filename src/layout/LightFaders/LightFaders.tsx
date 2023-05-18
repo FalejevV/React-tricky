@@ -7,11 +7,11 @@ function LightFaders(){
 
     function getFaders(){
         let faderArray = [];
-        for (let i = 0; i < 10; i++){
+        for (let i = 0; i < 7; i++){
             faderArray.push(
                 <FaderContainer key={i}>
                     <LightFader index={i} />
-                    {i !== 9 && <FaderMarks />}
+                    {i !== 6 && <FaderMarks />}
                 </FaderContainer>
             )
         }

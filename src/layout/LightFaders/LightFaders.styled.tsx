@@ -2,12 +2,12 @@ import styled from "styled-components";
 
 
 export const LightFadersContainer = styled.div`
-    width:800px;
+    width:450px;
     height:150px;
     display:flex;
     align-items:center;
     position:relative;
-    justify-content: center;
+    justify-content: flex-start;
     z-index:12;
     gap:5px;
 `

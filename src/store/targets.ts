@@ -7,94 +7,83 @@ export interface Target{
     z:number,
 }
 
-export interface TargetState{
-    left:Target,
-    center:Target,
-    right:Target,
-    head1:Target,
-    head2:Target,
-    head3:Target,
-    head4:Target,
-    head5:Target,
-    head6:Target,
-    head7:Target,
-    head8:Target,
-}
-
-let initialState: TargetState = {
-    left: {
+let initialState: Target[] = [
+    {
         x: -2,
         y: 0,
-        z: 3
+        z: 2
     },
-    center: {
+    {
         x: 0,
         y: 0,
-        z: 3
+        z: 2
     },
-    right: {
+    {
         x: 2,
         y: 0,
-        z: 3
+        z: 2
     },
-    head1:{
+    {
         x: -0.5,
         y: 0,
         z: 3
     },
-    head2:{
+    {
         x: 0.5,
         y: 0,
         z: 3
     },
-    head3:{
+    {
         x: -1,
         y: 0,
         z: -4
     },
-    head4:{
+    {
         x: 1,
         y: 0,
         z: -4
     },
-    head5:{
+    {
         x: -1.75,
         y: 0,
         z: 4
     },
-    head6:{
+    {
         x: 1.75,
         y: 0,
         z: 4
     },
-    head7:{
+    {
         x: -2,
         y: 0,
         z: 0
     }
     ,
-    head8:{
+    {
         x: 2,
         y: 0,
         z: 0
     }
-};
+];
 
 
 
 const targetsSlice = createSlice({
     name: "targets",
-    initialState,
+    initialState: {...initialState},
     reducers: {
-        setTarget:(state: TargetState, action:PayloadAction<{target:Target, key:keyof TargetState}>) =>{
+        setTarget:(state: Target[], action:PayloadAction<{target:Target, key:number}>) =>{
             state[action.payload.key].x = action.payload.target.x;
             state[action.payload.key].y = action.payload.target.y;
             state[action.payload.key].z = action.payload.target.z;
-        }
+        },
+        restoreTarget:((state:Target[], action:PayloadAction<number>) => {
+            state[action.payload] = initialState[action.payload]
+        })
     }
 })
 
 
-export const { setTarget } = targetsSlice.actions;
+export const { setTarget,restoreTarget } = targetsSlice.actions;
 
 export default targetsSlice.reducer

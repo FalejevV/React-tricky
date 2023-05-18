@@ -50,7 +50,7 @@ function Spotlight(props:{
             <SpotLight
             penumbra={0.2}
             depthBuffer={depthBuffer}
-            intensity={props.highlight ? 100 : faderSelector[props.faderIndex] * 5 * (props.intensityMultiplier || 1)}
+            intensity={props.highlight ? 100 : faderSelector[props.faderIndex] * 10 * (props.intensityMultiplier || 1)}
             position={props.position}
             angle={props.zoom || 0.5}
             castShadow
@@ -71,7 +71,7 @@ function Spotlight(props:{
             shadowBias={0}
             shadowMapWidth={0}
             shadowMapHeight={0}
-            power={props.highlight ? 100 : faderSelector[props.faderIndex] * 5 * (props.intensityMultiplier || 1)}
+            power={props.highlight ? 100 : faderSelector[props.faderIndex] * 10 * (props.intensityMultiplier || 1)}
             isLight
             />
         </>
