@@ -17,7 +17,6 @@ export const BnbContainer = styled.div`
     width:100%;
     max-width:2543px;
     padding:0px 91.5px;
-    height:100vh;
     margin:0 auto;
     @media(max-width:1440px){
         padding:0px 40px;
@@ -31,8 +30,8 @@ export const BlackBackgroundClickField = styled.div`
     width:100%;
     height:100vh;
     max-width: 100vw;
-    background-color: black;
-    opacity: 0.5;
+    background-color: red;
+    opacity: 0;
 `
 
 export const BnbHeader = styled.header`

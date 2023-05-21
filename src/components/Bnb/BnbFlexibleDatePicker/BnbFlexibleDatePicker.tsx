@@ -87,7 +87,7 @@ function BnbFlexibleDatePicker(props:{
                 <BnbFlexDateDurationButton onClick={() => switchFlexDuration(2)} toggle={props.flexDate.duration === 2}>Month</BnbFlexDateDurationButton>
             </BnbFlexDateDurationContainer>
             <BnbFlexDateMonthsTitle mobile={props.mobile}>
-                { !props.mobile && `Go {getMonthsText()`}
+                { !props.mobile && `Go ${getMonthsText()}`}
                 { props.mobile && `Where do you want to go?`}
             </BnbFlexDateMonthsTitle>
             <BnbFlexDateCarouselWrap mobile={props.mobile}>

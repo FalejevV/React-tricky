@@ -7,7 +7,7 @@ import { DatePick, ExperiencesDate, FlexDate, Guests } from "../../interface";
 import BnbMobileSearchMenu from "@/components/Bnb/Mobile/BnbMobileSearchMenu/BnbMobileSearchMenu";
 import BnbMobileLargeMenu from "@/components/Bnb/Mobile/BnbMobileLargeMenu/BnbMobileLargeMenu";
 
-const ignoreArray = ["Stay", "Picker", "Date", "Month", "Guest","Region"];
+const ignoreArray = ["Stay", "Picker", "Date", "Month", "Guest","Region",];
 
 function Airbnb(){    
     const [menuToggle, setMenuToggle] = useState(false);
@@ -29,10 +29,6 @@ function Airbnb(){
         infants:0,
         pets:0,
     });
-    const [experiencesDate,setExperiencesDate] = useState<ExperiencesDate>({
-        startDate:new Date(0,0,0),
-        endDate: new Date(0,0,0),
-    });
     const [regionPick,setRegionPick] = useState("");
 
     const toggleMenu = () => {
@@ -44,7 +40,6 @@ function Airbnb(){
         if(!menuToggle){
             return
         }
-
         let target = e.target as HTMLElement;
         try{
             if(target.tagName !== "div"){
@@ -53,6 +48,7 @@ function Airbnb(){
             if(target.className.includes("Mobile")){
                 return;
             };
+            console.log(target.className);
             let found = false;
             ignoreArray.forEach((className) => {
                 if(found) return;
