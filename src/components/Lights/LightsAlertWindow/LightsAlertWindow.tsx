@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { LightsAlertButton, LightsAlertButtonsContainer, LightsAlertHeader, LightsAlertText, LightsAlertWindowContainer } from "./LightsAlertWindow.styled";
 
 
@@ -21,9 +22,9 @@ function LightsAlertWindow(props:{
 
                     <LightsAlertButtonsContainer>
                         <LightsAlertButton color={"#360a0a"}>
-                            <a href="/">
+                            <Link href="/">
                                 LEAVE
-                            </a>
+                            </Link>
                         </LightsAlertButton>
 
                         <LightsAlertButton color={"#17360a"} onClick={() => props.setDoLoadStage(true)}>
