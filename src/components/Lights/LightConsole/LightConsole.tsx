@@ -4,14 +4,20 @@ import LightControls from "../LightControls/LightControls";
 
 
 
-function LightConsole(){
+function LightConsole(props:{
+    doLoadStage:boolean,
+}){
     return(
-        <LightConsoleTable>
-            <LightConsoleContainer>
-                <LightFaders />
-                <LightControls />
-            </LightConsoleContainer>
-        </LightConsoleTable>
+        <>
+            {props.doLoadStage &&
+                <LightConsoleTable>
+                    <LightConsoleContainer>
+                        <LightFaders />
+                        <LightControls />
+                    </LightConsoleContainer>
+                </LightConsoleTable>
+            }
+        </>
     )
 }
 

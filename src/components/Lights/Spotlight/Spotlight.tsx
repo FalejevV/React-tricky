@@ -17,7 +17,7 @@ function Spotlight(props:{
     pointDepth?:number,
     intensityMultiplier?:number,
 }){
-    const depthBuffer = useDepthBuffer({ size: 512});
+    const depthBuffer = useDepthBuffer({ size: 224 });
     const faderSelector = useAppSelector((state:RootState) => state.faders);
     const targetSelector = useAppSelector((state:RootState) => state.targets);
     const [target,setTarget] = useState(new Object3D);
@@ -47,13 +47,13 @@ function Spotlight(props:{
             />
 
             <SpotLight
+            
             penumbra={0.2}
             depthBuffer={depthBuffer}
             intensity={props.highlight ? 100 : faderSelector[props.faderIndex] * 10 * (props.intensityMultiplier || 1)}
             position={props.position}
             angle={props.zoom || 0.5}
             castShadow
-            receiveShadow
             color={props.color || "#f9c463"}
             target={target}
             distance={props.distance || 15}

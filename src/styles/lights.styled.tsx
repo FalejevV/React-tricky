@@ -9,5 +9,7 @@ export const LightsContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    overflow: scroll;
+    padding:20px;
     // transform: perspective(1000px) rotateX(10deg);
 `
