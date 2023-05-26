@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const PEInputFieldContainer = styled.div`
     width:100%;
-    height:40px;
+    height:45px;
         
     background: #FFFFFF;
     border: 1px solid #ABABAB;

@@ -9,7 +9,7 @@ function PageEditorInputField(props:{
 }){
     return(
         <PEInputFieldContainer>
-            <PEInputFieldInput type="text" placeholder={props.placeholder} />
+            <PEInputFieldInput value={props.title} onChange={(e) => props.setTitle(e.target.value)} type="text" placeholder={props.placeholder} />
         </PEInputFieldContainer>
     )
 }
