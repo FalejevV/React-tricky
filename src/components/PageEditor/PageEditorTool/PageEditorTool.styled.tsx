@@ -23,7 +23,7 @@ export const PageEditorToolIcon = styled(Image)`
 const fadeInAnimation = keyframes`
     0%{
         opacity: 0;
-    }80%{
+    }65%{
         opacity: 0;
     }
     100%{
@@ -42,11 +42,12 @@ export const PageEditorToolTitle = styled.p<{
     color:black;
     border:1px solid black;
     border-radius: 5px;
-    opacity: 0;
     left:${({ left }) => left};
     top:${({ top }) => top};
     pointer-events:none;    
     z-index: 10;
+    opacity: 0;
+
     ${({ isHovered }) => isHovered && css`
         animation: ${fadeInAnimation} 0.5s forwards;
     `}
