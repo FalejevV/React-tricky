@@ -11,6 +11,7 @@ export const SequencerSampleRowContainer = styled.div<{
     align-items:center;
     justify-content: flex-start;
     padding-left:1px;
+    position:relative;
     ${({ darker }) => darker && css`
         background-color: #00000013;
     `}
@@ -27,4 +28,49 @@ export const SequencerSampleBlock = styled.div`
     &:hover{
         background-color:#dbdbdbbc;
     }
+`
+
+export const SequencerSampleBlockContainer = styled.div`
+    position: absolute;
+    flex
+    left:1px;
+    top:0px;
+    width:100%;
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content: flex-start;
+    gap:1px;
+`
+
+export const SequencerSampleTabItem = styled.div<{
+    from:number,
+    to:number,
+}>`
+    width:30px;
+    position: absolute;
+    height:100%;
+    background-color: red;
+    pointer-events:default;
+    left:${({ from}) => `calc(${from} * 30px + (${from} * 1px))`};
+    width:30px;
+    cursor:pointer;
+`
+
+export const SequencerSampleTabResizeElementLeft = styled.div`
+    position: absolute;
+    left:0px;
+    top:0px;
+    width:5px;
+    height:100%;
+    cursor:ew-resize;
+`
+
+export const SequencerSampleTabResizeElementRight = styled.div`
+    position: absolute;
+    right:0px;
+    top:0px;
+    width:5px;
+    height:100%;
+    cursor:ew-resize;
 `

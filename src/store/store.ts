@@ -4,13 +4,15 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 import targets from './targets'
 import colors from './colors'
 import active from './active'
+import sampleTabs from './sequencer/sampleTabs'
 
 export const store = configureStore({
   reducer: {
     faders: faders,
     targets:targets,
     colors:colors,
-    active:active
+    active:active,
+    sampleTabs:sampleTabs,
   }
 })
 
