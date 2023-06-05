@@ -16,6 +16,4 @@ export const SequencerWorkSpace = styled.div`
     display:flex;
     width:100%;
     height:540px;
-    overflow: scroll;
-    scrollbar-width: thin;
 `

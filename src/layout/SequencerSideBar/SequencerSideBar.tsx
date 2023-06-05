@@ -1,3 +1,4 @@
+import SequencerSampleTab from "@/components/Sequencer/SequencerSampleTab/SequencerSampleTab";
 import { SequencerSideBarContainer } from "./SequencerSideBar.styled";
 
 
@@ -5,7 +6,7 @@ import { SequencerSideBarContainer } from "./SequencerSideBar.styled";
 function SequencerSideBar(){
     return(
         <SequencerSideBarContainer>
-            
+            <SequencerSampleTab />
         </SequencerSideBarContainer>
     )
 }

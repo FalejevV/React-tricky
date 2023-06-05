@@ -1,3 +1,4 @@
+import SequencrSampleRow from "@/components/Sequencer/SequencerSampleRow/SequencerSampleRow";
 import { SequencerTracksContainer, SequencerTracksOutline, SequencerVerticalDivider, SequencerVerticalLineText } from "./SequencerTracks.styled";
 
 let lineColors = [
@@ -39,6 +40,13 @@ function SequencerTracks(){
             <SequencerTracksOutline>
                 {trackLinePainter()}
             </SequencerTracksOutline>
+            
+            <SequencrSampleRow />
+            <SequencrSampleRow darker/>
+            <SequencrSampleRow />
+            <SequencrSampleRow darker/>
+            <SequencrSampleRow />
+            <SequencrSampleRow darker/>
         </SequencerTracksContainer>
     )
 }
