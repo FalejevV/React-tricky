@@ -39,15 +39,17 @@ const sampleTabsSlice = createSlice({
             state[action.payload.sampleId].tabs = filter;
         },
         changeTab:(state:sampleTab[], action:PayloadAction<{sampleId:number, tabData:sampleTabData}>) => {
-            state[action.payload.sampleId].tabs.forEach((tab:sampleTabData) => {
+            let tabChange = state[action.payload.sampleId].tabs.map((tab:sampleTabData) => {
                 if(tab.id !== action.payload.tabData.id){
                     return tab;
                 }else{
-                    tab = action.payload.tabData;
+                    return action.payload.tabData;
                 }
             })
+            state[action.payload.sampleId].tabs = tabChange;
             return state;
         },
+        
     }
 })
 

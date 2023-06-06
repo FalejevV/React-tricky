@@ -53,7 +53,7 @@ export const SequencerSampleTabItem = styled.div<{
     background-color: red;
     pointer-events:default;
     left:${({ from}) => `calc(${from} * 30px + (${from} * 1px))`};
-    width:30px;
+    width:${({ from, to }) => `calc((${to - from + 1} * 30px + (${to - from + 1} * 1px) - 1px))`};;
     cursor:pointer;
 `
 
