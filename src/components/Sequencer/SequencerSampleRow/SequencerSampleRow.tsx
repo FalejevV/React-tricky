@@ -12,29 +12,37 @@ function SequencrSampleRow(props:{
 }){
     const dispatch = useAppDispatch();
     const tabsSelector = useAppSelector((state:RootState) => state.sampleTabs[props.id]);
+    const tabsInfoSelector = useAppSelector((state:RootState) => state.tabsInfo[props.id]);
+
     const [dragTarget, setDragTarget] = useState<{
         id:string,
         from:number,
         to:number,
         dragSide: "L" | "R"
     } | null>();
+
     function blankBlocksPainter(){
         let array = [];
         for(let i = 0; i <= 63; i++){
-            array.push(<SequencerSampleBlock draggable={false} key={i} onClick={() => {dispatch(addTab({
-                sampleId: props.id || 0,
-                start: i
-            }))}}/>)
+            array.push(<SequencerSampleBlock draggable={false} key={i} onClick={() => addTabAction(i)}/>)
         }
         return array;
     }
+
+    function canBeDragged(from:number,to:number){
+        if(dragTarget){
+            if(dragTarget.from + from > dragTarget.to + to) return false;
+            return true;
+        }
+    };
 
     function dragListener(e:React.MouseEvent){
         if(dragTarget){
             const target = document.getElementById(dragTarget.id);
             if(target){
-                console.log(target.getBoundingClientRect().left);
+                // Drag left side to the left
                 if(target.getBoundingClientRect().left - 20 > e.clientX && dragTarget.dragSide === "L"){
+                    if(!canBeDragged(-1, 0)) return;
                     dispatch(changeTab({
                         sampleId: props.id,
                         tabData: {
@@ -53,29 +61,34 @@ function SequencrSampleRow(props:{
                             return prev;
                         }
                     })
+                    return;
                 }
+                // Drag left side to the right
                 if(target.getBoundingClientRect().left + 20 < e.clientX && dragTarget.dragSide === "L"){
-                        dispatch(changeTab({
-                            sampleId: props.id,
-                            tabData: {
-                                from: dragTarget.from + 1,
-                                to: dragTarget.to,
-                                id: dragTarget.id
+                    if(!canBeDragged(1, 0)) return;
+                    dispatch(changeTab({
+                         sampleId: props.id,
+                        tabData: {
+                            from: dragTarget.from + 1,
+                            to: dragTarget.to,
+                            id: dragTarget.id
+                        }
+                    }));
+                    setDragTarget(prev => {
+                        if(prev){
+                            return {
+                                ...prev,
+                                from: prev.from + 1
                             }
-                        }));
-                        setDragTarget(prev => {
-                            if(prev){
-                                return {
-                                    ...prev,
-                                    from: prev.from + 1
-                                }
-                            }else{
-                                return prev;
-                            }
-                        })
+                        }else{
+                            return prev;
+                        }
+                    });
+                return;
                 }
-
+                // Drag left side to the left
                 if(target.getBoundingClientRect().right + 20 < e.clientX && dragTarget.dragSide === "R"){
+                    if(!canBeDragged(0, 1)) return;
                     dispatch(changeTab({
                         sampleId: props.id,
                         tabData: {
@@ -94,9 +107,11 @@ function SequencrSampleRow(props:{
                             return prev;
                         }
                     })
+                    return;
                 }
-
+                // Drag right side to the right
                 if(target.getBoundingClientRect().right - 20 > e.clientX && dragTarget.dragSide === "R"){
+                    if(!canBeDragged(0, -1)) return;
                     dispatch(changeTab({
                         sampleId: props.id,
                         tabData: {
@@ -121,18 +136,29 @@ function SequencrSampleRow(props:{
     }
 
     function removeTabAction(tabId:string){
-        if(dragTarget !== null){
+        if(false){
             dispatch(removeTab({
                 sampleId: props.id,
                 tabId: tabId
             }))
         }
     }
+
+    
+    function addTabAction(index:number){
+        if(dragTarget) return;
+        dispatch(addTab({
+            sampleId: props.id || 0,
+            start: index
+        }))
+    }
+
+
     function tabsPainter(){
         let tabArray:JSX.Element[] = [];
         tabsSelector.tabs.forEach((tab:sampleTabData) => {
             tabArray.push(
-            <SequencerSampleTabItem draggable={false} id={tab.id} key={tab.id} onClick={() => removeTabAction(tab.id)} from={tab.from} to={tab.to}>
+            <SequencerSampleTabItem color={tabsInfoSelector.color} draggable={false} id={tab.id} key={tab.id} onClick={() => removeTabAction(tab.id)} from={tab.from} to={tab.to}>
                 <SequencerSampleTabResizeElementLeft draggable={false} onMouseDown={(e) => setDragTarget({
                      id:tab.id,
                      from:tab.from,
@@ -150,6 +176,7 @@ function SequencrSampleRow(props:{
         });
         return tabArray;
     }
+
     return(
         <SequencerSampleRowContainer onMouseMove={(e) => dragListener(e)} onMouseLeave={() => setDragTarget(null)}  onMouseUp={() => setDragTarget(null)} darker={props.darker}>
             <SequencerSampleBlockContainer>

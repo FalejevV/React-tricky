@@ -5,6 +5,7 @@ import targets from './targets'
 import colors from './colors'
 import active from './active'
 import sampleTabs from './sequencer/sampleTabs'
+import tabsInfo from './sequencer/tabsInfo'
 
 export const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
     colors:colors,
     active:active,
     sampleTabs:sampleTabs,
+    tabsInfo:tabsInfo
   }
 })
 

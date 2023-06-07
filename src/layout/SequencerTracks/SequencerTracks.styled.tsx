@@ -5,8 +5,8 @@ export const SequencerTracksContainer = styled.main`
     height:100%;
     background-color: #c7c7c7;
     position: relative;
-    overflow-y: hidden;
     overflow-x: scroll;
+    overflow-y:hidden;
     scrollbar-width: thin;
     display: flex;
     flex-direction: column;
@@ -34,14 +34,15 @@ export const SequencerVerticalDivider = styled.div<{
 
 export const SequencerVerticalLineText = styled.p`
     position:absolute;
-    top:0px;
+    top:0;
     left:50%;
     transform: translateX(-50%);
-    color:white;
+    color:#CBE4DE;
     font-size:12px;
     padding:3px 5px;
-    background-color:black;
+    background-color:#2C3333;
     font-weight: bold;
     z-index: 100;
     border-radius:0px 0px 5px 5px;
+    z-index: 1000;
 `

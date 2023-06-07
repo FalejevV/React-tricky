@@ -1,12 +1,21 @@
 import SequencerSampleTab from "@/components/Sequencer/SequencerSampleTab/SequencerSampleTab";
+import { tabInfo } from "@/store/sequencer/tabsInfo";
+import { RootState, useAppSelector } from "@/store/store";
 import { SequencerSideBarContainer } from "./SequencerSideBar.styled";
+import { nanoid } from "nanoid";
 
 
 
 function SequencerSideBar(){
+    const tabInfoSelector = useAppSelector((state:RootState) => state.tabsInfo);
+
+
+    function getSideBarTabs(){
+        return tabInfoSelector.map((tab:tabInfo) => <SequencerSampleTab key={nanoid()} data={tab} />)
+    }
     return(
         <SequencerSideBarContainer>
-            <SequencerSampleTab />
+            {getSideBarTabs()}
         </SequencerSideBarContainer>
     )
 }

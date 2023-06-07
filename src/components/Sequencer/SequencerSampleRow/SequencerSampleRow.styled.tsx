@@ -6,14 +6,17 @@ export const SequencerSampleRowContainer = styled.div<{
     width:1985px;
     height:90px;
     max-height:90px;
-    border-top:1px solid black;
+    min-height:90px;
+    border-top:1px solid #2E4F4F;
     display:flex;
     align-items:center;
     justify-content: flex-start;
     padding-left:1px;
     position:relative;
+    background-color: #62a0a06c;
+
     ${({ darker }) => darker && css`
-        background-color: #00000013;
+        background-color: #2e4f4fa7;
     `}
     gap:1px;
 `
@@ -26,17 +29,18 @@ export const SequencerSampleBlock = styled.div`
     cursor:pointer;
 
     &:hover{
-        background-color:#dbdbdbbc;
+        background-color:#cbe4de76;
     }
 `
 
 export const SequencerSampleBlockContainer = styled.div`
     position: absolute;
-    flex
     left:1px;
     top:0px;
     width:100%;
     height:100%;
+    min-height:90px;
+    max-height: 90px;
     display:flex;
     align-items:center;
     justify-content: flex-start;
@@ -46,15 +50,40 @@ export const SequencerSampleBlockContainer = styled.div`
 export const SequencerSampleTabItem = styled.div<{
     from:number,
     to:number,
+    color:string,
 }>`
     width:30px;
     position: absolute;
     height:100%;
-    background-color: red;
+    min-height:90px;
+    max-height: 90px;
     pointer-events:default;
     left:${({ from}) => `calc(${from} * 30px + (${from} * 1px))`};
     width:${({ from, to }) => `calc((${to - from + 1} * 30px + (${to - from + 1} * 1px) - 1px))`};;
     cursor:pointer;
+
+    &:after{
+        content:"";
+        position: absolute;
+        left:0px;
+        top:0px;
+        width:100%;
+        height:25px;
+        background-color:${({ color }) => color || "black"};
+        pointer-events:none;
+    }
+
+    &:before{
+        content:"";
+        position: absolute;
+        left:0px;
+        top:0px;
+        width:100%;
+        height:100%;
+        background-color:${({ color }) => color || "black"};
+        opacity:0.4;
+        pointer-events:none;
+    }
 `
 
 export const SequencerSampleTabResizeElementLeft = styled.div`

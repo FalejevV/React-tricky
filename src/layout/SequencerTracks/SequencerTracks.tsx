@@ -3,9 +3,9 @@ import { SequencerTracksContainer, SequencerTracksOutline, SequencerVerticalDivi
 import { nanoid } from "nanoid";
 
 let lineColors = [
-    "#000000",
-    "#666666",
-    "#464646",
+    "#142e2e",
+    "#2e4f4f78",
+    "#2e4f4f",
 ]
 
 function getLineColor(index:number):string{
