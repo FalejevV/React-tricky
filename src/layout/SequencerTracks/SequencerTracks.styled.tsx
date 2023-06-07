@@ -30,6 +30,8 @@ export const SequencerVerticalDivider = styled.div<{
     height:100%;
     background: ${({ color }) => color || "black"};
     position: relative;
+    pointer-events:none;
+    user-select: none;
 `
 
 export const SequencerVerticalLineText = styled.p`
@@ -45,4 +47,6 @@ export const SequencerVerticalLineText = styled.p`
     z-index: 100;
     border-radius:0px 0px 5px 5px;
     z-index: 1000;
+    pointer-events:none;
+    user-select: none;
 `

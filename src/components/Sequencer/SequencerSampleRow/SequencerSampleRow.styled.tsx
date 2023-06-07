@@ -21,19 +21,26 @@ export const SequencerSampleRowContainer = styled.div<{
     gap:1px;
 `
 
-export const SequencerSampleBlock = styled.div`
+export const SequencerSampleBlock = styled.div<{
+    interactable:boolean
+}>`
     min-width:30px;
     max-width: 30px;
     height:100%;
     background-color: transparent;
-    cursor:pointer;
+    cursor:ew-resize;
 
-    &:hover{
-        background-color:#cbe4de76;
-    }
+    ${({ interactable }) => interactable && css`
+    cursor:pointer;
+        &:hover{
+            background-color:#cbe4de76;
+        }
+    `}
 `
 
-export const SequencerSampleBlockContainer = styled.div`
+export const SequencerSampleBlockContainer = styled.div<{
+    isBeingDraged:boolean
+}>`
     position: absolute;
     left:1px;
     top:0px;
@@ -45,12 +52,17 @@ export const SequencerSampleBlockContainer = styled.div`
     align-items:center;
     justify-content: flex-start;
     gap:1px;
+
+    ${({ isBeingDraged }) => isBeingDraged && css`
+        cursor:ew-resize;
+    `}
 `
 
 export const SequencerSampleTabItem = styled.div<{
     from:number,
     to:number,
     color:string,
+    isBeingDraged:boolean
 }>`
     width:30px;
     position: absolute;
@@ -84,6 +96,10 @@ export const SequencerSampleTabItem = styled.div<{
         opacity:0.4;
         pointer-events:none;
     }
+
+    ${({ isBeingDraged }) => isBeingDraged && css`
+        cursor:ew-resize;
+    `}
 `
 
 export const SequencerSampleTabResizeElementLeft = styled.div`

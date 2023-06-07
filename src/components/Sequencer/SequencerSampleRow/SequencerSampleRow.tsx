@@ -1,9 +1,10 @@
 import { RootState, useAppDispatch, useAppSelector } from "@/store/store";
 import { SequencerSampleBlock, SequencerSampleBlockContainer, SequencerSampleRowContainer, SequencerSampleTabItem, SequencerSampleTabResizeElementLeft, SequencerSampleTabResizeElementRight } from "./SequencerSampleRow.styled";
 import { addTab, changeTab, removeTab } from "@/store/sequencer/sampleTabs";
-import { sampleTabData } from "../../../../interface";
+import { sampleTab, sampleTabData } from "../../../../interface";
 import { useState } from "react";
 import { nanoid } from "nanoid";
+import { tabInfo } from "@/store/sequencer/tabsInfo";
 
 
 function SequencrSampleRow(props:{
@@ -19,12 +20,12 @@ function SequencrSampleRow(props:{
         from:number,
         to:number,
         dragSide: "L" | "R"
-    } | null>();
+    } | null>(null);
 
     function blankBlocksPainter(){
         let array = [];
         for(let i = 0; i <= 63; i++){
-            array.push(<SequencerSampleBlock draggable={false} key={i} onClick={() => addTabAction(i)}/>)
+            array.push(<SequencerSampleBlock interactable={dragTarget === null} draggable={false} key={i} onClick={() => addTabAction(i)}/>)
         }
         return array;
     }
@@ -32,7 +33,16 @@ function SequencrSampleRow(props:{
     function canBeDragged(from:number,to:number){
         if(dragTarget){
             if(dragTarget.from + from > dragTarget.to + to) return false;
-            return true;
+            let targetFrom = dragTarget.from + from;
+            let targetTo = dragTarget.to + to;
+            let canMove = true;
+            tabsSelector.tabs.forEach((tab:sampleTabData) => {
+                if(tab.id === dragTarget.id) return;
+                if(targetTo > tab.to && targetFrom <= tab.from) canMove = false;
+                if(targetTo > tab.to && targetFrom <= tab.to) canMove = false;
+                if(targetTo >= tab.from && targetFrom <= tab.to) canMove = false;
+            });
+            return canMove;
         }
     };
 
@@ -153,12 +163,11 @@ function SequencrSampleRow(props:{
         }))
     }
 
-
     function tabsPainter(){
         let tabArray:JSX.Element[] = [];
         tabsSelector.tabs.forEach((tab:sampleTabData) => {
             tabArray.push(
-            <SequencerSampleTabItem color={tabsInfoSelector.color} draggable={false} id={tab.id} key={tab.id} onClick={() => removeTabAction(tab.id)} from={tab.from} to={tab.to}>
+            <SequencerSampleTabItem isBeingDraged={dragTarget !== null} color={tabsInfoSelector.color} draggable={false} id={tab.id} key={tab.id} onClick={() => removeTabAction(tab.id)} from={tab.from} to={tab.to}>
                 <SequencerSampleTabResizeElementLeft draggable={false} onMouseDown={(e) => setDragTarget({
                      id:tab.id,
                      from:tab.from,
@@ -179,7 +188,7 @@ function SequencrSampleRow(props:{
 
     return(
         <SequencerSampleRowContainer onMouseMove={(e) => dragListener(e)} onMouseLeave={() => setDragTarget(null)}  onMouseUp={() => setDragTarget(null)} darker={props.darker}>
-            <SequencerSampleBlockContainer>
+            <SequencerSampleBlockContainer isBeingDraged={dragTarget !== null}>
                 {blankBlocksPainter()}
                 {tabsPainter()}
             </SequencerSampleBlockContainer>
