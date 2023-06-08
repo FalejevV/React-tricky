@@ -62,7 +62,8 @@ export const SequencerSampleTabItem = styled.div<{
     from:number,
     to:number,
     color:string,
-    isBeingDraged:boolean
+    isBeingDraged:boolean,
+    cursor:number
 }>`
     width:30px;
     position: absolute;
@@ -100,22 +101,40 @@ export const SequencerSampleTabItem = styled.div<{
     ${({ isBeingDraged }) => isBeingDraged && css`
         cursor:ew-resize;
     `}
+    
+    ${({ cursor }) => cursor === 1 && css`
+        cursor: no-drop;
+    `}
+
+    ${({ cursor }) => cursor === 0 && css`
+        cursor: grab;
+    `}
 `
 
-export const SequencerSampleTabResizeElementLeft = styled.div`
+export const SequencerSampleTabResizeElementLeft = styled.div<{
+    active:boolean
+}>`
     position: absolute;
     left:0px;
     top:0px;
     width:5px;
     height:100%;
-    cursor:ew-resize;
+    
+    ${({ active }) => active && css`
+        cursor:ew-resize;
+    `}
 `
 
-export const SequencerSampleTabResizeElementRight = styled.div`
+export const SequencerSampleTabResizeElementRight = styled.div<{
+    active:boolean
+}>`
     position: absolute;
     right:0px;
     top:0px;
     width:5px;
     height:100%;
-    cursor:ew-resize;
+
+    ${({ active }) => active && css`
+        cursor:ew-resize;
+    `}
 `

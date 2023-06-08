@@ -1,15 +1,14 @@
 import { RootState, useAppDispatch, useAppSelector } from "@/store/store";
 import { SequencerSampleBlock, SequencerSampleBlockContainer, SequencerSampleRowContainer, SequencerSampleTabItem, SequencerSampleTabResizeElementLeft, SequencerSampleTabResizeElementRight } from "./SequencerSampleRow.styled";
 import { addTab, changeTab, removeTab } from "@/store/sequencer/sampleTabs";
-import { sampleTab, sampleTabData } from "../../../../interface";
+import { sampleTabData } from "../../../../interface";
 import { useState } from "react";
-import { nanoid } from "nanoid";
-import { tabInfo } from "@/store/sequencer/tabsInfo";
 
 
 function SequencrSampleRow(props:{
     darker?:boolean,
     id:number,
+    cursorAction:number,
 }){
     const dispatch = useAppDispatch();
     const tabsSelector = useAppSelector((state:RootState) => state.sampleTabs[props.id]);
@@ -21,6 +20,36 @@ function SequencrSampleRow(props:{
         to:number,
         dragSide: "L" | "R"
     } | null>(null);
+    const [moveTarget, setMoveTarget] = useState<{
+        id:string,
+        from:number,
+        to:number,
+    } | null>(null);
+
+    function clearTargets(){
+        setMoveTarget(null);
+        setDragTarget(null);
+    }
+
+    function targetAssignHandler(e:React.MouseEvent, action:string,tab:{
+        id:string,
+        from:number,
+        to:number,
+    }, direction?:"L" | "R"){
+        if(action === "move"){
+            let target = e.target as HTMLElement;
+            if(target.id !== ""){
+                setMoveTarget({
+                    ...tab
+                })
+            }
+        }else{
+            setDragTarget({
+                ...tab,
+                dragSide: direction || "L"
+            })
+        }
+    }
 
     function blankBlocksPainter(){
         let array = [];
@@ -38,6 +67,22 @@ function SequencrSampleRow(props:{
             let canMove = true;
             tabsSelector.tabs.forEach((tab:sampleTabData) => {
                 if(tab.id === dragTarget.id) return;
+                if(targetTo > tab.to && targetFrom <= tab.from) canMove = false;
+                if(targetTo > tab.to && targetFrom <= tab.to) canMove = false;
+                if(targetTo >= tab.from && targetFrom <= tab.to) canMove = false;
+            });
+            return canMove;
+        }
+    };
+
+    function canBeMoved(from:number,to:number){
+        if(moveTarget){
+            if(moveTarget.from + from > moveTarget.to + to) return false;
+            let targetFrom = moveTarget.from + from;
+            let targetTo = moveTarget.to + to;
+            let canMove = true;
+            tabsSelector.tabs.forEach((tab:sampleTabData) => {
+                if(tab.id === moveTarget.id) return;
                 if(targetTo > tab.to && targetFrom <= tab.from) canMove = false;
                 if(targetTo > tab.to && targetFrom <= tab.to) canMove = false;
                 if(targetTo >= tab.from && targetFrom <= tab.to) canMove = false;
@@ -145,8 +190,64 @@ function SequencrSampleRow(props:{
         }
     }
 
+    function moveListener(e:React.MouseEvent){
+        if(moveTarget){
+            const target = document.getElementById(moveTarget.id);
+            if(target){
+                if(target.getBoundingClientRect().left - 20 > e.clientX){
+                    if(!canBeMoved(-1,-1)) return;
+
+                    dispatch(changeTab({
+                        sampleId: props.id,
+                        tabData: {
+                            from: moveTarget.from - 1,
+                            to: moveTarget.to - 1,
+                            id: moveTarget.id
+                        }
+                    }));
+                    setMoveTarget(prev => {
+                        if(prev){
+                            return {
+                                ...prev,
+                                from: prev.from - 1,
+                                to:prev.to - 1
+                            }
+                        }else{
+                            return prev;
+                        }
+                    })
+                    return;
+                }
+                if(target.getBoundingClientRect().right + 20 < e.clientX){
+                    if(!canBeMoved(1,1)) return;
+
+                    dispatch(changeTab({
+                        sampleId: props.id,
+                        tabData: {
+                            from: moveTarget.from + 1,
+                            to: moveTarget.to + 1,
+                            id: moveTarget.id
+                        }
+                    }));
+                    setMoveTarget(prev => {
+                        if(prev){
+                            return {
+                                ...prev,
+                                from: prev.from + 1,
+                                to:prev.to + 1
+                            }
+                        }else{
+                            return prev;
+                        }
+                    })
+                    return;
+                }
+            }
+        }
+    }
+
     function removeTabAction(tabId:string){
-        if(false){
+        if(props.cursorAction === 1){
             dispatch(removeTab({
                 sampleId: props.id,
                 tabId: tabId
@@ -167,19 +268,18 @@ function SequencrSampleRow(props:{
         let tabArray:JSX.Element[] = [];
         tabsSelector.tabs.forEach((tab:sampleTabData) => {
             tabArray.push(
-            <SequencerSampleTabItem isBeingDraged={dragTarget !== null} color={tabsInfoSelector.color} draggable={false} id={tab.id} key={tab.id} onClick={() => removeTabAction(tab.id)} from={tab.from} to={tab.to}>
-                <SequencerSampleTabResizeElementLeft draggable={false} onMouseDown={(e) => setDragTarget({
-                     id:tab.id,
-                     from:tab.from,
-                     to:tab.to,
-                     dragSide: "L"
-                })}/>
-                <SequencerSampleTabResizeElementRight draggable={false} onMouseDown={(e) => setDragTarget({
-                     id:tab.id,
-                     from:tab.from,
-                     to:tab.to,
-                     dragSide: "R"
-                })}/>
+            <SequencerSampleTabItem cursor={props.cursorAction}
+                                    isBeingDraged={dragTarget !== null} 
+                                    color={tabsInfoSelector.color} 
+                                    draggable={false} id={tab.id} 
+                                    key={tab.id} 
+                                    onClick={() => removeTabAction(tab.id)} 
+                                    from={tab.from} 
+                                    to={tab.to}
+                                    onMouseDown={(e) => targetAssignHandler(e,"move",tab)}
+                                    >
+                <SequencerSampleTabResizeElementLeft active={moveTarget === null} draggable={false} onMouseDown={(e) => targetAssignHandler(e,"drag",tab,"L")}/>
+                <SequencerSampleTabResizeElementRight active={moveTarget === null} draggable={false} onMouseDown={(e) => targetAssignHandler(e,"drag",tab,"R")}/>
             </SequencerSampleTabItem>    
             )
         });
@@ -187,7 +287,7 @@ function SequencrSampleRow(props:{
     }
 
     return(
-        <SequencerSampleRowContainer onMouseMove={(e) => dragListener(e)} onMouseLeave={() => setDragTarget(null)}  onMouseUp={() => setDragTarget(null)} darker={props.darker}>
+        <SequencerSampleRowContainer onMouseMove={(e) => {dragListener(e), moveListener(e)}} onMouseLeave={clearTargets}  onMouseUp={clearTargets} darker={props.darker}>
             <SequencerSampleBlockContainer isBeingDraged={dragTarget !== null}>
                 {blankBlocksPainter()}
                 {tabsPainter()}
