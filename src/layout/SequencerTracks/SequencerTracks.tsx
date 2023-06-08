@@ -1,5 +1,5 @@
 import SequencrSampleRow from "@/components/Sequencer/SequencerSampleRow/SequencerSampleRow";
-import { SequencerTracksContainer, SequencerTracksOutline, SequencerVerticalDivider, SequencerVerticalLineText } from "./SequencerTracks.styled";
+import { SequencerFourDividerDarkener, SequencerTracksContainer, SequencerTracksOutline, SequencerVerticalDivider, SequencerVerticalLineText } from "./SequencerTracks.styled";
 import { nanoid } from "nanoid";
 import { useState } from "react";
 
@@ -20,8 +20,6 @@ function getLineColor(index:number):string{
 }
 
 function SequencerTracks(){
-    const [cursorAction,setCursorAction] = useState(0);
-    
     function trackLinePainter(){
         let lineArray = [];
         for(let i = 0; i <= 64; i++){
@@ -40,16 +38,17 @@ function SequencerTracks(){
 
     return(
         <SequencerTracksContainer>
+            <SequencerFourDividerDarkener />
             <SequencerTracksOutline>
                 {trackLinePainter()}
             </SequencerTracksOutline>
             
-            <SequencrSampleRow cursorAction={cursorAction} id={0} />
-            <SequencrSampleRow cursorAction={cursorAction} id={1} darker/>
-            <SequencrSampleRow cursorAction={cursorAction} id={2}/>
-            <SequencrSampleRow cursorAction={cursorAction} id={3} darker/>
-            <SequencrSampleRow cursorAction={cursorAction} id={4}/>
-            <SequencrSampleRow cursorAction={cursorAction} id={5} darker/>
+            <SequencrSampleRow id={0} />
+            <SequencrSampleRow id={1} darker/>
+            <SequencrSampleRow id={2}/>
+            <SequencrSampleRow id={3} darker/>
+            <SequencrSampleRow id={4}/>
+            <SequencrSampleRow id={5} darker/>
         </SequencerTracksContainer>
     )
 }

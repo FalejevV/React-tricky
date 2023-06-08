@@ -50,3 +50,13 @@ export const SequencerVerticalLineText = styled.p`
     pointer-events:none;
     user-select: none;
 `
+
+export const SequencerFourDividerDarkener = styled.div`
+    width:993px;
+    height:100%;
+    background-color: #2C3333;
+    opacity:0.2;
+    position:absolute;
+    left:0px;
+    top:0px;
+`

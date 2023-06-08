@@ -102,39 +102,50 @@ export const SequencerSampleTabItem = styled.div<{
         cursor:ew-resize;
     `}
     
-    ${({ cursor }) => cursor === 1 && css`
-        cursor: no-drop;
-    `}
-
+    
     ${({ cursor }) => cursor === 0 && css`
         cursor: grab;
+    `}
+
+    ${({ cursor }) => cursor === 1 && css`
+        cursor: no-drop;
     `}
 `
 
 export const SequencerSampleTabResizeElementLeft = styled.div<{
-    active:boolean
+    cursorType:number
 }>`
     position: absolute;
     left:0px;
     top:0px;
     width:5px;
     height:100%;
+    cursor:grab;
     
-    ${({ active }) => active && css`
+    ${({ cursorType }) => cursorType === 0 && css`
         cursor:ew-resize;
+    `}
+
+    ${({ cursorType }) => cursorType === 1 && css`
+        cursor:no-drop;
     `}
 `
 
 export const SequencerSampleTabResizeElementRight = styled.div<{
-    active:boolean
+    cursorType:number
 }>`
     position: absolute;
     right:0px;
     top:0px;
     width:5px;
     height:100%;
+    cursor:grab;
 
-    ${({ active }) => active && css`
+    ${({ cursorType }) => cursorType === 0 && css`
         cursor:ew-resize;
+    `}
+
+    ${({ cursorType }) => cursorType === 1 && css`
+        cursor:no-drop;
     `}
 `

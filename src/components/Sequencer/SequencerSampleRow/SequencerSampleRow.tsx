@@ -8,12 +8,12 @@ import { useState } from "react";
 function SequencrSampleRow(props:{
     darker?:boolean,
     id:number,
-    cursorAction:number,
 }){
     const dispatch = useAppDispatch();
     const tabsSelector = useAppSelector((state:RootState) => state.sampleTabs[props.id]);
     const tabsInfoSelector = useAppSelector((state:RootState) => state.tabsInfo[props.id]);
-
+    const togglesSelector = useAppSelector((state:RootState) => state.toggles);
+    
     const [dragTarget, setDragTarget] = useState<{
         id:string,
         from:number,
@@ -36,6 +36,8 @@ function SequencrSampleRow(props:{
         from:number,
         to:number,
     }, direction?:"L" | "R"){
+        if(removeTabAction(tab.id)) return;
+        
         if(action === "move"){
             let target = e.target as HTMLElement;
             if(target.id !== ""){
@@ -54,7 +56,7 @@ function SequencrSampleRow(props:{
     function blankBlocksPainter(){
         let array = [];
         for(let i = 0; i <= 63; i++){
-            array.push(<SequencerSampleBlock interactable={dragTarget === null} draggable={false} key={i} onClick={() => addTabAction(i)}/>)
+            array.push(<SequencerSampleBlock interactable={dragTarget === null && moveTarget === null} draggable={false} key={i} onClick={() => addTabAction(i)}/>)
         }
         return array;
     }
@@ -247,11 +249,12 @@ function SequencrSampleRow(props:{
     }
 
     function removeTabAction(tabId:string){
-        if(props.cursorAction === 1){
+        if(togglesSelector.cursorType === 1){
             dispatch(removeTab({
                 sampleId: props.id,
                 tabId: tabId
             }))
+            return true;
         }
     }
 
@@ -268,7 +271,7 @@ function SequencrSampleRow(props:{
         let tabArray:JSX.Element[] = [];
         tabsSelector.tabs.forEach((tab:sampleTabData) => {
             tabArray.push(
-            <SequencerSampleTabItem cursor={props.cursorAction}
+            <SequencerSampleTabItem cursor={togglesSelector.cursorType}
                                     isBeingDraged={dragTarget !== null} 
                                     color={tabsInfoSelector.color} 
                                     draggable={false} id={tab.id} 
@@ -278,8 +281,8 @@ function SequencrSampleRow(props:{
                                     to={tab.to}
                                     onMouseDown={(e) => targetAssignHandler(e,"move",tab)}
                                     >
-                <SequencerSampleTabResizeElementLeft active={moveTarget === null} draggable={false} onMouseDown={(e) => targetAssignHandler(e,"drag",tab,"L")}/>
-                <SequencerSampleTabResizeElementRight active={moveTarget === null} draggable={false} onMouseDown={(e) => targetAssignHandler(e,"drag",tab,"R")}/>
+                <SequencerSampleTabResizeElementLeft cursorType={moveTarget !== null ? 0 : togglesSelector.cursorType} draggable={false} onMouseDown={(e) => targetAssignHandler(e,"drag",tab,"L")}/>
+                <SequencerSampleTabResizeElementRight cursorType={moveTarget !== null ? 0 : togglesSelector.cursorType} onMouseDown={(e) => targetAssignHandler(e,"drag",tab,"R")}/>
             </SequencerSampleTabItem>    
             )
         });
