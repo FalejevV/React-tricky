@@ -36,7 +36,7 @@ function SequencrSampleRow(props:{
         from:number,
         to:number,
     }, direction?:"L" | "R"){
-        if(removeTabAction(tab.id)) return;
+        if(togglesSelector.cursorType === 1) return;
         
         if(action === "move"){
             let target = e.target as HTMLElement;
@@ -254,7 +254,6 @@ function SequencrSampleRow(props:{
                 sampleId: props.id,
                 tabId: tabId
             }))
-            return true;
         }
     }
 
