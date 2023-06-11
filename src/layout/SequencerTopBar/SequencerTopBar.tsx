@@ -1,7 +1,7 @@
 import SequencerTabButton from "@/components/Sequencer/SequencerTabButton/SequencerTabButton";
 import { SequencerTopBarContainer, SequencerTopBarToolsContainer, SequencerTopBarLowerContainer, SequencerTopBarSideContainer, SequencerTopBarUpperContainer } from "./SequencerTopBar.styled";
 import { RootState, useAppDispatch, useAppSelector } from "@/store/store";
-import { setCursorType, setPlay } from "@/store/sequencer/toggles";
+import { setCursorType, setLoad, setPlay } from "@/store/sequencer/toggles";
 
 
 
@@ -19,8 +19,8 @@ function SequencerTopBar(){
             <SequencerTopBarToolsContainer>
 
                 <SequencerTopBarUpperContainer>
-                    <SequencerTabButton action={() => {dispatch(setPlay(true))}} toggled={toggledSelector.play} title={""} icon={"/sequencer/play.svg"} />
-                    <SequencerTabButton action={() => {dispatch(setPlay(false))}} toggled={!toggledSelector.play} title={""} icon={"/sequencer/stop.svg"} />
+                    <SequencerTabButton action={() => {dispatch(setLoad(true))}} toggled={toggledSelector.load} title={""} icon={"/sequencer/play.svg"} />
+                    <SequencerTabButton action={() => {dispatch(setLoad(false))}} toggled={!toggledSelector.load} title={""} icon={"/sequencer/stop.svg"} />
                 </SequencerTopBarUpperContainer>
 
                 <SequencerTopBarLowerContainer>

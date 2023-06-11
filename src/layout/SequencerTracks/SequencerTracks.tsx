@@ -2,6 +2,8 @@ import SequencrSampleRow from "@/components/Sequencer/SequencerSampleRow/Sequenc
 import { SequencerFourDividerDarkener, SequencerTracksContainer, SequencerTracksOutline, SequencerVerticalDivider, SequencerVerticalLineText } from "./SequencerTracks.styled";
 import { nanoid } from "nanoid";
 import { useState } from "react";
+import SequencerPlayLineIndicator from "@/components/Sequencer/SequencerPlayLineIndicator/SequencerPlayLineIndicator";
+import { RootState, useAppSelector } from "@/store/store";
 
 let lineColors = [
     "#142e2e",
@@ -20,6 +22,8 @@ function getLineColor(index:number):string{
 }
 
 function SequencerTracks(){
+    const togglesSelector = useAppSelector((state:RootState) => state.toggles);
+
     function trackLinePainter(){
         let lineArray = [];
         for(let i = 0; i <= 64; i++){
@@ -38,6 +42,8 @@ function SequencerTracks(){
 
     return(
         <SequencerTracksContainer>
+            {togglesSelector.play && <SequencerPlayLineIndicator speed={togglesSelector.speed} />}
+
             <SequencerFourDividerDarkener />
             <SequencerTracksOutline>
                 {trackLinePainter()}

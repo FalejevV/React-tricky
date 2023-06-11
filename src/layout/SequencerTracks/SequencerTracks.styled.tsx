@@ -44,9 +44,8 @@ export const SequencerVerticalLineText = styled.p`
     padding:3px 5px;
     background-color:#2C3333;
     font-weight: bold;
-    z-index: 100;
     border-radius:0px 0px 5px 5px;
-    z-index: 1000;
+    z-index: 5;
     pointer-events:none;
     user-select: none;
 `

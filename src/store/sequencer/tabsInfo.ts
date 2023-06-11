@@ -10,7 +10,7 @@ export interface tabInfo{
 const initialState:tabInfo[] = [
     {
         file:"sampleFile",
-        title:"sample loop",
+        title:"TEST",
         color:"#FFFFFF",
         active:true,
     },
@@ -22,25 +22,25 @@ const initialState:tabInfo[] = [
     },
     {
         file:"sampleFile",
-        title:"sample loop",
+        title:"TEST loop",
         color:"#FF1111",
         active:true,
     },
     {
         file:"sampleFile",
-        title:"sample loop",
+        title:"HELLO loop",
         color:"green",
         active:true,
     },
     {
         file:"sampleFile",
-        title:"sample loop",
+        title:"SAME loop",
         color:"blue",
         active:true,
     },
     {
         file:"sampleFile",
-        title:"sample loop",
+        title:"kek loop",
         color:"cyan",
         active:true,
     }
