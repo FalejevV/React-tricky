@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 export interface tabInfo{
     file:string,
@@ -9,39 +9,39 @@ export interface tabInfo{
 
 const initialState:tabInfo[] = [
     {
-        file:"sampleFile",
+        file:"",
         title:"TEST",
-        color:"#FFFFFF",
+        color:"#ffe4e1",
         active:true,
     },
     {
-        file:"sampleFile",
+        file:"",
         title:"sample loop #2",
-        color:"#111111",
+        color:"#d8f8e1",
         active:true,
     },
     {
-        file:"sampleFile",
+        file:"",
         title:"TEST loop",
-        color:"#FF1111",
+        color:"#b0c2f2",
         active:true,
     },
     {
-        file:"sampleFile",
+        file:"",
         title:"HELLO loop",
-        color:"green",
+        color:"#b0f2c2",
         active:true,
     },
     {
-        file:"sampleFile",
+        file:"",
         title:"SAME loop",
-        color:"blue",
+        color:"#fdf9c4",
         active:true,
     },
     {
-        file:"sampleFile",
+        file:"",
         title:"kek loop",
-        color:"cyan",
+        color:"#c5c6c8",
         active:true,
     }
 ];
@@ -51,9 +51,19 @@ const tabsInfoSlice = createSlice({
     name:"tabsInfo",
     initialState,
     reducers:{
-
+        setActive: ((state:tabInfo[], action:PayloadAction<{tabIndex:number, value:boolean}>) => {
+            state[action.payload.tabIndex].active = action.payload.value;
+        }),
+        setFile: ((state:tabInfo[], action:PayloadAction<{tabIndex:number, value:string}>) => {
+            state[action.payload.tabIndex].file = action.payload.value;
+        }),
+        setTitle: ((state:tabInfo[], action:PayloadAction<{tabIndex:number, value:string}>) => {
+            state[action.payload.tabIndex].title = action.payload.value;
+        })
     }
 })
 
 
 export default tabsInfoSlice.reducer;
+
+export const { setActive, setFile, setTitle } = tabsInfoSlice.actions;

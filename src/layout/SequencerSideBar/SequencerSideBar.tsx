@@ -11,7 +11,7 @@ function SequencerSideBar(){
 
 
     function getSideBarTabs(){
-        return tabInfoSelector.map((tab:tabInfo) => <SequencerSampleTab key={nanoid()} data={tab} />)
+        return tabInfoSelector.map((tab:tabInfo,index:number) => <SequencerSampleTab key={nanoid()} tabIndex={index} data={tab} />)
     }
     return(
         <SequencerSideBarContainer>

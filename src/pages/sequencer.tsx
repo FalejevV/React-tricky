@@ -10,15 +10,19 @@ import { setPlay } from "@/store/sequencer/toggles";
 function Sequencer(){
     const sampleTabsSelector = useAppSelector((state:RootState) => state.sampleTabs);
     const togglesSelector = useAppSelector((state:RootState) => state.toggles);
+    const tabsInfoSelector = useAppSelector((state:RootState) => state.tabsInfo);
     const [audioTimeouts, setAudioTimeouts] = useState<NodeJS.Timeout[]>([]);
     const [audioPlaybacks,setAudioPlaybacks] = useState<HTMLAudioElement[]>([]);
     const dispatch = useAppDispatch();
     useEffect(() => {
         if(togglesSelector.load){
-            let audio = new Audio('/sequencer/TestKick.wav');
             let timeoutArray:NodeJS.Timeout[]= [];
             try{
-            sampleTabsSelector.forEach((tabsArray:sampleTab) => {
+            sampleTabsSelector.forEach((tabsArray:sampleTab,index:number) => {
+                if(!tabsInfoSelector[index].active) return;
+                if(tabsInfoSelector[index].file.trim() === "") return;
+
+                let audio = new Audio(tabsInfoSelector[index].file);
                 tabsArray.tabs.forEach((tab:sampleTabData) => {
                     let endTimeout;
                     let startTimeout = setTimeout(() => {
@@ -29,7 +33,7 @@ function Sequencer(){
                         endTimeout = setTimeout(() => {
                             audioClone.pause();
                             audioClone.currentTime = 0;
-                        }, tab.to * togglesSelector.speed < togglesSelector.speed ? togglesSelector.speed: tab.to * togglesSelector.speed)
+                        }, (tab.to - tab.from + 1) * togglesSelector.speed)
                     },tab.from * togglesSelector.speed)
                     timeoutArray.push(startTimeout);
                 })
