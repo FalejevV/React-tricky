@@ -17,11 +17,13 @@ function Sequencer(){
     useEffect(() => {
         if(togglesSelector.load){
             let timeoutArray:NodeJS.Timeout[]= [];
+            let lag = new Date().getTime();
+            console.log(JSON.stringify(tabsInfoSelector));
+            console.log(JSON.stringify(sampleTabsSelector));
             try{
             sampleTabsSelector.forEach((tabsArray:sampleTab,index:number) => {
                 if(!tabsInfoSelector[index].active) return;
                 if(tabsInfoSelector[index].file.trim() === "") return;
-
                 let audio = new Audio(tabsInfoSelector[index].file);
                 tabsArray.tabs.forEach((tab:sampleTabData) => {
                     let endTimeout;
@@ -39,17 +41,21 @@ function Sequencer(){
                 })
                 setAudioTimeouts(timeoutArray);
             })
-            setTimeout(() => dispatch(setPlay(true)),0);
-        }catch{
-            // Problem with setTimeout. Just catching the error. Nothing else. Maybe ill change this later
-        }
+            setTimeout(() => dispatch(setPlay(true)),new Date().getTime() - lag);
+            }catch{
+                // Problem with setTimeout. Just catching the error. Nothing else. Maybe ill change this later
+            }
         }else{
+            try{
             audioPlaybacks.forEach((playpack) =>{
                 playpack.pause();
                 playpack.currentTime = 0;
             });
             audioTimeouts.forEach(clearTimeout);
+            setAudioPlaybacks([]);
+            setAudioTimeouts([]);
             dispatch(setPlay(false));
+            }catch{}
         }
     }, [togglesSelector.load]);
     return(

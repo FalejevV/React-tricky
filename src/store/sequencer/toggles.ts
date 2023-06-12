@@ -11,7 +11,7 @@ const initialState: Toggles = {
     cursorType:0,
     load:false,
     play:false,
-    speed:250
+    speed:125
 }
 
 

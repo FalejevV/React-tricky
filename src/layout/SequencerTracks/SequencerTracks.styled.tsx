@@ -34,22 +34,6 @@ export const SequencerVerticalDivider = styled.div<{
     user-select: none;
 `
 
-export const SequencerVerticalLineText = styled.p`
-    position:absolute;
-    top:0;
-    left:50%;
-    transform: translateX(-50%);
-    color:#CBE4DE;
-    font-size:12px;
-    padding:3px 5px;
-    background-color:#2C3333;
-    font-weight: bold;
-    border-radius:0px 0px 5px 5px;
-    z-index: 5;
-    pointer-events:none;
-    user-select: none;
-`
-
 export const SequencerFourDividerDarkener = styled.div`
     width:993px;
     height:100%;

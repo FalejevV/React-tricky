@@ -1,5 +1,5 @@
 import SequencrSampleRow from "@/components/Sequencer/SequencerSampleRow/SequencerSampleRow";
-import { SequencerFourDividerDarkener, SequencerTracksContainer, SequencerTracksOutline, SequencerVerticalDivider, SequencerVerticalLineText } from "./SequencerTracks.styled";
+import { SequencerFourDividerDarkener, SequencerTracksContainer, SequencerTracksOutline, SequencerVerticalDivider } from "./SequencerTracks.styled";
 import { nanoid } from "nanoid";
 import { useState } from "react";
 import SequencerPlayLineIndicator from "@/components/Sequencer/SequencerPlayLineIndicator/SequencerPlayLineIndicator";
@@ -30,7 +30,6 @@ function SequencerTracks(){
             if(i % 8 === 0 || i === 0){
                 lineArray.push(
                     <SequencerVerticalDivider key={nanoid()} color={lineColors[0]}>
-                        <SequencerVerticalLineText>{i === 0 ? 0 : i/8}</SequencerVerticalLineText>
                     </SequencerVerticalDivider>
                 )
             }else{

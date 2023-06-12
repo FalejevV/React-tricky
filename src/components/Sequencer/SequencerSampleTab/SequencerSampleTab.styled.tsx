@@ -2,18 +2,23 @@ import styled, { css } from "styled-components";
 
 
 export const SequencerSampleTabContainer = styled.div<{
-    color:string
+    color:string,
+    hasFile:boolean
 }>`
     width:100%;
     height:90px;
     position:relative;
     overflow:hidden;
     border-top:1px solid #2E4F4F;
-    background-color:${({ color }) => color || "red"};
+    background-color:#7D9393;
     padding:10px;
     display:flex;
     flex-direction:column;
     justify-content: space-between;
+
+    ${({ hasFile,color }) => hasFile && css`
+        background-color:${color};
+    `}
 `
 
 export const SequencerSampleTabTopBar = styled.div<{
@@ -38,6 +43,9 @@ export const SequencerSampleTabTitle = styled.p`
     font-size:16px;
     font-family:arial;
     color:#2C3333;
+    text-overflow: ellipsis;
+    overflow: hidden; 
+    white-space: nowrap;
 `
 
 export const SequencerSamleTabImage = styled.img`
@@ -69,4 +77,8 @@ export const SequencerSampleTabEnableButton = styled.div<{
     ${({ active }) => active && css`
         background-color: #b0f2c2;
     `}
+`
+
+export const SequencerSampleTabFileInput = styled.input`
+    color:black;
 `

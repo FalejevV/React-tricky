@@ -13,7 +13,7 @@ function SequencrSampleRow(props:{
     const dispatch = useAppDispatch();
     const tabsSelector = useAppSelector((state:RootState) => state.sampleTabs[props.id]);
     const togglesSelector = useAppSelector((state:RootState) => state.toggles);
-    
+    const tagsInfoSelector = useAppSelector((state:RootState) => state.tabsInfo[props.id]);
     const [dragTarget, setDragTarget] = useState<{
         id:string,
         from:number,
@@ -260,6 +260,8 @@ function SequencrSampleRow(props:{
     function addTabAction(index:number){
         if(dragTarget || moveTarget) return;
         if(togglesSelector.play) return;
+        if(tagsInfoSelector.file === "") return;
+        
         dispatch(addTab({
             sampleId: props.id || 0,
             start: index

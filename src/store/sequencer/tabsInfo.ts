@@ -59,11 +59,14 @@ const tabsInfoSlice = createSlice({
         }),
         setTitle: ((state:tabInfo[], action:PayloadAction<{tabIndex:number, value:string}>) => {
             state[action.payload.tabIndex].title = action.payload.value;
-        })
+        }),
+        setColor: ((state:tabInfo[], action:PayloadAction<{tabIndex:number, value:string}>) => {
+            state[action.payload.tabIndex].color = action.payload.value;
+        }),
     }
 })
 
 
 export default tabsInfoSlice.reducer;
 
-export const { setActive, setFile, setTitle } = tabsInfoSlice.actions;
+export const { setActive, setFile, setTitle,setColor } = tabsInfoSlice.actions;
