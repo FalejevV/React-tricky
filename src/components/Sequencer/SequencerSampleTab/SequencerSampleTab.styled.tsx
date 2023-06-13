@@ -63,22 +63,12 @@ export const SequencerSamleTabImage = styled.img`
     }
 `
 
-export const SequencerSampleTabEnableButton = styled.div<{
-    active:boolean
-}>`
-    position: absolute;
-    right:0px;
-    bottom:0px;
-    width:20px;
-    height:20px;
-    background-color:#ff8097;
-    cursor:pointer;
-    border:1px solid #2c333378;
-    ${({ active }) => active && css`
-        background-color: #b0f2c2;
-    `}
-`
 
 export const SequencerSampleTabFileInput = styled.input`
     color:black;
+`
+
+export const SequencerSampleTabSpacer = styled.div`
+    flex:1 auto;
+    height:100%;
 `

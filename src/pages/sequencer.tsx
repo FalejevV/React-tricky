@@ -3,9 +3,10 @@ import SequencerTopBar from "@/layout/SequencerTopBar/SequencerTopBar";
 import SequencerTracks from "@/layout/SequencerTracks/SequencerTracks";
 import { RootState, useAppDispatch, useAppSelector } from "@/store/store";
 import { SequencerContainer, SequencerWorkSpace } from "@/styles/sequencer.styled";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { sampleTab, sampleTabData } from "../../interface";
 import { setPlay } from "@/store/sequencer/toggles";
+import SequencerBottomBar from "@/layout/SequencerBottomBar/SequencerBottomBar";
 
 function Sequencer(){
     const sampleTabsSelector = useAppSelector((state:RootState) => state.sampleTabs);
@@ -14,12 +15,11 @@ function Sequencer(){
     const [audioTimeouts, setAudioTimeouts] = useState<NodeJS.Timeout[]>([]);
     const [audioPlaybacks,setAudioPlaybacks] = useState<HTMLAudioElement[]>([]);
     const dispatch = useAppDispatch();
+
     useEffect(() => {
         if(togglesSelector.load){
             let timeoutArray:NodeJS.Timeout[]= [];
             let lag = new Date().getTime();
-            console.log(JSON.stringify(tabsInfoSelector));
-            console.log(JSON.stringify(sampleTabsSelector));
             try{
             sampleTabsSelector.forEach((tabsArray:sampleTab,index:number) => {
                 if(!tabsInfoSelector[index].active) return;
@@ -29,7 +29,7 @@ function Sequencer(){
                     let endTimeout;
                     let startTimeout = setTimeout(() => {
                         let audioClone = audio.cloneNode(true) as HTMLAudioElement;
-                        audioClone.volume = 0.35;
+                        audioClone.volume = tabsInfoSelector[index].volume;
                         audioClone.play();
                         setAudioPlaybacks(prev => [...prev,audioClone])
                         endTimeout = setTimeout(() => {
@@ -58,14 +58,23 @@ function Sequencer(){
             }catch{}
         }
     }, [togglesSelector.load]);
+    
+    const memo = useMemo(() => {
+        return(
+            <SequencerContainer>
+                <SequencerTopBar/>
+                <SequencerWorkSpace>
+                    <SequencerSideBar />
+                    <SequencerTracks />
+                </SequencerWorkSpace>
+                <SequencerBottomBar />
+            </SequencerContainer>
+        )
+    },[]);
     return(
-        <SequencerContainer>
-            <SequencerTopBar/>
-            <SequencerWorkSpace>
-                <SequencerSideBar />
-                <SequencerTracks />
-            </SequencerWorkSpace>
-        </SequencerContainer>
+        <>
+            {memo}
+        </>
     )
 }
 

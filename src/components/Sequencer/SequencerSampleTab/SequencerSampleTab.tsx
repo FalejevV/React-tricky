@@ -1,7 +1,8 @@
 import { setActive, setColor, setFile, setTitle, tabInfo } from "@/store/sequencer/tabsInfo";
-import { SequencerSamleTabImage, SequencerSampleBottomBar, SequencerSampleTabContainer, SequencerSampleTabEnableButton, SequencerSampleTabFileInput, SequencerSampleTabTitle, SequencerSampleTabTopBar } from "./SequencerSampleTab.styled";
+import { SequencerSamleTabImage, SequencerSampleBottomBar, SequencerSampleTabContainer, SequencerSampleTabFileInput, SequencerSampleTabSpacer, SequencerSampleTabTitle, SequencerSampleTabTopBar } from "./SequencerSampleTab.styled";
 import { useAppDispatch } from "@/store/store";
 import { ChangeEvent, useState } from "react";
+import { SequencerSampleActiveButton } from "../SequencerActiveButton/SequencerActiveButton.styled";
 
 let colorList = [
     "#CDC2AE",
@@ -62,7 +63,10 @@ function SequencerSampleTab(props:{
                 <SequencerSampleBottomBar>
                     <SequencerSamleTabImage src="/sequencer/delete.svg" alt="remove sample" onClick={() => dispatch(setFile({ tabIndex:props.tabIndex, value:""}))}/>
                     <SequencerSamleTabImage src="/sequencer/palette.svg" alt="pick color" onClick={() => dispatch(setColor({tabIndex:props.tabIndex, value:getRandomColor()}))} />
-                    <SequencerSampleTabEnableButton active={props.data.active} onClick={() => dispatch(setActive({tabIndex:props.tabIndex, value:!props.data.active}))}/>
+
+                    <SequencerSampleTabSpacer />
+                    
+                    <SequencerSampleActiveButton active={props.data.active} onClick={() => dispatch(setActive({tabIndex:props.tabIndex, value:!props.data.active}))}/>
                 </SequencerSampleBottomBar>
             </>}
         </SequencerSampleTabContainer>

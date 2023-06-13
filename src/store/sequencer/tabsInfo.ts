@@ -5,6 +5,7 @@ export interface tabInfo{
     title:string,
     color:string,
     active:boolean,
+    volume:number,
 }
 
 const initialState:tabInfo[] = [
@@ -13,36 +14,42 @@ const initialState:tabInfo[] = [
         title:"TEST",
         color:"#ffe4e1",
         active:true,
+        volume:0.5,
     },
     {
         file:"",
         title:"sample loop #2",
         color:"#d8f8e1",
         active:true,
+        volume:0.5,
     },
     {
         file:"",
         title:"TEST loop",
         color:"#b0c2f2",
         active:true,
+        volume:0.5,
     },
     {
         file:"",
         title:"HELLO loop",
         color:"#b0f2c2",
         active:true,
+        volume:0.5,
     },
     {
         file:"",
         title:"SAME loop",
         color:"#fdf9c4",
         active:true,
+        volume:0.5,
     },
     {
         file:"",
         title:"kek loop",
         color:"#c5c6c8",
         active:true,
+        volume:0.5,
     }
 ];
 
@@ -63,10 +70,13 @@ const tabsInfoSlice = createSlice({
         setColor: ((state:tabInfo[], action:PayloadAction<{tabIndex:number, value:string}>) => {
             state[action.payload.tabIndex].color = action.payload.value;
         }),
+        setVolume: ((state:tabInfo[], action:PayloadAction<{tabIndex:number, value:number}>) => {
+            state[action.payload.tabIndex].volume = action.payload.value;
+        }),
     }
 })
 
 
 export default tabsInfoSlice.reducer;
 
-export const { setActive, setFile, setTitle,setColor } = tabsInfoSlice.actions;
+export const { setActive, setFile, setTitle,setColor, setVolume } = tabsInfoSlice.actions;
