@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const SequencerFadersContainer = styled.div`
-    width:325px;
+    max-width:325px;
+    min-width:325px;
     height:100%;
     display:flex;
     align-items: center;
@@ -38,3 +39,4 @@ export const SequencerFaderOverlayIcon = styled.svg`
         transform:translate(-50%,-50%) scale(1.1) ;
     }
 `
+

@@ -1,11 +1,20 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
+export interface Filters{
+    reverb:{
+        toggled:boolean,
+        dry:number,
+        wet:number,
+    }
+}
+
 export interface tabInfo{
     file:string,
     title:string,
     color:string,
     active:boolean,
     volume:number,
+    filters:Filters
 }
 
 const initialState:tabInfo[] = [
@@ -15,6 +24,13 @@ const initialState:tabInfo[] = [
         color:"#ffe4e1",
         active:true,
         volume:0.5,
+        filters:{
+            reverb:{
+                toggled:true,
+                dry:1,
+                wet:0.1,
+            }
+        }
     },
     {
         file:"",
@@ -22,6 +38,13 @@ const initialState:tabInfo[] = [
         color:"#d8f8e1",
         active:true,
         volume:0.5,
+        filters:{
+            reverb:{
+                toggled:true,
+                dry:1,
+                wet:0.1,
+            }
+        }
     },
     {
         file:"",
@@ -29,6 +52,13 @@ const initialState:tabInfo[] = [
         color:"#b0c2f2",
         active:true,
         volume:0.5,
+        filters:{
+            reverb:{
+                toggled:true,
+                dry:1,
+                wet:0.1,
+            }
+        }
     },
     {
         file:"",
@@ -36,6 +66,13 @@ const initialState:tabInfo[] = [
         color:"#b0f2c2",
         active:true,
         volume:0.5,
+        filters:{
+            reverb:{
+                toggled:true,
+                dry:1,
+                wet:0.1,
+            }
+        }
     },
     {
         file:"",
@@ -43,6 +80,13 @@ const initialState:tabInfo[] = [
         color:"#fdf9c4",
         active:true,
         volume:0.5,
+        filters:{
+            reverb:{
+                toggled:true,
+                dry:1,
+                wet:0.1,
+            }
+        }
     },
     {
         file:"",
@@ -50,6 +94,13 @@ const initialState:tabInfo[] = [
         color:"#c5c6c8",
         active:true,
         volume:0.5,
+        filters:{
+            reverb:{
+                toggled:true,
+                dry:1,
+                wet:0.1,
+            }
+        }
     }
 ];
 
@@ -73,10 +124,16 @@ const tabsInfoSlice = createSlice({
         setVolume: ((state:tabInfo[], action:PayloadAction<{tabIndex:number, value:number}>) => {
             state[action.payload.tabIndex].volume = action.payload.value;
         }),
+        setWetReverb: ((state:tabInfo[], action:PayloadAction<{tabIndex:number, value:number}>) => {
+            state[action.payload.tabIndex].filters.reverb.wet = action.payload.value;
+        }),
+        setDryReverb: ((state:tabInfo[], action:PayloadAction<{tabIndex:number, value:number}>) => {
+            state[action.payload.tabIndex].filters.reverb.dry = action.payload.value;
+        }),
     }
 })
 
 
 export default tabsInfoSlice.reducer;
 
-export const { setActive, setFile, setTitle,setColor, setVolume } = tabsInfoSlice.actions;
+export const { setActive, setFile, setTitle,setColor, setVolume, setWetReverb, setDryReverb} = tabsInfoSlice.actions;

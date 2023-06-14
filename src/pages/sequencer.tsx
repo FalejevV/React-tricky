@@ -7,6 +7,7 @@ import { useEffect, useMemo, useState } from "react";
 import { sampleTab, sampleTabData } from "../../interface";
 import { setPlay } from "@/store/sequencer/toggles";
 import SequencerBottomBar from "@/layout/SequencerBottomBar/SequencerBottomBar";
+import initAll from "@/components/Sequencer/Filters";
 
 function Sequencer(){
     const sampleTabsSelector = useAppSelector((state:RootState) => state.sampleTabs);
@@ -24,17 +25,20 @@ function Sequencer(){
             sampleTabsSelector.forEach((tabsArray:sampleTab,index:number) => {
                 if(!tabsInfoSelector[index].active) return;
                 if(tabsInfoSelector[index].file.trim() === "") return;
-                let audio = new Audio(tabsInfoSelector[index].file);
+
+                
                 tabsArray.tabs.forEach((tab:sampleTabData) => {
                     let endTimeout;
                     let startTimeout = setTimeout(() => {
-                        let audioClone = audio.cloneNode(true) as HTMLAudioElement;
+                        let audioClone = initAll(tabsInfoSelector[index].file, tabsInfoSelector[index].filters);
                         audioClone.volume = tabsInfoSelector[index].volume;
                         audioClone.play();
                         setAudioPlaybacks(prev => [...prev,audioClone])
                         endTimeout = setTimeout(() => {
+                            try{
                             audioClone.pause();
                             audioClone.currentTime = 0;
+                            }catch{}
                         }, (tab.to - tab.from + 1) * togglesSelector.speed)
                     },tab.from * togglesSelector.speed)
                     timeoutArray.push(startTimeout);

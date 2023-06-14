@@ -1,17 +1,13 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
-
-export const SequencerFaderContainer = styled.div<{
-    color:string;
-}>`
+export const SequencerFXFaderContainer = styled.div`
     width:40px;
-    height:400px;
+    height:130px;
     position:relative;
-    background-color:${({ color }) => color || "transparent"};
     &:after{
         content:"";
         width:7px;
-        height:260px;
+        height:135px;
         position: absolute;
         left:50%;
         top:50%;
@@ -27,7 +23,7 @@ export const SequencerFaderContainer = styled.div<{
     }
 `
 
-export const SequencerFaderInput = styled.input`
+export const SequencerFXFaderInput = styled.input`
     position: absolute;
     left:50%;
     top:50%;
@@ -36,7 +32,7 @@ export const SequencerFaderInput = styled.input`
     background-color:transparent;
     appearance: none;
     -webkit-appearance: none;
-    width:280px;
+    width:150px;
 
     &::-moz-range-thumb{
         width:35px;
@@ -76,39 +72,12 @@ export const SequencerFaderInput = styled.input`
     }
 `
 
-export const SequencerActiveButtonWrap = styled.div`
-    position: absolute;
-    left:0px;
-    top:10px;
-    width:100%;
-    display: flex;
-    justify-content: center;
-`
-
-export const SequencerFXButton = styled.p<{
-    toggle:boolean
-}>`
-    width:40px;
-    height:40px;
-    background-color: #ff8843;
-    position: absolute;
-    bottom:0px;
+export const SequencerFXFaderTitle = styled.p`
+    position:absolute;
+    bottom: -40px;
     left:50%;
     transform: translateX(-50%);
-    display:flex;
-    align-items: center;
-    justify-content: center;
-    color:black;
-    font-weight: bold;
-    font-family: arial;
-    cursor:pointer;
-
-    ${({ toggle }) => toggle && css`
-        background-color: #ff5e00;
-        transform: translateX(-50%) scale(0.95);
-    `}
-
-    &:hover{
-        filter:brightness(1.1);
-    }
+    pointer-events: none;
+    user-select: none;
+    opacity: 0.8;
 `

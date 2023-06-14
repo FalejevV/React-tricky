@@ -4,14 +4,16 @@ export interface Toggles{
     cursorType:number,
     load:boolean,
     speed:number,
-    play:boolean
+    play:boolean,
+    fixtureTab:number
 }
 
 const initialState: Toggles = {
     cursorType:0,
     load:false,
     play:false,
-    speed:125
+    speed:125,
+    fixtureTab:0,
 }
 
 
@@ -31,10 +33,13 @@ const togglesSlice = createSlice({
         setSpeed:((state:Toggles,action:PayloadAction<number>) => {
             state.speed = action.payload;
         }),
+        setFixtureTab:((state:Toggles,action:PayloadAction<number>) => {
+            state.fixtureTab = action.payload;
+        }),
     }
 })
 
 
 export default togglesSlice.reducer;
 
-export const {setCursorType, setPlay,setLoad} = togglesSlice.actions;
+export const {setCursorType, setPlay,setLoad, setFixtureTab} = togglesSlice.actions;
