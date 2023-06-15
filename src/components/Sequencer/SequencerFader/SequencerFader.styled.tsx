@@ -105,7 +105,7 @@ export const SequencerFXButton = styled.p<{
 
     ${({ toggle }) => toggle && css`
         background-color: #ff5e00;
-        transform: translateX(-50%) scale(0.95);
+        transform: translateX(-50%) scale(0.9);
     `}
 
     &:hover{

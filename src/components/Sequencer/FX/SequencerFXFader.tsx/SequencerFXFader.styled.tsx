@@ -4,10 +4,11 @@ export const SequencerFXFaderContainer = styled.div`
     width:40px;
     height:130px;
     position:relative;
+    padding:10px 0px;
     &:after{
         content:"";
         width:7px;
-        height:135px;
+        height:150px;
         position: absolute;
         left:50%;
         top:50%;
@@ -32,7 +33,7 @@ export const SequencerFXFaderInput = styled.input`
     background-color:transparent;
     appearance: none;
     -webkit-appearance: none;
-    width:150px;
+    width:170px;
 
     &::-moz-range-thumb{
         width:35px;
@@ -80,4 +81,5 @@ export const SequencerFXFaderTitle = styled.p`
     pointer-events: none;
     user-select: none;
     opacity: 0.8;
+    font-family: arial;
 `

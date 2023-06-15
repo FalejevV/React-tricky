@@ -9,6 +9,9 @@ import { setPlay } from "@/store/sequencer/toggles";
 import SequencerBottomBar from "@/layout/SequencerBottomBar/SequencerBottomBar";
 import initAll from "@/components/Sequencer/Filters";
 
+
+let startDelay = 1000;
+
 function Sequencer(){
     const sampleTabsSelector = useAppSelector((state:RootState) => state.sampleTabs);
     const togglesSelector = useAppSelector((state:RootState) => state.toggles);
@@ -29,8 +32,8 @@ function Sequencer(){
                 
                 tabsArray.tabs.forEach((tab:sampleTabData) => {
                     let endTimeout;
+                    let audioClone = initAll(tabsInfoSelector[index].file, tabsInfoSelector[index].filters);
                     let startTimeout = setTimeout(() => {
-                        let audioClone = initAll(tabsInfoSelector[index].file, tabsInfoSelector[index].filters);
                         audioClone.volume = tabsInfoSelector[index].volume;
                         audioClone.play();
                         setAudioPlaybacks(prev => [...prev,audioClone])
@@ -39,13 +42,15 @@ function Sequencer(){
                             audioClone.pause();
                             audioClone.currentTime = 0;
                             }catch{}
-                        }, (tab.to - tab.from + 1) * togglesSelector.speed)
-                    },tab.from * togglesSelector.speed)
+                        }, (tab.to - tab.from + 1) * togglesSelector.speed + startDelay)
+                    },tab.from * togglesSelector.speed + startDelay)
                     timeoutArray.push(startTimeout);
                 })
                 setAudioTimeouts(timeoutArray);
             })
-            setTimeout(() => dispatch(setPlay(true)),new Date().getTime() - lag);
+            setTimeout(() => {
+                dispatch(setPlay(true))
+            },new Date().getTime() - lag + startDelay);
             }catch{
                 // Problem with setTimeout. Just catching the error. Nothing else. Maybe ill change this later
             }

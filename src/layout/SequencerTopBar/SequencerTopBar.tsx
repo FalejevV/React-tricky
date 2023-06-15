@@ -9,6 +9,11 @@ function SequencerTopBar(){
     const dispatch = useAppDispatch();
     const toggledSelector = useAppSelector((state:RootState) => state.toggles);
 
+    function stopButtonLogic(){
+        if(toggledSelector.play){
+            dispatch(setLoad(false))
+        }
+    }
     return(
         <SequencerTopBarContainer>
 
@@ -20,7 +25,7 @@ function SequencerTopBar(){
 
                 <SequencerTopBarUpperContainer>
                     <SequencerTabButton action={() => {dispatch(setLoad(true))}} toggled={toggledSelector.load} title={""} icon={"/sequencer/play.svg"} />
-                    <SequencerTabButton action={() => {dispatch(setLoad(false))}} toggled={!toggledSelector.load} title={""} icon={"/sequencer/stop.svg"} />
+                    <SequencerTabButton action={stopButtonLogic} toggled={!toggledSelector.load} title={""} icon={"/sequencer/stop.svg"} />
                 </SequencerTopBarUpperContainer>
 
                 <SequencerTopBarLowerContainer>

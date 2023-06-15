@@ -7,25 +7,17 @@ import { SequencerSampleActiveButton } from "../SequencerActiveButton/SequencerA
 let colorList = [
     "#CDC2AE",
     "#6aa1ac",
-    "#9BABB8",
-    "#75ada7",
     "#F2D8D8",
     "#8294C4",
-    "#CBB279",
     "#FFB4B4",
-    "#B2A4FF",
     "#FFD966",
     "#b165a2",
     "#8EA7E9",
     "#E97777",
     "#CDFCF6",
     "#ECCCB2",
-    "#B1BCE6",
-    "#DEB6AB",
-    "#d47f7f",
     "#bd7272",
     "#A68DAD",
-    "#CDF2CA",
     "#A2CDCD"
 ]
 function getRandomColor(){
