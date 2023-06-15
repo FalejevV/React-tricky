@@ -33,10 +33,6 @@ export const SequencerFaderOverlayIcon = styled.svg`
     fill:#a8c2c0f8;
     width:90px;
     height:90px;
-    cursor:pointer;
     transition: all 0.3s;;
-    &:hover{
-        transform:translate(-50%,-50%) scale(1.1) ;
-    }
 `
 

@@ -1,7 +1,9 @@
 
 import SequencerReverbFX from "@/components/Sequencer/FX/Reverb/SequencerReverbFX";
-import { SequencerFXTabContainer } from "./SequencerFXTab.styled";
+import { SequencerFXPanReverbContainer, SequencerFXTabContainer } from "./SequencerFXTab.styled";
 import { RootState, useAppSelector } from "@/store/store";
+import SequencerPanFX from "@/components/Sequencer/FX/Panorama/SequencerPanFX";
+import { SequencerFaderOverlayIcon, SequencerFadersOverlayBlock } from "../SequencerFaders/SequencerFaders.styled";
 
 
 
@@ -11,7 +13,12 @@ function SequencerFXTab(){
         <>
             {togglesSelector.fixtureTab >= 0 && 
             <SequencerFXTabContainer>
-                <SequencerReverbFX />
+                <SequencerFadersOverlayBlock toggle={togglesSelector.load}>
+                </SequencerFadersOverlayBlock>
+                <SequencerFXPanReverbContainer>
+                    <SequencerReverbFX />
+                    <SequencerPanFX />
+                </SequencerFXPanReverbContainer>
             </SequencerFXTabContainer>
             }
             

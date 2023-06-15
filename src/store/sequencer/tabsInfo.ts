@@ -6,6 +6,9 @@ export interface Filters{
         dry:number,
         wet:number,
         type:number,
+    },
+    pan:{
+        value:number
     }
 }
 
@@ -31,6 +34,9 @@ const initialState:tabInfo[] = [
                 dry:1,
                 wet:0.1,
                 type:0
+            },
+            pan:{
+                value:50
             }
         }
     },
@@ -46,6 +52,9 @@ const initialState:tabInfo[] = [
                 dry:1,
                 wet:0.1,
                 type:0
+            },
+            pan:{
+                value:50
             }
         }
     },
@@ -61,6 +70,9 @@ const initialState:tabInfo[] = [
                 dry:1,
                 wet:0.1,
                 type:0
+            },
+            pan:{
+                value:50
             }
         }
     },
@@ -76,6 +88,9 @@ const initialState:tabInfo[] = [
                 dry:1,
                 wet:0.1,
                 type:0
+            },
+            pan:{
+                value:50
             }
         }
     },
@@ -91,6 +106,9 @@ const initialState:tabInfo[] = [
                 dry:1,
                 wet:0.1,
                 type:0
+            },
+            pan:{
+                value:50
             }
         }
     },
@@ -106,6 +124,9 @@ const initialState:tabInfo[] = [
                 dry:1,
                 wet:0.1,
                 type:0
+            },
+            pan:{
+                value:50
             }
         }
     }
@@ -143,10 +164,13 @@ const tabsInfoSlice = createSlice({
         setDryReverb: ((state:tabInfo[], action:PayloadAction<{tabIndex:number, value:number}>) => {
             state[action.payload.tabIndex].filters.reverb.dry = action.payload.value;
         }),
+        setPanValue: ((state:tabInfo[], action:PayloadAction<{tabIndex:number, value:number}>) => {
+            state[action.payload.tabIndex].filters.pan.value = action.payload.value;
+        }),
     }
 })
 
 
 export default tabsInfoSlice.reducer;
 
-export const { setActive, setFile, setTitle,setColor, setVolume, setWetReverb, setDryReverb, setToggleReverb, setTypeReverb} = tabsInfoSlice.actions;
+export const { setActive, setFile, setTitle,setColor, setVolume, setWetReverb, setDryReverb, setToggleReverb, setTypeReverb ,setPanValue} = tabsInfoSlice.actions;

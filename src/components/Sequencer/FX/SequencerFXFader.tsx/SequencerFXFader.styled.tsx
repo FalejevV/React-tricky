@@ -43,7 +43,6 @@ export const SequencerFXFaderInput = styled.input`
         background: rgb(31,31,31);
         background: linear-gradient(90deg, rgba(31,31,31,1) 0%, rgba(31,31,31,1) 23%, rgba(60,60,60,1) 30%, rgba(31,31,31,1) 37%, rgba(31,31,31,1) 63%, rgba(60,60,60,1) 70%, rgba(31,31,31,1) 77%, rgba(31,31,31,1) 100%);  
         cursor: pointer;
-        box-shadow: -7px -1px 2px 2px #0000005e;
     }
 
     &::-webkit-slider-thumb{
@@ -54,7 +53,6 @@ export const SequencerFXFaderInput = styled.input`
         background: rgb(31,31,31);
         background: linear-gradient(90deg, rgba(31,31,31,1) 0%, rgba(31,31,31,1) 23%, rgba(60,60,60,1) 30%, rgba(31,31,31,1) 37%, rgba(31,31,31,1) 63%, rgba(60,60,60,1) 70%, rgba(31,31,31,1) 77%, rgba(31,31,31,1) 100%);  
         cursor: pointer;
-        box-shadow: -7px -1px 2px 2px #0000005e;
     }
 
     &::-ms-thumb{
@@ -65,7 +63,6 @@ export const SequencerFXFaderInput = styled.input`
         background: rgb(31,31,31);
         background: linear-gradient(90deg, rgba(31,31,31,1) 0%, rgba(31,31,31,1) 23%, rgba(60,60,60,1) 30%, rgba(31,31,31,1) 37%, rgba(31,31,31,1) 63%, rgba(60,60,60,1) 70%, rgba(31,31,31,1) 77%, rgba(31,31,31,1) 100%);  
         cursor: pointer;
-        box-shadow: -7px -1px 2px 2px #0000005e;
     }
 
     &::-moz-range-track{
