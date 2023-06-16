@@ -9,7 +9,7 @@ function initAll(audioString:string, filtersData:Filters){
     panner(audioContext,audioSource, filtersData.pan.value);
     if(filtersData.reverb.toggled) reverb(audioContext,audioSource, filtersData.reverb.wet , filtersData.reverb.dry, filtersData.reverb.type);
     if(filtersData.delay.toggled) delay(audioContext,audioSource, filtersData.delay.value);
-    
+    if(filtersData.distortion.toggled) distortion(audioContext,audioSource,filtersData.distortion.value);
     return audioElement;
 }
 
@@ -79,6 +79,36 @@ function panner(context:AudioContext,source:any, pan:number){
 
     // Set the pan position
     panNode.pan.setValueAtTime(panPosition, context.currentTime);
+}
+
+function distortion(context:AudioContext,source:any,distortion:number){
+    console.log(distortion);
+    var distortionNode = context.createWaveShaper();
+
+    // Set the amount of distortion
+    var distortionAmount = distortion; // Adjust this value to control the amount of distortion
+
+    // Function to apply the distortion curve
+    function makeDistortionCurve(distortionAmount:number) {
+    var k = typeof distortionAmount === 'number' ? distortionAmount : 50;
+    var samples = 500;
+    var curve = new Float32Array(samples);
+    var deg = Math.PI / 180;
+    var i = 0;
+    var x;
+    for (; i < samples; ++i) {
+        x = i * 2 / samples - 1;
+        curve[i] = (3 + k) * x * 20 * deg / (Math.PI + k * Math.abs(x));
+    }
+    return curve;
+    }
+
+    // Set the distortion curve
+    distortionNode.curve = makeDistortionCurve(distortionAmount);
+
+    // Connect the nodes
+    source.connect(distortionNode);
+    distortionNode.connect(context.destination);
 }
 
 export default initAll;

@@ -3,8 +3,9 @@ import SequencerReverbFX from "@/components/Sequencer/FX/Reverb/SequencerReverbF
 import { SequencerFXPanReverbContainer, SequencerFXTabContainer } from "./SequencerFXTab.styled";
 import { RootState, useAppSelector } from "@/store/store";
 import SequencerPanFX from "@/components/Sequencer/FX/Panorama/SequencerPanFX";
-import { SequencerFaderOverlayIcon, SequencerFadersOverlayBlock } from "../SequencerFaders/SequencerFaders.styled";
+import { SequencerFadersOverlayBlock } from "../SequencerFaders/SequencerFaders.styled";
 import SequencerDelayFX from "@/components/Sequencer/FX/Delay/SequencerDelayFX";
+import SequencerDistortionFX from "@/components/Sequencer/FX/Distortion/SequencerDistortionFX";
 
 
 
@@ -21,6 +22,7 @@ function SequencerFXTab(){
                     <SequencerPanFX />
                 </SequencerFXPanReverbContainer>
                 <SequencerDelayFX />
+                <SequencerDistortionFX />
             </SequencerFXTabContainer>
             }
             
