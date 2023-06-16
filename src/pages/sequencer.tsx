@@ -42,7 +42,7 @@ function Sequencer(){
                             audioClone.pause();
                             audioClone.currentTime = 0;
                             }catch{}
-                        }, (tab.to - tab.from + 1) * togglesSelector.speed + startDelay)
+                        }, (tab.to - tab.from + 1) * togglesSelector.speed)
                     },tab.from * togglesSelector.speed + startDelay)
                     timeoutArray.push(startTimeout);
                 })

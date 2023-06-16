@@ -8,6 +8,17 @@ export const SequencerDistortionFXContainer = styled.div`
     flex-direction:column;
     gap:27px;
     align-items: center;
+    position:relative;
+    
+    &:after{
+        content:"";
+        position:absolute;
+        right:-11px;
+        top:-10px;
+        height:420px;
+        width:1px;
+        background-color: #9CB7B7;
+    }
 `
 
 export const SequencerDistortionFXInfoText = styled.p`
