@@ -6,8 +6,9 @@ export const SequencerFXTabContainer = styled.div`
     height:420px;
     display:flex;
     padding:10px;
-    gap:50px;
+    gap:25px;
     position:relative;
+    user-select: none;
 `
 
 export const SequencerFXItemTitle = styled.p`

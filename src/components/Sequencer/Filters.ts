@@ -6,8 +6,9 @@ function initAll(audioString:string, filtersData:Filters){
     var audioElement = new Audio(audioString);
 
     var audioSource = audioContext.createMediaElementSource(audioElement);
-    if(filtersData.reverb.toggled) reverb(audioContext,audioSource, filtersData.reverb.wet , filtersData.reverb.dry, filtersData.reverb.type);
     panner(audioContext,audioSource, filtersData.pan.value);
+    if(filtersData.reverb.toggled) reverb(audioContext,audioSource, filtersData.reverb.wet , filtersData.reverb.dry, filtersData.reverb.type);
+    if(filtersData.delay.toggled) delay(audioContext,audioSource, filtersData.delay.value);
     
     return audioElement;
 }
@@ -50,12 +51,20 @@ function reverb(context:AudioContext,source:any, wet:number, dry:number,type:num
 
 function delay(context:AudioContext,source:any, delay:number){
     var delayNode = context.createDelay();
+    var delayTime = delay; // Delay time in seconds
+    delayNode.delayTime.value = delayTime;
+
+    // Create a GainNode for the decay effect
+    var decayGain = context.createGain();
+    var decayTime = 0; // Decay time in seconds
+    var decayLevel = 0.5; // Decay level between 0 and 1
+    decayGain.gain.setValueAtTime(decayLevel, context.currentTime);
+    decayGain.gain.exponentialRampToValueAtTime(0.05, context.currentTime + decayTime);
 
     // Connect the nodes
     source.connect(delayNode);
-    delayNode.connect(context.destination);
-
-    delayNode.delayTime.value = delay;
+    delayNode.connect(decayGain);
+    decayGain.connect(context.destination);
 }
 
 function panner(context:AudioContext,source:any, pan:number){

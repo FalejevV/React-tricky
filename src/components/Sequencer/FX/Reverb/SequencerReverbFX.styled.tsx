@@ -9,6 +9,16 @@ export const SequencerReverbFXContainer = styled.div`
     align-items: center;
     position:relative;
     gap:10px;
+
+    &:after{
+        content:"";
+        position:absolute;
+        right:-11px;
+        top:-10px;
+        height:420px;
+        width:1px;
+        background-color: #9CB7B7;
+    }
 `
 
 export const SequencerReverbFXFaderContainer = styled.div`
