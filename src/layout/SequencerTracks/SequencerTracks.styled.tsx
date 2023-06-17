@@ -34,12 +34,14 @@ export const SequencerVerticalDivider = styled.div<{
     user-select: none;
 `
 
-export const SequencerFourDividerDarkener = styled.div`
-    width:993px;
+export const SequencerFourDividerDarkener = styled.div<{
+    left?:string
+}>`
+    width:calc(993px / 2);
     height:100%;
     background-color: #2C3333;
     opacity:0.2;
     position:absolute;
-    left:0px;
+    left:${({ left }) => left || "0px"};
     top:0px;
 `

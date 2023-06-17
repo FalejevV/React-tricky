@@ -50,7 +50,7 @@ export const ReverbPickerText = styled.p`
     display: inline-block;
     width: 100px;
     height:100%;
-    font-size:18px;
+    font-size:16px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -58,4 +58,6 @@ export const ReverbPickerText = styled.p`
     display:flex;
     align-items: center;
     justify-content:center;
+    font-family: arial;
+    color:#9CB7B7;
 `

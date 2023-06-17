@@ -10,6 +10,7 @@ function initAll(audioString:string, filtersData:Filters){
     if(filtersData.reverb.toggled) reverb(audioContext,audioSource, filtersData.reverb.wet , filtersData.reverb.dry, filtersData.reverb.type);
     if(filtersData.delay.toggled) delay(audioContext,audioSource, filtersData.delay.value);
     if(filtersData.distortion.toggled) distortion(audioContext,audioSource,filtersData.distortion.value);
+    if(filtersData.speed.toggled) speed(audioContext,audioSource,audioElement,filtersData.speed.value);
     return audioElement;
 }
 
@@ -109,6 +110,19 @@ function distortion(context:AudioContext,source:any,distortion:number){
     // Connect the nodes
     source.connect(distortionNode);
     distortionNode.connect(context.destination);
+}
+
+function speed(context:AudioContext,source:any, audioElement:HTMLAudioElement, rate:number){
+    function setPlaybackRate(rate:number) {
+        audioElement.playbackRate = rate;
+    }
+
+    // Connect the audio source to the audio context's destination
+    source.connect(context.destination);
+
+    // Example usage: Change the playback rate to make it slower
+    setPlaybackRate(rate/100);
+     // Set playback rate to 
 }
 
 export default initAll;

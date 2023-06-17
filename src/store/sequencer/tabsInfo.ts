@@ -17,6 +17,10 @@ export interface Filters{
     distortion:{
         toggled:boolean,
         value:number
+    },
+    speed:{
+        toggled:boolean,
+        value:number
     }
 
 }
@@ -54,6 +58,10 @@ const initialState:tabInfo[] = [
             distortion:{
                 toggled:false,
                 value:15,
+            },
+            speed:{
+                toggled:false,
+                value:70,
             }
         }
     },
@@ -80,6 +88,10 @@ const initialState:tabInfo[] = [
             distortion:{
                 toggled:false,
                 value:15,
+            },
+            speed:{
+                toggled:false,
+                value:70
             }
         }
     },
@@ -106,6 +118,10 @@ const initialState:tabInfo[] = [
             distortion:{
                 toggled:false,
                 value:15,
+            },
+            speed:{
+                toggled:false,
+                value:70
             }
         }
     },
@@ -132,6 +148,10 @@ const initialState:tabInfo[] = [
             distortion:{
                 toggled:false,
                 value:15,
+            },
+            speed:{
+                toggled:false,
+                value:70
             }
         }
     },
@@ -158,6 +178,10 @@ const initialState:tabInfo[] = [
             distortion:{
                 toggled:false,
                 value:15,
+            },
+            speed:{
+                toggled:false,
+                value:70
             }
         }
     },
@@ -184,11 +208,16 @@ const initialState:tabInfo[] = [
             distortion:{
                 toggled:false,
                 value:15,
+            },
+            speed:{
+                toggled:false,
+                value:70
             }
         }
     }
 ];
 
+// This is super dumb-made. Sorry.
 
 const tabsInfoSlice = createSlice({
     name:"tabsInfo",
@@ -236,10 +265,16 @@ const tabsInfoSlice = createSlice({
         setDistortionValue: ((state:tabInfo[], action:PayloadAction<{tabIndex:number, value:number}>) => {
             state[action.payload.tabIndex].filters.distortion.value = action.payload.value;
         }),
+        setSpeedToggle: ((state:tabInfo[], action:PayloadAction<{tabIndex:number, value:boolean}>) => {
+            state[action.payload.tabIndex].filters.speed.toggled = action.payload.value;
+        }),
+        setSpeedValue: ((state:tabInfo[], action:PayloadAction<{tabIndex:number, value:number}>) => {
+            state[action.payload.tabIndex].filters.speed.value = action.payload.value;
+        }),
     }
 })
 
 
 export default tabsInfoSlice.reducer;
 
-export const { setActive, setFile, setTitle,setColor, setVolume, setWetReverb, setDryReverb, setToggleReverb, setTypeReverb ,setPanValue, setDelayToggle, setDelayValue ,setDistortionToggle, setDistortionValue} = tabsInfoSlice.actions;
+export const { setActive, setFile, setTitle,setColor, setVolume, setWetReverb, setDryReverb, setToggleReverb, setTypeReverb ,setPanValue, setDelayToggle, setDelayValue ,setDistortionToggle, setDistortionValue, setSpeedToggle , setSpeedValue} = tabsInfoSlice.actions;

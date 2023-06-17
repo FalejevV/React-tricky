@@ -2,6 +2,7 @@ import SequencerTabButton from "@/components/Sequencer/SequencerTabButton/Sequen
 import { SequencerTopBarContainer, SequencerTopBarToolsContainer, SequencerTopBarLowerContainer, SequencerTopBarSideContainer, SequencerTopBarUpperContainer } from "./SequencerTopBar.styled";
 import { RootState, useAppDispatch, useAppSelector } from "@/store/store";
 import { setCursorType, setLoad, setPlay } from "@/store/sequencer/toggles";
+import SequencerBPMChanger from "@/components/Sequencer/SequencerBPMChanger/SequencerBPMChanger";
 
 
 
@@ -26,6 +27,7 @@ function SequencerTopBar(){
                 <SequencerTopBarUpperContainer>
                     <SequencerTabButton action={() => {dispatch(setLoad(true))}} toggled={toggledSelector.load} title={""} icon={"/sequencer/play.svg"} />
                     <SequencerTabButton action={stopButtonLogic} toggled={!toggledSelector.load} title={""} icon={"/sequencer/stop.svg"} />
+                    <SequencerBPMChanger />
                 </SequencerTopBarUpperContainer>
 
                 <SequencerTopBarLowerContainer>

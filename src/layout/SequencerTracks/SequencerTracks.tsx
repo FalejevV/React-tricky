@@ -4,6 +4,7 @@ import { nanoid } from "nanoid";
 import { useState } from "react";
 import SequencerPlayLineIndicator from "@/components/Sequencer/SequencerPlayLineIndicator/SequencerPlayLineIndicator";
 import { RootState, useAppSelector } from "@/store/store";
+import { calculateBPMtoMS } from "@/pages/sequencer";
 
 let lineColors = [
     "#142e2e",
@@ -41,9 +42,11 @@ function SequencerTracks(){
 
     return(
         <SequencerTracksContainer>
-            {togglesSelector.play && <SequencerPlayLineIndicator speed={togglesSelector.speed} />}
+            {togglesSelector.play && <SequencerPlayLineIndicator speed={calculateBPMtoMS(togglesSelector.speed)} />}
 
             <SequencerFourDividerDarkener />
+            <SequencerFourDividerDarkener left="993px"/>
+
             <SequencerTracksOutline>
                 {trackLinePainter()}
             </SequencerTracksOutline>

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 
-export const SequencerDistortionFXContainer = styled.div`
+export const SequencerSpeedFXContainer = styled.div`
     width:100px;
     height:100%;
     display:flex;
@@ -21,7 +21,7 @@ export const SequencerDistortionFXContainer = styled.div`
     }
 `
 
-export const SequencerDistortionFXInfoText = styled.p`
+export const SequencerSpeedFXInfoText = styled.p`
     font-family: arial;
     padding-bottom: 23px;
     color:#9CB7B7;

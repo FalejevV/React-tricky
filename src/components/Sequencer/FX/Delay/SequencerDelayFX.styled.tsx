@@ -23,4 +23,5 @@ export const SequencerDelayFXContainer = styled.div`
 export const SequencerDelayFXInfoText = styled.p`
     font-family: arial;
     padding-bottom: 23px;
+    color:#9CB7B7;
 `

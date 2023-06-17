@@ -25,4 +25,5 @@ export const SequencerPanFXFaderContainer = styled.div`
     transform:rotate(90deg);
     display:flex;
     align-items: center;
+    color:#9CB7B7;
 `

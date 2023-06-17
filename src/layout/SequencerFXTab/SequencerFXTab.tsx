@@ -6,6 +6,7 @@ import SequencerPanFX from "@/components/Sequencer/FX/Panorama/SequencerPanFX";
 import { SequencerFadersOverlayBlock } from "../SequencerFaders/SequencerFaders.styled";
 import SequencerDelayFX from "@/components/Sequencer/FX/Delay/SequencerDelayFX";
 import SequencerDistortionFX from "@/components/Sequencer/FX/Distortion/SequencerDistortionFX";
+import SequencerSpeedFX from "@/components/Sequencer/FX/Speed/SequencerSpeedFX";
 
 
 
@@ -23,6 +24,7 @@ function SequencerFXTab(){
                 </SequencerFXPanReverbContainer>
                 <SequencerDelayFX />
                 <SequencerDistortionFX />
+                <SequencerSpeedFX />
             </SequencerFXTabContainer>
             }
             

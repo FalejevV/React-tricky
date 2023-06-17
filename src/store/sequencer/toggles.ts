@@ -12,7 +12,7 @@ const initialState: Toggles = {
     cursorType:0,
     load:false,
     play:false,
-    speed:125,
+    speed:120,
     fixtureTab:0,
 }
 
@@ -30,7 +30,7 @@ const togglesSlice = createSlice({
         setPlay:((state:Toggles,action:PayloadAction<boolean>) => {
             state.play = action.payload;
         }),
-        setSpeed:((state:Toggles,action:PayloadAction<number>) => {
+        setBPM:((state:Toggles,action:PayloadAction<number>) => {
             state.speed = action.payload;
         }),
         setFixtureTab:((state:Toggles,action:PayloadAction<number>) => {
@@ -42,4 +42,4 @@ const togglesSlice = createSlice({
 
 export default togglesSlice.reducer;
 
-export const {setCursorType, setPlay,setLoad, setFixtureTab} = togglesSlice.actions;
+export const {setCursorType, setPlay,setLoad, setFixtureTab, setBPM} = togglesSlice.actions;

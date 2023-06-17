@@ -5,12 +5,16 @@ import { RootState, useAppDispatch, useAppSelector } from "@/store/store";
 import { SequencerContainer, SequencerWorkSpace } from "@/styles/sequencer.styled";
 import { useEffect, useMemo, useState } from "react";
 import { sampleTab, sampleTabData } from "../../interface";
-import { setPlay } from "@/store/sequencer/toggles";
+import { setLoad, setPlay } from "@/store/sequencer/toggles";
 import SequencerBottomBar from "@/layout/SequencerBottomBar/SequencerBottomBar";
 import initAll from "@/components/Sequencer/Filters";
 
 
 let startDelay = 1000;
+
+export function calculateBPMtoMS(bpm:number){
+    return 60000 / bpm / 4;
+}
 
 function Sequencer(){
     const sampleTabsSelector = useAppSelector((state:RootState) => state.sampleTabs);
@@ -21,6 +25,7 @@ function Sequencer(){
     const dispatch = useAppDispatch();
 
     useEffect(() => {
+        let endPlaybackReset;
         if(togglesSelector.load){
             let timeoutArray:NodeJS.Timeout[]= [];
             let lag = new Date().getTime();
@@ -42,15 +47,21 @@ function Sequencer(){
                             audioClone.pause();
                             audioClone.currentTime = 0;
                             }catch{}
-                        }, (tab.to - tab.from + 1) * togglesSelector.speed)
-                    },tab.from * togglesSelector.speed + startDelay)
+                        }, (tab.to - tab.from + 1) * calculateBPMtoMS(togglesSelector.speed))
+                    },tab.from * calculateBPMtoMS(togglesSelector.speed) + startDelay)
                     timeoutArray.push(startTimeout);
                 })
                 setAudioTimeouts(timeoutArray);
             })
+            
             setTimeout(() => {
                 dispatch(setPlay(true))
             },new Date().getTime() - lag + startDelay);
+            endPlaybackReset = setTimeout(() => {
+                dispatch(setPlay(false));
+                dispatch(setLoad(false));
+            },new Date().getTime() - lag + (calculateBPMtoMS(togglesSelector.speed) * 64) + startDelay);
+            
             }catch{
                 // Problem with setTimeout. Just catching the error. Nothing else. Maybe ill change this later
             }
@@ -66,6 +77,8 @@ function Sequencer(){
             dispatch(setPlay(false));
             }catch{}
         }
+
+        return clearTimeout(endPlaybackReset);
     }, [togglesSelector.load]);
     
     const memo = useMemo(() => {
