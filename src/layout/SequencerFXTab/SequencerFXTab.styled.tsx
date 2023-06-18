@@ -35,3 +35,8 @@ export const SequencerFXPanReverbContainer = styled.div`
     justify-content: space-between;
     gap:70px;
 `
+
+export const SequencerFXTabText = styled.p`
+    font-size: 20px;
+    color:#93A9A7;
+`

@@ -25,7 +25,7 @@ function Sequencer(){
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        let endPlaybackReset;
+        let endPlaybackReset:NodeJS.Timeout | undefined;
         if(togglesSelector.load){
             let timeoutArray:NodeJS.Timeout[]= [];
             let lag = new Date().getTime();
@@ -53,10 +53,10 @@ function Sequencer(){
                 })
                 setAudioTimeouts(timeoutArray);
             })
-            
             setTimeout(() => {
                 dispatch(setPlay(true))
             },new Date().getTime() - lag + startDelay);
+            
             endPlaybackReset = setTimeout(() => {
                 dispatch(setPlay(false));
                 dispatch(setLoad(false));
@@ -72,13 +72,17 @@ function Sequencer(){
                 playpack.currentTime = 0;
             });
             audioTimeouts.forEach(clearTimeout);
-            setAudioPlaybacks([]);
-            setAudioTimeouts([]);
-            dispatch(setPlay(false));
+                setAudioPlaybacks([]);
+                setAudioTimeouts([]);
+                dispatch(setPlay(false));
             }catch{}
         }
 
-        return clearTimeout(endPlaybackReset);
+        return () => {
+            if(endPlaybackReset !== undefined && togglesSelector.load){
+                clearTimeout(endPlaybackReset);
+            }
+        };
     }, [togglesSelector.load]);
     
     const memo = useMemo(() => {

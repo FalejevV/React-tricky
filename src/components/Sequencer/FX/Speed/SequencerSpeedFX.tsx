@@ -12,7 +12,6 @@ function SequencerSpeedFX(){
     const tabsInfoSelector = useAppSelector((state:RootState) => state.tabsInfo);
     const toggleSelector = useAppSelector((state:RootState) => state.toggles);
     const dispatch = useAppDispatch();
-    console.log(tabsInfoSelector[toggleSelector.fixtureTab].filters.speed.value);
     return(
         <SequencerSpeedFXContainer>
             <SequencerFXItemHeader>
