@@ -26,17 +26,17 @@ function SequencerFXTab(){
                 <SequencerDistortionFX />
                 <SequencerSpeedFX />
                 <SequencerFXTabText>
-                This application is made by a professional (no) <br/>
-                Made by a person who is very knowledgeable about music and its creation (also not) <br/>
-                - For what? - I don&apos;t know. <br/>
-                - Useless? - I think yes. <br/>
-                - Do I regret it? - No. <br/>
-                <br/>
-                <br/>
+                    This application is made by a professional (no) <br/>
+                    Made by a person who is very knowledgeable about music and its creation (also not) <br/>
+                    - For what? - I don&apos;t know. <br/>
+                    - Useless? - I think yes. <br/>
+                    - Do I regret it? - No. <br/>
+                    <br/>
+                    <br/>
 
-                You can purchase this creation for 1 kebab and fries.
-                <br/><br/>
-                P.S.<br/> No. 2 kebabs and fries.
+                    You can purchase this creation for 1 kebab and fries.
+                    <br/><br/>
+                    P.S.<br/> No. 2 kebabs and fries.
                 </SequencerFXTabText>
             </SequencerFXTabContainer>
             }

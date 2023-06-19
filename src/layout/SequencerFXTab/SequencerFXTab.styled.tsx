@@ -39,4 +39,5 @@ export const SequencerFXPanReverbContainer = styled.div`
 export const SequencerFXTabText = styled.p`
     font-size: 20px;
     color:#93A9A7;
+    width:500px;
 `

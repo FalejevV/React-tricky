@@ -140,7 +140,7 @@ function SequencrSampleRow(props:{
                     });
                 return;
                 }
-                // Drag left side to the left
+                // Drag right side to the left
                 if(target.getBoundingClientRect().right + 20 < e.clientX && dragTarget.dragSide === "R"){
                     if(!canBeDragged(0, 1)) return;
                     dispatch(changeTab({
